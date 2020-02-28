@@ -12,8 +12,6 @@ import dagger.android.AndroidInjection
 
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(), BaseFragment.Callback{
 
-    protected val REQUEST_LOGIN = -1
-
     private var mViewDataBinding: T? = null
     private var mViewModel: V? = null
 
@@ -30,10 +28,20 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         mViewDataBinding?.executePendingBindings()
     }
 
-    fun hideKeyBoard() {
-        val view: View? = this.currentFocus
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager //casting
-        imm.hideSoftInputFromWindow(view?.windowToken, 0)
+    private fun performDependencyInjection() {
+        AndroidInjection.inject(this)
+    }
+
+    override fun onFragmentAttached() {
+
+    }
+
+    override fun onFragmentDetached(tag: String) {
+
+    }
+
+    fun getViewDataBinding(): T? {
+        return mViewDataBinding
     }
 
     abstract fun getBindingVariable(): Int
@@ -43,46 +51,10 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     @LayoutRes
     abstract fun getLayoutId(): Int
 
-    private fun performDependencyInjection() {
-        AndroidInjection.inject(this)
-    }
-
-    fun addFragment(fragment: BaseFragment<T, V>, tag: String, idContainer: Int) {
-        this.supportFragmentManager
-            .beginTransaction()
-            .add(idContainer, fragment, tag)
-            .commit()
-    }
-
-    fun showFragment(fragment: BaseFragment<T, V>, tag: String, idContainer: Int, addToBackStack: Boolean) {
-        if(addToBackStack) {
-            this.supportFragmentManager
-                .beginTransaction()
-                .addToBackStack(tag)
-                .replace(idContainer, fragment, tag)
-                .commit()
-        } else {
-            showFragment(fragment, tag, idContainer)
-        }
-    }
-
-    fun showFragment(fragment: BaseFragment<T, V>, tag: String, idContainer: Int) {
-        this.supportFragmentManager
-            .beginTransaction()
-            .disallowAddToBackStack()
-            .add(idContainer, fragment, tag)
-            .commit()
-    }
-
-    fun closeFragment(tag: String, addToBackStack: Boolean) {
-
-        val fragment = supportFragmentManager.findFragmentByTag(tag)
-        fragment?.let {
-            supportFragmentManager.beginTransaction().remove(it).commit()
-        }
-        if(addToBackStack) {
-            supportFragmentManager.popBackStack()
-        }
+    fun hideKeyBoard() {
+        val view: View? = this.currentFocus
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager //casting
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
    fun isOnline(): Boolean {

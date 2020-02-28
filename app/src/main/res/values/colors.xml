@@ -5,5 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorHomeText">#003049</color>
     <color name="colorCreateAccBtn">#FB5404</color>
+    <color name="colorHint">#707070</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorLoginBtn">#121528</color>
+    <color name="colorLoginTitle">#000000</color>
 </resources>

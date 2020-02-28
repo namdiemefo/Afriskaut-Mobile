@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".views.account.register.RegisterActivity"></activity>
-        <activity android:name=".views.account.login.LoginActivity" />
+        <activity android:name=".views.account.login.LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".views.account.home.HomeActivity"
             android:screenOrientation="portrait"
