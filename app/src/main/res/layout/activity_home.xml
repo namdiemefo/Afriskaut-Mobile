@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_backdrop"
+    tools:context=".views.account.home.HomeActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center"
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="bold"
+                    android:text="@string/welcome"
+                    android:textColor="@color/colorHomeText"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorHomeText"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="12sp"
+                    android:text="@string/welcome_message"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="60dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="342dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="237dp"
+                    android:layout_height="66dp"
+                    android:layout_gravity="top|center"
+                    android:background="@drawable/home_rounded_button"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/createAccText"
+                    android:textSize="12sp"
+                    android:onClick="goToRegister"/>
+
+                <Button
+                    android:layout_marginTop="15dp"
+                    android:layout_width="237dp"
+                    android:layout_height="66dp"
+                    android:layout_gravity="top|center"
+                    android:background="@drawable/home_round_button"
+                    android:fontFamily="@font/montserrat"
+                    android:onClick="goToLogin"
+                    android:text="Log in"
+                    android:textColor="#FFFFFF"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>

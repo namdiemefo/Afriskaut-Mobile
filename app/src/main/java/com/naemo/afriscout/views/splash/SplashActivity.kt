@@ -3,11 +3,11 @@ package com.naemo.afriscout.views.splash
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.naemo.afriscout.views.main.MainActivity
 import android.content.Intent
 import android.view.Window
 import android.view.WindowManager
 import com.naemo.afriscout.R
+import com.naemo.afriscout.views.account.home.HomeActivity
 
 
 class SplashActivity : AppCompatActivity() {
@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
             finish()
         }, 4000)
     }
