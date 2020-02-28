@@ -3,14 +3,15 @@ package com.naemo.afriscout.views.account.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.naemo.afriscout.R
 import com.naemo.afriscout.views.account.login.LoginActivity
 import com.naemo.afriscout.views.account.register.RegisterActivity
+import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), HomeNavigator {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,12 +21,20 @@ class HomeActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_home)
+        initViews()
     }
 
-    fun goToRegister(view: View) {
+    private fun initViews() {
+        register.setOnClickListener { goToRegister() }
+        login.setOnClickListener { goToLogin() }
+    }
+
+    override fun goToRegister() {
         startActivity(Intent(this, RegisterActivity::class.java))
     }
-    fun goToLogin(view: View) {
+
+    override fun goToLogin() {
         startActivity(Intent(this, LoginActivity::class.java))
     }
+
 }
