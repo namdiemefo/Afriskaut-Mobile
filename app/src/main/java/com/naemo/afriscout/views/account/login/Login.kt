@@ -98,6 +98,8 @@ interface LoginNavigator {
     fun hideSpin()
 
     fun goToMain()
+
+    fun goToForgot()
 }
 
 @Module

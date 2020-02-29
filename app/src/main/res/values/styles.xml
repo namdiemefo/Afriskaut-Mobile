@@ -6,6 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:spinnerItemStyle">@style/yourStyleForSpinnerItem</item>
+    </style>
+
+    <style name="yourStyleForSpinnerItem">
+
+        //stuff you want for the item style
+        <item name="android:textColor">@color/colorHint</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textStyle">italic</item>
+
     </style>
 
 </resources>

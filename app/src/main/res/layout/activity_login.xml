@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".views.account.login.LoginActivity">
 
@@ -17,9 +16,10 @@
             type="com.naemo.afriscout.views.account.login.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView"
@@ -30,97 +30,93 @@
             android:textColor="@color/colorLoginTitle"
             android:textSize="18sp"
             android:textStyle="normal"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp" />
 
-            app:layout_constraintBottom_toTopOf="@+id/email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.473"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.053" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="337dp"
-            android:layout_height="60dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:hint="@string/e_mail"
-            android:imeOptions="actionNext"
-            android:textStyle="italic"
-            android:textColorHint="@color/colorHint"
-            android:textColor="@color/colorHomeText"
-            android:fontFamily="@font/montserrat"
-            android:background="@drawable/rounded_field"
-            android:paddingStart="15dp"
-            android:text="@={viewModel.email}"
-            app:layout_constraintBottom_toTopOf="@+id/password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.432"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.769" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp">
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="337dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="308dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:hint="@string/password"
-            android:imeOptions="actionDone"
-            android:textStyle="italic"
-            android:textColorHint="@color/colorHint"
-            android:textColor="@color/colorHomeText"
-            android:background="@drawable/rounded_field"
-            android:paddingStart="15dp"
-            android:text="@={viewModel.password}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.432"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.454" />
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="337dp"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/e_mail"
+                    android:imeOptions="actionNext"
+                    android:textStyle="italic"
+                    android:textColorHint="@color/colorHint"
+                    android:textColor="@color/colorHomeText"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/rounded_field"
+                    android:paddingStart="15dp"
+                    android:layout_gravity="center"
+                    android:text="@={viewModel.email}" />
 
-        <TextView
-            android:id="@+id/forgot_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/forgot_password"
-            android:textColor="@color/colorLoginBtn"
-            android:fontFamily="@font/montserrat"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.452"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            app:layout_constraintVertical_bias="0.61" />
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="337dp"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:hint="@string/password"
+                    android:imeOptions="actionDone"
+                    android:textStyle="italic"
+                    android:textColorHint="@color/colorHint"
+                    android:textColor="@color/colorHomeText"
+                    android:background="@drawable/rounded_field"
+                    android:paddingStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@={viewModel.password}"
+                    android:layout_gravity="center"/>
 
-        <ImageView
-            android:layout_width="235dp"
-            android:layout_height="58dp"
-            android:layout_gravity="bottom|center"
-            android:src="@drawable/splash_logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/forgot_password" />
+                <Button
+                    android:id="@+id/login_button"
+                    android:layout_width="315dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/login_round_button"
+                    android:onClick="@{(view) -> navigator.sendLogin()}"
+                    android:text="@string/submit"
+                    android:textColor="@color/colorWhite" />
 
-        <Button
-            android:id="@+id/login_button"
-            android:layout_width="315dp"
-            android:layout_height="54dp"
-            android:background="@drawable/login_round_button"
-            android:text="@string/submit"
-            android:textColor="@color/colorWhite"
-            android:onClick="@{(view) -> navigator.sendLogin()}"
-            app:layout_constraintBottom_toTopOf="@+id/forgot_password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.451"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            app:layout_constraintVertical_bias="0.186" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/forgot_password"
+                    android:layout_width="163dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="100dp"
+                    android:fontFamily="@font/montserrat"
+                    android:onClick="@{(view) -> navigator.goToForgot()}"
+                    android:text="@string/forgot_password"
+                    android:textColor="@color/colorLoginBtn"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:layout_width="235dp"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="150dp"
+                    android:layout_gravity="bottom|center"
+                    android:src="@drawable/splash_logo" />
+
+
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+    </LinearLayout>
 
 </layout>

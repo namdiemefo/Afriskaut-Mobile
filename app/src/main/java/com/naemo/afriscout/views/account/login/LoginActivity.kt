@@ -58,6 +58,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
         startActivity(Intent(this, MainActivity::class.java))
     }
 
+    override fun goToForgot() {
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(
