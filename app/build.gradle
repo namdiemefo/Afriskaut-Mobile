@@ -43,4 +43,10 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.16'
     kapt 'com.google.dagger:dagger-android-processor:2.16'
     implementation 'com.google.dagger:dagger-android-support:2.16'
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.6.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.0"
+    implementation "com.amitshekhar.android:rx2-android-networking:1.0.1"
+    //custom dialog
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 }

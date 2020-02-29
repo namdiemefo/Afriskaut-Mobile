@@ -28,7 +28,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         mViewDataBinding?.executePendingBindings()
     }
 
-    private fun performDependencyInjection() {
+    fun performDependencyInjection() {
         AndroidInjection.inject(this)
     }
 

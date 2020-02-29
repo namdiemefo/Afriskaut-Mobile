@@ -2,7 +2,9 @@ package com.naemo.afriscout.di.module
 
 import android.app.Application
 import android.content.Context
-import com.naemo.afriscout.utils.NetworkUtils
+import com.naemo.afriscout.db.local.AppPreferences
+import com.naemo.afriscout.network.Client
+import com.naemo.afriscout.utils.AppUtils
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -16,5 +18,21 @@ class AppModule {
         return application.applicationContext
     }
 
+    @Singleton
+    @Provides
+    fun provideClient(): Client {
+        return Client()
+    }
 
+    @Singleton
+    @Provides
+    fun providesAppPreferences(context: Context): AppPreferences {
+        return AppPreferences(context)
+    }
+
+    @Singleton
+    @Provides
+    fun providesAppUtils(): AppUtils {
+        return AppUtils()
+    }
 }

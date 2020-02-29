@@ -6,11 +6,13 @@ import com.naemo.afriscout.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
 
 class AfriScout : Application(), HasActivityInjector {
 
     internal var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>? = null
+    @Inject set
 
     override fun onCreate() {
         super.onCreate()
