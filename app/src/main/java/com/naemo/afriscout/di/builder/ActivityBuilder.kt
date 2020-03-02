@@ -7,6 +7,8 @@ import com.naemo.afriscout.views.account.login.LoginActivity
 import com.naemo.afriscout.views.account.login.LoginModule
 import com.naemo.afriscout.views.account.register.RegisterActivity
 import com.naemo.afriscout.views.account.register.RegisterModule
+import com.naemo.afriscout.views.main.MainActivity
+import com.naemo.afriscout.views.main.MainModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -21,5 +23,8 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [ForgotModule::class])
     abstract fun bindForgotActivity(): ForgotActivity
+
+    @ContributesAndroidInjector(modules = [MainModule::class])
+    abstract fun bindMainActivity(): MainActivity
 
 }

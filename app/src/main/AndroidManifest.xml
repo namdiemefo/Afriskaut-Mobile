@@ -25,7 +25,8 @@
             android:name=".views.account.home.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".views.main.MainActivity" />
+        <activity android:name=".views.main.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".views.splash.SplashActivity"
             android:screenOrientation="portrait"

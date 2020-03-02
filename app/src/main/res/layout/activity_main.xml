@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorMainBackground"
     tools:context=".views.main.MainActivity">
 
-    <com.naemo.afriscout.views.common.NoSwipePager
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="navigator"
+            type="com.naemo.afriscout.views.main.MainNavigator" />
+
+        <variable
+            name="viewModel"
+            type="com.naemo.afriscout.views.main.MainViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/view_pager" />
+        android:background="@color/colorMainBackground">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="319dp"
-        android:layout_height="70dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/navigation_rounded"
-        app:elevation="2dp"
-        app:itemHorizontalTranslationEnabled="false"
-        app:itemIconTint="@drawable/nav_color_selector"
-        app:menu="@menu/navigation_menu" />
+        <com.naemo.afriscout.views.common.NoSwipePager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/view_pager" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="319dp"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/navigation_rounded"
+            app:elevation="2dp"
+            app:itemHorizontalTranslationEnabled="false"
+            app:itemIconTint="@drawable/nav_color_selector"
+            app:menu="@menu/navigation_menu" />
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
+
