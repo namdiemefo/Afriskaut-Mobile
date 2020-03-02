@@ -17,4 +17,8 @@
     <string name="pp">PRIVACY POLICY</string>
     <string name="forgot">Forgot Password</string>
     <string name="please_enter_a_registered_e_mail_address">Please enter a registered e-mail address</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile_menu">Profile</string>
 </resources>

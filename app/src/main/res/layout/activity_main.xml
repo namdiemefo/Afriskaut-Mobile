@@ -7,14 +7,22 @@
     android:background="@color/colorMainBackground"
     tools:context=".views.main.MainActivity">
 
+    <com.naemo.afriscout.views.common.NoSwipePager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/view_pager" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
-        android:layout_width="377dp"
-        android:layout_height="78dp"
+        android:layout_width="319dp"
+        android:layout_height="70dp"
         android:layout_gravity="bottom|center"
-        android:background="@drawable/navigation_rounded"
         android:layout_marginBottom="15dp"
-        app:elevation="2dp" />
+        android:background="@drawable/navigation_rounded"
+        app:elevation="2dp"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemIconTint="@drawable/nav_color_selector"
+        app:menu="@menu/navigation_menu" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

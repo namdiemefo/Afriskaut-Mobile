@@ -19,6 +19,7 @@ import com.naemo.afriscout.databinding.ActivityRegisterBinding
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.account.login.LoginActivity
 import com.naemo.afriscout.views.base.BaseActivity
+import com.naemo.afriscout.views.main.MainActivity
 import javax.inject.Inject
 
 
@@ -146,7 +147,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
     }
 
     override fun goToPp() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     override fun goToTos() {
