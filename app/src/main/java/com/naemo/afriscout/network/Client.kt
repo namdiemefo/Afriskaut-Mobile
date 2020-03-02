@@ -2,8 +2,10 @@ package com.naemo.afriscout.network
 
 import android.content.Context
 import com.androidnetworking.interceptors.HttpLoggingInterceptor
-import com.naemo.afriscout.api.models.LoginRequest
-import com.naemo.afriscout.api.models.LoginResponse
+import com.naemo.afriscout.api.models.login.LoginRequest
+import com.naemo.afriscout.api.models.login.LoginResponse
+import com.naemo.afriscout.api.models.register.RegisterRequest
+import com.naemo.afriscout.api.models.register.RegisterResponse
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -56,4 +58,7 @@ class Client {
 interface Service {
     @POST("users/login")
     fun login(@Body loginRequest: LoginRequest): Call<LoginResponse>
+
+    @POST("users/register")
+    fun register(@Body registerRequest: RegisterRequest): Call<RegisterResponse>
 }

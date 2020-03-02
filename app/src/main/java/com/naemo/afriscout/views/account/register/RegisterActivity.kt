@@ -1,8 +1,8 @@
 package com.naemo.afriscout.views.account.register
 
 import android.annotation.TargetApi
+import android.content.Intent
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -16,14 +16,32 @@ import android.view.ViewGroup
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
+import com.naemo.afriscout.BR
+import com.naemo.afriscout.databinding.ActivityRegisterBinding
+import com.naemo.afriscout.utils.AppUtils
+import com.naemo.afriscout.views.account.login.LoginActivity
+import com.naemo.afriscout.views.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_login.*
+import javax.inject.Inject
 
 
+class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel>(), RegisterNavigator{
 
-class RegisterActivity : AppCompatActivity(){
+    var registerViewModel: RegisterViewModel? = null
+    @Inject set
 
-    internal var roles = arrayOf("--Select profession--", "Agent", "Scout", "Federation", "Player", "Commentator", "Analyst")
-    lateinit var arrayAdapter: ArrayAdapter<String>
-    lateinit var stateSelected: String
+    var mLayoutId = R.layout.activity_register
+    @Inject set
+
+    var appUtils: AppUtils? = null
+        @Inject set
+
+    var mBinder: ActivityRegisterBinding? = null
+
+
+    internal var roles = arrayOf("--Select role--", "Fan", "Agent", "Scout", "Federation", "Player", "Commentator", "Analyst")
+    private lateinit var arrayAdapter: ArrayAdapter<String>
+    lateinit var roleSelected: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_NO_TITLE)
@@ -32,12 +50,16 @@ class RegisterActivity : AppCompatActivity(){
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
         doBinding()
+        initView()
     }
 
     private fun doBinding() {
-        initView()
+        mBinder = getViewDataBinding()
+        mBinder?.viewModel = registerViewModel
+        mBinder?.navigator = this
+        mBinder?.viewModel?.setNavigator(this)
+
     }
 
     private fun initView() {
@@ -83,15 +105,59 @@ class RegisterActivity : AppCompatActivity(){
         role.adapter = arrayAdapter
         role.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                val tv = p0
-
 
             }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                stateSelected = roles[p2]
+                roleSelected = roles[p2]
             }
 
         }
     }
+
+    override fun getBindingVariable(): Int {
+        return BR.viewModel
+    }
+
+    override fun getViewModel(): RegisterViewModel? {
+        return registerViewModel
+    }
+
+    override fun getLayoutId(): Int {
+        return mLayoutId
+    }
+
+    override fun sendRegister() {
+        hideKeyBoard()
+        getViewModel()?.loadRegister(roleSelected)
+    }
+
+    override fun showToast(msg: String) {
+        appUtils?.showActivityToast(this, msg)
+    }
+
+    override fun showSnackBar(msg: String) {
+        appUtils?.showSnackBar(this, register_frame, msg)
+    }
+
+    override fun showSpin() {
+        appUtils?.showDialog(this)
+    }
+
+    override fun hideSpin() {
+        appUtils?.cancelDialog()
+    }
+
+    override fun goToLogin() {
+        startActivity(Intent(this, LoginActivity::class.java))
+    }
+
+    override fun goToPp() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun goToTos() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }

@@ -5,8 +5,10 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.naemo.afriscout.R
 import java.io.IOException
 import java.net.HttpURLConnection
@@ -33,8 +35,21 @@ class AppUtils() {
         return password != null && password.length >= 6
     }
 
+    fun bothPasswordValid(password: String, confirmPassword: String): Boolean {
+        return password == confirmPassword
+    }
+
     fun showToast(msg: String) {
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    fun showActivityToast(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+    }
+
+    fun showSnackBar(context: Context, view: View, message: String) {
+        Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+            .show()
     }
 
     fun showDialog(context: Context) {

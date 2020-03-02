@@ -3,6 +3,33 @@ package com.naemo.afriscout.api.models.login
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+data class LoginRequest(
+    @Expose
+    @SerializedName("email")
+    val email: String,
+    @Expose
+    @SerializedName("password")
+    val password: String
+)
+
+data class LoginResponse(
+    @Expose
+    @SerializedName("data")
+    val data: Data,
+    @Expose
+    @SerializedName("message")
+    val message: String,
+    @Expose
+    @SerializedName("statuscode")
+    val statuscode: Int
+)
+
+data class Data(
+    @Expose
+    @SerializedName("user")
+    val user: User
+)
+
 data class User(
     @Expose
     @SerializedName("__v")

@@ -19,7 +19,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/frame">
 
         <TextView
             android:id="@+id/textView"
@@ -94,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="70dp"
                     android:fontFamily="@font/montserrat"
                     android:onClick="@{(view) -> navigator.goToForgot()}"
                     android:text="@string/forgot_password"
@@ -104,7 +105,7 @@
                 <ImageView
                     android:layout_width="235dp"
                     android:layout_height="58dp"
-                    android:layout_marginTop="150dp"
+                    android:layout_marginTop="180dp"
                     android:layout_gravity="bottom|center"
                     android:src="@drawable/splash_logo" />
 

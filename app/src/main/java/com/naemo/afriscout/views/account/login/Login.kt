@@ -2,11 +2,10 @@ package com.naemo.afriscout.views.account.login
 
 import android.app.Application
 import android.text.TextUtils
-import android.widget.Toast
 import androidx.databinding.ObservableField
 import com.naemo.afriscout.R
-import com.naemo.afriscout.api.models.LoginRequest
-import com.naemo.afriscout.api.models.LoginResponse
+import com.naemo.afriscout.api.models.login.LoginRequest
+import com.naemo.afriscout.api.models.login.LoginResponse
 import com.naemo.afriscout.db.local.AppPreferences
 import com.naemo.afriscout.network.Client
 import com.naemo.afriscout.utils.AppUtils
@@ -34,22 +33,19 @@ class LoginViewModel(application: Application) : BaseViewModel<LoginNavigator>(a
     @Inject set
 
     init {
-        loadLogin(application)
+        loadLogin()
     }
 
-   fun loadLogin(application: Application) {
+   fun loadLogin() {
         val mEmail = email.get().toString()
         val mPassword = password.get().toString()
 
         if (TextUtils.isEmpty(mEmail)) {
-            getNavigator()?.showToast("Enter email")
+            getNavigator()?.showSnackBar("Enter email")
             return
-        }
-        if (TextUtils.isEmpty(mPassword)) {
-            getNavigator()?.showToast("Enter password")
-        }
-
-        if (appUtils.isEmailValid(mEmail)) {
+        } else if (TextUtils.isEmpty(mPassword)) {
+            getNavigator()?.showSnackBar("Enter password")
+        } else if (appUtils.isEmailValid(mEmail)) {
             if (appUtils.isPasswordValid(mPassword)) {
                 getNavigator()?.showSpin()
                 val login = LoginRequest(mEmail, mPassword)
@@ -64,7 +60,8 @@ class LoginViewModel(application: Application) : BaseViewModel<LoginNavigator>(a
                             getNavigator()?.goToMain()
                         } else {
                             val msg = loginResponse?.message
-                            Toast.makeText(application, msg, Toast.LENGTH_SHORT).show()
+                           // getNavigator()?.showToast(msg!!)
+                            getNavigator()?.showSnackBar(msg!!)
                         }
                     }
 
@@ -72,15 +69,15 @@ class LoginViewModel(application: Application) : BaseViewModel<LoginNavigator>(a
                         getNavigator()?.hideSpin()
                         if (t is IOException) {
                             call.cancel()
-                            getNavigator()?.showToast("server error")
+                            getNavigator()?.showSnackBar("server error")
                         }
                     }
                 })
             } else {
-                getNavigator()?.showToast("password must be more than 6 characters")
+                getNavigator()?.showSnackBar("password must be more than 6 characters")
             }
         } else {
-            getNavigator()?.showToast("Invalid email")
+            getNavigator()?.showSnackBar("Invalid email")
         }
 
     }
@@ -100,6 +97,10 @@ interface LoginNavigator {
     fun goToMain()
 
     fun goToForgot()
+
+    fun showSnackBar(msg: String)
+
+    fun hideKeyboard()
 }
 
 @Module

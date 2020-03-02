@@ -2,15 +2,17 @@ package com.naemo.afriscout.views.account.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Toast
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityLoginBinding
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.base.BaseActivity
 import com.naemo.afriscout.views.main.MainActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), LoginNavigator {
@@ -39,11 +41,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     }
 
     override fun sendLogin() {
-        getViewModel()?.loadLogin(application)
+        hideKeyBoard()
+        getViewModel()?.loadLogin()
     }
 
     override fun showToast(msg: String) {
-       Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+       appUtils?.showActivityToast(this, msg)
     }
 
     override fun showSpin() {
@@ -58,8 +61,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
         startActivity(Intent(this, MainActivity::class.java))
     }
 
+    override fun hideKeyboard() {
+        hideKeyBoard()
+    }
+
     override fun goToForgot() {
 
+    }
+
+    override fun showSnackBar(msg: String) {
+        appUtils?.showSnackBar(this, frame, msg)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
