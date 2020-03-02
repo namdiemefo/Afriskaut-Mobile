@@ -15,4 +15,6 @@
     <string name="already_a_member_sign_in">ALREADY A MEMBER? SIGN IN</string>
     <string name="tos">TERMS OF SERVICE</string>
     <string name="pp">PRIVACY POLICY</string>
+    <string name="forgot">Forgot Password</string>
+    <string name="please_enter_a_registered_e_mail_address">Please enter a registered e-mail address</string>
 </resources>

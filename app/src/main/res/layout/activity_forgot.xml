@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.account.forgotpassword.ForgotActivity">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="navigator"
+            type="com.naemo.afriscout.views.account.forgotpassword.ForgotNavigator" />
+
+        <variable
+            name="viewModel"
+            type="com.naemo.afriscout.views.account.forgotpassword.ForgotViewModel" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/forgot_frame">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/forgot"
+            android:textColor="@color/colorLoginTitle"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/please_enter_a_registered_e_mail_address"
+                    android:textColor="@color/colorLoginTitle"
+                    android:textSize="14.2sp"
+                    android:textStyle="normal"
+                    android:layout_gravity="center" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="337dp"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/e_mail"
+                    android:imeOptions="actionNext"
+                    android:textStyle="italic"
+                    android:textColorHint="@color/colorHint"
+                    android:textColor="@color/colorHomeText"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/rounded_field"
+                    android:paddingStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:text="@={viewModel.email}" />
+
+                <Button
+                    android:id="@+id/login_button"
+                    android:layout_width="315dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/login_round_button"
+                    android:onClick="@{(view) -> navigator.sendToken()}"
+                    android:text="@string/submit"
+                    android:textColor="@color/colorWhite" />
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

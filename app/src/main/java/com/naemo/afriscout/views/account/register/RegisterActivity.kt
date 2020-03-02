@@ -44,11 +44,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
     lateinit var roleSelected: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        window.requestFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+        hideToolBar()
         super.onCreate(savedInstanceState)
         doBinding()
         initView()

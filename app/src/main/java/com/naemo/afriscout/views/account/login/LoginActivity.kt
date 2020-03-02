@@ -2,14 +2,13 @@ package com.naemo.afriscout.views.account.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MotionEvent
-import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityLoginBinding
 import com.naemo.afriscout.utils.AppUtils
+import com.naemo.afriscout.views.account.forgotpassword.ForgotActivity
 import com.naemo.afriscout.views.base.BaseActivity
 import com.naemo.afriscout.views.main.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -66,7 +65,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     }
 
     override fun goToForgot() {
-
+        startActivity(Intent(this, ForgotActivity::class.java))
     }
 
     override fun showSnackBar(msg: String) {
@@ -74,11 +73,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        window.requestFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+        hideToolBar()
         super.onCreate(savedInstanceState)
         doBinding()
     }

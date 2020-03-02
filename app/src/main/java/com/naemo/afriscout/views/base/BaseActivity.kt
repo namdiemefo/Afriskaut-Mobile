@@ -3,6 +3,8 @@ package com.naemo.afriscout.views.base
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -62,5 +64,13 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
        val network = baseComponent.getNetwork()
        return network.isNetworkConnected(this)
        // return NetworkUtils.isNetworkConnected(this)
+    }
+
+    fun hideToolBar() {
+        window.requestFeature(Window.FEATURE_NO_TITLE)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
     }
 }

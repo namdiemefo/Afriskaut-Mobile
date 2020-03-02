@@ -2,6 +2,8 @@ package com.naemo.afriscout.network
 
 import android.content.Context
 import com.androidnetworking.interceptors.HttpLoggingInterceptor
+import com.naemo.afriscout.api.models.forgot.ForgotRequest
+import com.naemo.afriscout.api.models.forgot.ForgotResponse
 import com.naemo.afriscout.api.models.login.LoginRequest
 import com.naemo.afriscout.api.models.login.LoginResponse
 import com.naemo.afriscout.api.models.register.RegisterRequest
@@ -61,4 +63,7 @@ interface Service {
 
     @POST("users/register")
     fun register(@Body registerRequest: RegisterRequest): Call<RegisterResponse>
+
+    @POST("users/reset-password")
+    fun reset(@Body forgotRequest: ForgotRequest): Call<ForgotResponse>
 }
