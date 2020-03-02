@@ -9,4 +9,5 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorLoginBtn">#121528</color>
     <color name="colorLoginTitle">#000000</color>
+    <color name="colorMainBackground">#CECECE</color>
 </resources>
