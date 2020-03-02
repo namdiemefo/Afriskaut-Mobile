@@ -77,8 +77,8 @@ class RegisterViewModel(application: Application) : BaseViewModel<RegisterNaviga
                              val resCode = registerResponse?.statuscode
                              val msg = registerResponse?.message
                              if (resCode == 201) {
-                                 getNavigator()?.goToLogin()
                                  getNavigator()?.showSnackBar(msg!!)
+                                 clearFields()
                              } else {
                                  getNavigator()?.showSnackBar(msg!!)
                              }
@@ -91,11 +91,19 @@ class RegisterViewModel(application: Application) : BaseViewModel<RegisterNaviga
                  }
 
             } else {
-                getNavigator()?.showSnackBar("Password must be more than 6")
+                getNavigator()?.showSnackBar("Password must be more than 6 characters")
             }
         } else {
             getNavigator()?.showSnackBar("Enter a valid email")
         }
+    }
+
+    fun clearFields() {
+        firstName.set("")
+        lastName.set("")
+        email.set("")
+        password.set("")
+        confirmPassword.set("")
     }
 
 

@@ -5,8 +5,6 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.naemo.afriscout.R
@@ -21,7 +19,6 @@ import com.naemo.afriscout.databinding.ActivityRegisterBinding
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.account.login.LoginActivity
 import com.naemo.afriscout.views.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 
