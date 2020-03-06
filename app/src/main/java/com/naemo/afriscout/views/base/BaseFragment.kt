@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
-import dagger.android.support.AndroidSupportInjection
 
-abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>>(contentLayoutId: Int) : Fragment(contentLayoutId) {
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
+
+
+abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerFragment() {
 
     private var mActivity: BaseActivity<*,*>? = null
     private var mViewDataBinding: T? = null

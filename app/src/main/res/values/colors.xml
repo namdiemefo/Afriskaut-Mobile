@@ -11,4 +11,5 @@
     <color name="colorLoginTitle">#000000</color>
     <color name="colorMainBackground">#CECECE</color>
     <color name="colorItem">#DADADA</color>
+    <color name="colorPicBtn">#C4C4C4</color>
 </resources>

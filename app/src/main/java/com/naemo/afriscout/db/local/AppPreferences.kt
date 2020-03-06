@@ -1,15 +1,17 @@
 package com.naemo.afriscout.db.local
 
 import android.content.Context
+import android.util.Log
 import com.naemo.afriscout.api.models.login.User
 import javax.inject.Inject
 
 class AppPreferences(context: Context) : PreferencesHelper {
 
     private val SHARED_PREF_KEY_NAME = "afriscout_shared_pref"
-    private val KEY_ACCESS_TOKEN = "token"
     var context: Context? = null
         @Inject set
+
+
 
     init {
         this.context = context
@@ -27,22 +29,27 @@ class AppPreferences(context: Context) : PreferencesHelper {
         editor?.putString("role", user.role)
         editor?.putString("status", user.status)
         editor?.putString("subscription", user.subscription)
+        Log.d("login", user.firstName)
 
         editor?.apply()
     }
 
     override fun getUser(): User {
         val preferences = context?.getSharedPreferences(SHARED_PREF_KEY_NAME, Context.MODE_PRIVATE)
+        val firstName = preferences?.getString("email", null)
+        Log.d("register", firstName!!)
         return User(
-            preferences?.getString("email", null),
-            preferences?.getString("firstName", null),
-            preferences?.getBoolean("isVerified", false),
-            preferences?.getString("token", null),
-            preferences?.getString("lastName", null),
-            preferences?.getString("role", null),
-            preferences?.getString("status", null),
-            preferences?.getString("subscription", null)
+            preferences.getString("email", null),
+            preferences.getString("firstName", null),
+            preferences.getBoolean("isVerified", false),
+            preferences.getString("token", null),
+            preferences.getString("lastName", null),
+            preferences.getString("role", null),
+            preferences.getString("status", null),
+            preferences.getString("subscription", null)
         )
+
+
     }
 
 }
