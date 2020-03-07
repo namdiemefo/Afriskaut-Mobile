@@ -12,7 +12,6 @@ import com.naemo.afriscout.api.models.register.RegisterRequest
 import com.naemo.afriscout.api.models.register.RegisterResponse
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,7 +21,7 @@ import javax.inject.Inject
 
 class Client {
     private var PROD_BASE_URL = "http://18.216.71.154:5000/"
-    private var LOCAL_BASE_URL = "http://192.168.1.3:5000/"
+    private var LOCAL_BASE_URL = "http://192.168.1.2:5000/"
     private var service: Service
     var context: Context? = null
         @Inject set
@@ -31,7 +30,7 @@ class Client {
         this.context = context
 
         val httpLoggingInterceptor = HttpLoggingInterceptor()
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(100, TimeUnit.SECONDS)

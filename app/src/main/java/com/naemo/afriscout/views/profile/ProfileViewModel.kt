@@ -1,25 +1,26 @@
 package com.naemo.afriscout.views.profile
 
-import android.Manifest
 import android.app.Application
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
 import android.util.Log
-import androidx.core.app.ActivityCompat.requestPermissions
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.content.ContextCompat
-import androidx.core.content.PermissionChecker.checkSelfPermission
 import androidx.databinding.ObservableField
 import com.naemo.afriscout.R
+import com.naemo.afriscout.api.models.profile.ProfileImageResponse
+import com.naemo.afriscout.api.models.profile.RetrieveImageResponse
 import com.naemo.afriscout.db.local.AppPreferences
 import com.naemo.afriscout.network.Client
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.base.BaseViewModel
 import dagger.Module
 import dagger.Provides
+import okhttp3.MultipartBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Named
+
+
 
 class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigator>(application) {
 
@@ -32,9 +33,15 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
     var client = Client()
         @Inject set
 
+
     var fullName = ObservableField("")
     var role = ObservableField("")
+    var imageUrl = ObservableField<String>()
 
+
+    init {
+
+    }
 
     fun setUpProfile() {
         val user = appPreferences.getUser()
@@ -45,12 +52,81 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
         role.set(profileRole)
     }
 
+    fun upload(image: MultipartBody.Part) {
+        getNavigator()?.showSpin()
+        val user = appPreferences.getUser()
+        val userToken = user.jwt_token
+        val token = "Bearer $userToken"
+
+        val uploadResponseCall: Call<ProfileImageResponse> = client.getApi().upload(token, image)
+        uploadResponseCall.enqueue(object : Callback<ProfileImageResponse> {
+            override fun onResponse(call: Call<ProfileImageResponse>, response: Response<ProfileImageResponse>) {
+                getNavigator()?.hideSpin()
+                val imageResponse = response.body()
+                val resCode = imageResponse?.statuscode
+                val msg = imageResponse?.message
+                val img = imageResponse?.data?.filename
+                if (resCode == 200) {
+                    imageUrl.set(img)
+                    getNavigator()?.showSnackBarMessage(msg!!)
+                } else {
+                    getNavigator()?.showSnackBarMessage("please try again with the correct file type")
+                }
+            }
+
+            override fun onFailure(call: Call<ProfileImageResponse>, t: Throwable) {
+                if (t is IOException) {
+                    getNavigator()?.hideSpin()
+                    call.cancel()
+                    getNavigator()?.showSnackBarMessage("server error")
+                }
+            }
+
+        })
+    }
+
+    fun retrieve() {
+        val user = appPreferences.getUser()
+        val userToken = user.jwt_token
+        val token = "Bearer $userToken"
+
+        val retrieveResponseCall: Call<RetrieveImageResponse> = client.getApi().retrieve(token)
+        retrieveResponseCall.enqueue(object : Callback<RetrieveImageResponse> {
+            override fun onResponse(call: Call<RetrieveImageResponse>, response: Response<RetrieveImageResponse>) {
+                val retrieveResponse = response.body()
+                val resCode = retrieveResponse?.statuscode
+                val msg = retrieveResponse?.message
+                val img = retrieveResponse?.data
+                if (resCode == 200) {
+                    imageUrl.set(img)
+                    getNavigator()?.showSnackBarMessage(msg!!)
+                } else {
+                    getNavigator()?.showSnackBarMessage(msg!!)
+                }
+            }
+
+            override fun onFailure(call: Call<RetrieveImageResponse>, t: Throwable) {
+                if (t is IOException) {
+                    getNavigator()?.hideSpin()
+                    call.cancel()
+                    getNavigator()?.showSnackBarMessage("server error")
+                }
+            }
+        })
+    }
+
 
 }
 
 interface ProfileNavigator {
 
     fun openGallery()
+
+    fun showSnackBarMessage(msg: String)
+
+    fun showSpin()
+
+    fun hideSpin()
 }
 
 @Module

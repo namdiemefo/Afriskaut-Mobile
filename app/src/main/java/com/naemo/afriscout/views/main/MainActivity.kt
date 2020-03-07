@@ -6,7 +6,7 @@ import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityMainBinding
 import com.naemo.afriscout.views.base.BaseActivity
 import com.naemo.afriscout.views.profile.HomeFragment
-import com.naemo.afriscout.views.profile.NotificationFragment
+import com.naemo.afriscout.views.notifications.NotificationFragment
 import com.naemo.afriscout.views.profile.ProfileFragment
 import com.naemo.afriscout.views.profile.SearchFragment
 import javax.inject.Inject

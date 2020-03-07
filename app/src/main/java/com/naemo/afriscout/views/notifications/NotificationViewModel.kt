@@ -1,4 +1,4 @@
-package com.naemo.afriscout.views.profile
+package com.naemo.afriscout.views.notifications
 
 import androidx.lifecycle.ViewModel
 

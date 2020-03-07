@@ -3,21 +3,14 @@ package com.naemo.afriscout.views.profile
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import com.bumptech.glide.Glide
 import com.naemo.afriscout.BR
-
 import com.naemo.afriscout.R
-import com.naemo.afriscout.api.models.profile.ProfileImageResponse
-import com.naemo.afriscout.api.models.profile.RetrieveImageResponse
 import com.naemo.afriscout.databinding.ProfileFragmentBinding
 import com.naemo.afriscout.db.local.AppPreferences
 import com.naemo.afriscout.network.Client
@@ -27,11 +20,7 @@ import kotlinx.android.synthetic.main.profile_fragment.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.*
-import java.util.HashMap
 import javax.inject.Inject
 
 class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>(), ProfileNavigator {
@@ -51,14 +40,11 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
     companion object {
         private const val PERMISSION_CODE = 1000
         private const val PROFILE_REQUEST_CODE = 1000
-        private var imageData: ByteArray? = null
-        private var bitmap: Bitmap? = null
         const val RESULT_OK = -1
     }
 
-    //@Named("profile")
-    var mLayoutId = R.layout.profile_fragment
-       // @Inject set
+    private var mLayoutId = R.layout.profile_fragment
+
     var mBinder: ProfileFragmentBinding? = null
 
     override fun getBindingVariable(): Int {
@@ -75,21 +61,19 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
 
     private fun initViews() {
         getViewModel()?.setUpProfile()
+        retrieveImage()
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         doBinding()
         initViews()
     }
 
-
     private fun doBinding() {
         mBinder = getViewDataBinding()
         mBinder?.viewModel = profileViewModel
         mBinder?.navigator = this
         mBinder?.viewModel?.setNavigator(this)
-        retrieveImage()
     }
 
     override fun openGallery() {
@@ -122,7 +106,7 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
                     //permission from popup granted
                     pickImageFromGallery()
             } else {
-                    appUtils.showSnackBar(requireActivity().applicationContext, profile_frame, "permission denied")
+                    appUtils.showSnackBar(requireContext(), profile_frame, "permission denied")
                 }
             }
         }
@@ -132,13 +116,13 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
         if (resultCode == RESULT_OK && requestCode == PROFILE_REQUEST_CODE) {
             val uri = data?.data
             val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-            val cursor = activity?.contentResolver?.query(uri!!, filePathColumn, null, null, null)
+            val cursor = requireActivity().contentResolver?.query(uri!!, filePathColumn, null, null, null)
             cursor?.moveToFirst()
             val columnIndex = cursor?.getColumnIndex(filePathColumn[0])
             val imageString = cursor?.getString(columnIndex!!)
+            cursor?.close()
 
             createImageData(imageString!!)
-           // profile_image.setImageURI(data?.data)
         }
     }
 
@@ -155,64 +139,23 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
     }
 
     private fun uploadImage(image: MultipartBody.Part) {
-        val user = appPreferences?.getUser()
-        val userToken = user?.jwt_token
-        val token = "Bearer $userToken"
-        val headers = HashMap<String, String>()
-
-        headers["Authorization"] = token
-        val uploadResponseCall: Call<ProfileImageResponse> = client.getApi().upload(token, image)
-        uploadResponseCall.enqueue(object : retrofit2.Callback<ProfileImageResponse> {
-            override fun onResponse(call: Call<ProfileImageResponse>, response: Response<ProfileImageResponse>) {
-                val imageResponse = response.body()
-                val resCode = imageResponse?.statuscode
-                val msg = imageResponse?.message
-                val img = imageResponse?.data?.filename
-                if (resCode == 200) {
-                    appUtils.showSnackBar(requireActivity().applicationContext, profile_frame, msg!!)
-                    Glide.with(requireActivity()).load(img).into(profile_image)
-                } else {
-                    appUtils.showSnackBar(requireActivity().applicationContext, profile_frame, "wrong file type")
-                }
-            }
-
-            override fun onFailure(call: Call<ProfileImageResponse>, t: Throwable) {
-                if (t is IOException) {
-                    call.cancel()
-                    Log.d("profilefragment", "issue")
-                    appUtils.showSnackBar(requireActivity().applicationContext, profile_frame, "server error")
-                }
-            }
-        })
-
+        getViewModel()?.upload(image)
     }
 
     private fun retrieveImage() {
-        val user = appPreferences?.getUser()
-        val userToken = user?.jwt_token
-        val token = "Bearer $userToken"
+      getViewModel()?.retrieve()
+    }
 
-        val retrieveResponseCall: Call<RetrieveImageResponse> = client.getApi().retrieve(token)
-        retrieveResponseCall.enqueue(object : retrofit2.Callback<RetrieveImageResponse> {
-            override fun onResponse(call: Call<RetrieveImageResponse>, response: Response<RetrieveImageResponse>) {
-                val retrieveResponse = response.body()
-                val resCode = retrieveResponse?.statuscode
-                val msg = retrieveResponse?.message
-                val img = retrieveResponse?.data
-                if (resCode == 200) {
-                    Glide.with(requireActivity()).load(img).into(profile_image)
-                } else {
-                    appUtils.showSnackBar(requireActivity().applicationContext, profile_frame, msg!!)
-                }
-            }
+    override fun showSpin() {
+        appUtils.showDialog(requireContext())
+    }
 
-            override fun onFailure(call: Call<RetrieveImageResponse>, t: Throwable) {
-                if (t is IOException) {
-                    call.cancel()
-                    appUtils.showSnackBar(requireActivity().applicationContext, profile_frame, "server error")
-                }
-            }
-        })
+    override fun hideSpin() {
+        appUtils.cancelDialog()
+    }
+
+    override fun showSnackBarMessage(msg: String) {
+        appUtils.showSnackBar(requireActivity().applicationContext, profile_frame, msg)
     }
 
 
