@@ -26,4 +26,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="change_display_picture">Change display picture</string>
     <string name="radar">Radar</string>
+    <string name="victor_osimhen">Victor Osimhen</string>
+
 </resources>

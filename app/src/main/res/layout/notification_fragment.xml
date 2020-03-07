@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.notifications.NotificationFragment">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".views.notifications.NotificationFragment"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
 
-    <TextView
+        <variable
+            name="navigator"
+            type="com.naemo.afriscout.views.notifications.NotificationNavigator" />
+
+        <variable
+            name="viewModel"
+            type="com.naemo.afriscout.views.notifications.NotificationViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical"
+        android:background="@color/colorMainBackground">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notifications"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:layout_marginTop="20dp"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:textColor="@color/colorLoginBtn"
+            />
+
+    </LinearLayout>
+</layout>

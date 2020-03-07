@@ -6,7 +6,7 @@ import androidx.databinding.ObservableField
 import com.naemo.afriscout.R
 import com.naemo.afriscout.api.models.login.LoginRequest
 import com.naemo.afriscout.api.models.login.LoginResponse
-import com.naemo.afriscout.db.local.AppPreferences
+import com.naemo.afriscout.db.local.preferences.AppPreferences
 import com.naemo.afriscout.network.Client
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.base.BaseViewModel

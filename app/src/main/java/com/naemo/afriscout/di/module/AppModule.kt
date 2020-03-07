@@ -2,7 +2,7 @@ package com.naemo.afriscout.di.module
 
 import android.app.Application
 import android.content.Context
-import com.naemo.afriscout.db.local.AppPreferences
+import com.naemo.afriscout.db.local.preferences.AppPreferences
 import com.naemo.afriscout.network.Client
 import com.naemo.afriscout.utils.AppUtils
 import dagger.Module

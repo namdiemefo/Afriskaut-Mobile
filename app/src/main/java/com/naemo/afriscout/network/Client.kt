@@ -10,6 +10,7 @@ import com.naemo.afriscout.api.models.profile.ProfileImageResponse
 import com.naemo.afriscout.api.models.profile.RetrieveImageResponse
 import com.naemo.afriscout.api.models.register.RegisterRequest
 import com.naemo.afriscout.api.models.register.RegisterResponse
+import com.naemo.afriscout.db.local.room.profilepicture.ProfilePic
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -21,7 +22,7 @@ import javax.inject.Inject
 
 class Client {
     private var PROD_BASE_URL = "http://18.216.71.154:5000/"
-    private var LOCAL_BASE_URL = "http://192.168.1.2:5000/"
+    private var LOCAL_BASE_URL = "http://192.168.1.5:5000/"
     private var service: Service
     var context: Context? = null
         @Inject set
@@ -76,5 +77,8 @@ interface Service {
 
     @POST("users/getprofileimage")
     fun retrieve(@Header("Authorization")token: String): Call<RetrieveImageResponse>
+
+    @POST("users/getprofileimage")
+    fun retrieveImage(@Header("Authorization")token: String): Call<ProfilePic>
 
 }

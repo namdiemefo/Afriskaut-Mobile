@@ -1,13 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.profile.SearchFragment">
+    android:orientation="vertical"
+    tools:context=".views.search.SearchFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/colorLoginBtn"
+        android:textStyle="normal"
+        android:fontFamily="@font/montserrat"
+        />
 
-</FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+
+        <EditText
+            android:layout_width="347dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:background="@drawable/search_box"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorHint"
+            android:textColor="@color/colorLoginBtn"
+            android:textStyle="italic"
+            android:fontFamily="@font/montserrat"
+            android:paddingStart="20dp"
+            android:hint="@string/victor_osimhen"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/search_icon"
+            android:src="@drawable/ic_search_white"
+            android:layout_gravity="end"
+            android:foregroundGravity="center"
+            android:paddingStart="8dp"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="34dp"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="SEARCH RESULTS"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/colorLoginBtn"
+        android:textStyle="normal"
+        android:fontFamily="@font/montserrat" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorHomeText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_results" />
+
+
+
+
+
+
+
+
+
+</LinearLayout>

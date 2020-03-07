@@ -1,4 +1,4 @@
-package com.naemo.afriscout.db.local
+package com.naemo.afriscout.db.local.preferences
 
 import android.content.Context
 import android.util.Log
@@ -6,7 +6,8 @@ import com.naemo.afriscout.api.models.login.User
 import com.naemo.afriscout.api.models.profile.RetrieveImageResponse
 import javax.inject.Inject
 
-class AppPreferences(context: Context) : PreferencesHelper {
+class AppPreferences(context: Context) :
+    PreferencesHelper {
 
     private val SHARED_PREF_KEY_NAME = "afriscout_shared_pref"
     var context: Context? = null

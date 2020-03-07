@@ -1,31 +1,49 @@
 package com.naemo.afriscout.views.notifications
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import com.naemo.afriscout.BR
 
 import com.naemo.afriscout.R
+import com.naemo.afriscout.databinding.NotificationFragmentBinding
+import com.naemo.afriscout.views.base.BaseFragment
+import javax.inject.Inject
 
-class NotificationFragment : Fragment() {
+class NotificationFragment : BaseFragment<NotificationFragmentBinding, NotificationViewModel>(), NotificationNavigator {
 
-    companion object {
-        fun newInstance() = NotificationFragment()
+    var notificationViewModel: NotificationViewModel? = null
+    @Inject set
+
+    private var mLayoutId = R.layout.notification_fragment
+    var mBinding: NotificationFragmentBinding? = null
+
+    override fun getBindingVariable(): Int {
+        return BR.viewModel
     }
 
-    private lateinit var viewModel: NotificationViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.notification_fragment, container, false)
+    override fun getLayoutId(): Int {
+        return mLayoutId
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
+    override fun getViewModel(): NotificationViewModel? {
+        return notificationViewModel
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        doBinding()
+        initViews()
+    }
+
+    private fun doBinding() {
+        mBinding = getViewDataBinding()
+        mBinding?.viewModel = notificationViewModel
+        mBinding?.navigator = this
+        mBinding?.viewModel?.setNavigator(this)
+    }
+
+    private fun initViews() {
+
+    }
+
 
 }

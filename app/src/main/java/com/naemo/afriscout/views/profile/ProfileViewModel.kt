@@ -3,15 +3,21 @@ package com.naemo.afriscout.views.profile
 import android.app.Application
 import android.util.Log
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
 import com.naemo.afriscout.R
 import com.naemo.afriscout.api.models.profile.ProfileImageResponse
 import com.naemo.afriscout.api.models.profile.RetrieveImageResponse
-import com.naemo.afriscout.db.local.AppPreferences
+import com.naemo.afriscout.db.local.preferences.AppPreferences
+import com.naemo.afriscout.db.local.room.profilepicture.ProfilePic
+import com.naemo.afriscout.db.local.room.profilepicture.ProfilePicRepository
 import com.naemo.afriscout.network.Client
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.base.BaseViewModel
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,6 +38,14 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
 
     var client = Client()
         @Inject set
+
+    private var repository: ProfilePicRepository? = null
+    val TAG = "ProfilePicViewModel"
+
+    init {
+        repository =
+            ProfilePicRepository(application)
+    }
 
 
     var fullName = ObservableField("")
@@ -83,6 +97,16 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
             }
 
         })
+    }
+
+    fun retrieveImage(): LiveData<ProfilePic>? {
+        Log.d(TAG, "GETTING THE IMAGE")
+        return repository?.loadTheImage()
+    }
+
+    fun saveImageFromNetwork() = CoroutineScope(Main).launch {
+        Log.d(TAG, "PUTTING THE IMAGE")
+        repository?.saveTheImage()
     }
 
     fun retrieve() {

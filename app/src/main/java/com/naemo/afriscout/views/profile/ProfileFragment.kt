@@ -9,10 +9,13 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ProfileFragmentBinding
-import com.naemo.afriscout.db.local.AppPreferences
+import com.naemo.afriscout.db.local.preferences.AppPreferences
+import com.naemo.afriscout.db.local.room.profilepicture.ProfilePic
 import com.naemo.afriscout.network.Client
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.base.BaseFragment
@@ -28,7 +31,11 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
     var profileViewModel: ProfileViewModel? = null
         @Inject set
 
-    var appPreferences = activity?.applicationContext?.let { AppPreferences(it) }
+    var appPreferences = activity?.applicationContext?.let {
+        AppPreferences(
+            it
+        )
+    }
         @Inject set
 
     var appUtils = AppUtils()
@@ -143,7 +150,16 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
     }
 
     private fun retrieveImage() {
-      getViewModel()?.retrieve()
+        getViewModel()?.saveImageFromNetwork()
+        getViewModel()?.retrieveImage()?.observe(requireActivity(), Observer {
+            setUpImage(it)
+        })
+      //getViewModel()?.retrieve()
+    }
+
+    private fun setUpImage(it: ProfilePic?) {
+        val url = it?.data
+        Glide.with(requireContext()).load(url).into(profile_image)
     }
 
     override fun showSpin() {

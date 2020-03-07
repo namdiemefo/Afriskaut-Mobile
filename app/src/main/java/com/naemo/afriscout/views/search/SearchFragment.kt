@@ -1,4 +1,4 @@
-package com.naemo.afriscout.views.profile
+package com.naemo.afriscout.views.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

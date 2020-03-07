@@ -8,7 +8,7 @@ import com.naemo.afriscout.views.base.BaseActivity
 import com.naemo.afriscout.views.profile.HomeFragment
 import com.naemo.afriscout.views.notifications.NotificationFragment
 import com.naemo.afriscout.views.profile.ProfileFragment
-import com.naemo.afriscout.views.profile.SearchFragment
+import com.naemo.afriscout.views.search.SearchFragment
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNavigator{
@@ -22,9 +22,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     var mBinder: ActivityMainBinding? = null
 
     var profileFragment = ProfileFragment()
+    @Inject set
+
+    var notificationFragment = NotificationFragment()
+    @Inject set
+
     var homeFragment = HomeFragment()
     var searchFragment = SearchFragment()
-    var notificationFragment = NotificationFragment()
+
 
     override fun getBindingVariable(): Int {
         return BR.viewModel
