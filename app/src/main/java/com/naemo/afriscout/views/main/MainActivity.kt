@@ -27,8 +27,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     var notificationFragment = NotificationFragment()
     @Inject set
 
-    var homeFragment = HomeFragment()
     var searchFragment = SearchFragment()
+    @Inject set
+
+    var homeFragment = HomeFragment()
+
 
 
     override fun getBindingVariable(): Int {

@@ -11,6 +11,7 @@ import com.naemo.afriscout.views.account.login.LoginViewModel
 import com.naemo.afriscout.views.base.BaseViewModel
 import com.naemo.afriscout.views.notifications.NotificationFragment
 import com.naemo.afriscout.views.profile.ProfileFragment
+import com.naemo.afriscout.views.search.SearchFragment
 import dagger.Module
 import dagger.Provides
 import java.util.ArrayList
@@ -44,6 +45,11 @@ class MainModule {
     @Provides
     fun providesNotificationFragment(): NotificationFragment {
         return NotificationFragment()
+    }
+
+    @Provides
+    fun providesSearchFragment(): SearchFragment {
+        return SearchFragment()
     }
 }
 

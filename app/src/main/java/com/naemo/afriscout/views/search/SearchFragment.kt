@@ -1,31 +1,47 @@
 package com.naemo.afriscout.views.search
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-
+import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
+import com.naemo.afriscout.databinding.SearchFragmentBinding
+import com.naemo.afriscout.views.base.BaseFragment
+import javax.inject.Inject
 
-class SearchFragment : Fragment() {
+class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), SearchNavigator {
 
-    companion object {
-        fun newInstance() = SearchFragment()
+    var searchViewModel: SearchViewModel? = null
+    @Inject set
+
+    private var mLayoutId = R.layout.search_fragment
+    var mBinding: SearchFragmentBinding? = null
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        doBinding()
+        initViews()
     }
 
-    private lateinit var viewModel: SearchViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.search_fragment, container, false)
+    private fun doBinding() {
+        mBinding = getViewDataBinding()
+        mBinding?.viewModel = searchViewModel
+        mBinding?.navigator = this
+        mBinding?.viewModel?.setNavigator(this)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
+    private fun initViews() {
+
+    }
+
+    override fun getBindingVariable(): Int {
+        return BR.viewModel
+    }
+
+    override fun getLayoutId(): Int {
+        return mLayoutId
+    }
+
+    override fun getViewModel(): SearchViewModel? {
+        return searchViewModel
     }
 
 }
