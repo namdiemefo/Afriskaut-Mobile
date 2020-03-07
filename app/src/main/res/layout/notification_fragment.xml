@@ -29,6 +29,7 @@
             android:gravity="center"
             android:fontFamily="@font/montserrat"
             android:layout_marginTop="20dp"
+            android:textFontWeight="600"
             android:textStyle="normal"
             android:textSize="18sp"
             android:textColor="@color/colorLoginBtn"

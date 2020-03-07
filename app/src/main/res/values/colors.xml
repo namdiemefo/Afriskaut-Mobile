@@ -12,4 +12,5 @@
     <color name="colorMainBackground">#CECECE</color>
     <color name="colorItem">#DADADA</color>
     <color name="colorPicBtn">#C4C4C4</color>
+    <color name="colorSearchBackground">#FAFAFA</color>
 </resources>
