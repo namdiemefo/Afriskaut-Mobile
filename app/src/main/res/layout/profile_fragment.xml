@@ -2,22 +2,18 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".views.profile.ProfileFragment">
+    tools:context=".views.fragments.profile.ProfileFragment">
 
     <data>
         <import type="android.view.View" />
 
         <variable
-            name="response"
-            type="com.naemo.afriscout.api.models.profile.RetrieveImageResponse" />
-
-        <variable
             name="navigator"
-            type="com.naemo.afriscout.views.profile.ProfileNavigator" />
+            type="com.naemo.afriscout.views.fragments.profile.ProfileNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.profile.ProfileViewModel" />
+            type="com.naemo.afriscout.views.fragments.profile.ProfileViewModel" />
     </data>
 
     <LinearLayout
@@ -41,7 +37,7 @@
                 android:fontFamily="@font/montserrat"
                 android:textStyle="normal"
                 android:textFontWeight="600"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center_horizontal"
                 android:layout_gravity="center"
                 android:textSize="18sp"

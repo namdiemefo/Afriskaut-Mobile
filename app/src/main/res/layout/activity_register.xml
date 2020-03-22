@@ -3,18 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".views.account.register.RegisterActivity">
+    tools:context=".views.activities.account.register.RegisterActivity">
 
     <data>
         <import type="android.view.View" />
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.account.register.RegisterNavigator" />
+            type="com.naemo.afriscout.views.activities.account.register.RegisterNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.account.register.RegisterViewModel" />
+            type="com.naemo.afriscout.views.activities.account.register.RegisterViewModel" />
     </data>
 
     <LinearLayout

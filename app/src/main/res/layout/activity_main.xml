@@ -2,18 +2,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".views.main.MainActivity">
+    tools:context=".views.activities.main.MainActivity">
 
     <data>
         <import type="android.view.View" />
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.main.MainNavigator" />
+            type="com.naemo.afriscout.views.activities.main.MainNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.main.MainViewModel" />
+            type="com.naemo.afriscout.views.activities.main.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

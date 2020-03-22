@@ -3,7 +3,6 @@ package com.naemo.afriscout.db.local.preferences
 import android.content.Context
 import android.util.Log
 import com.naemo.afriscout.api.models.login.User
-import com.naemo.afriscout.api.models.profile.RetrieveImageResponse
 import javax.inject.Inject
 
 class AppPreferences(context: Context) :
@@ -54,18 +53,6 @@ class AppPreferences(context: Context) :
 
     }
 
-    override fun saveImage(img: RetrieveImageResponse) {
-        val preferences = context?.getSharedPreferences(SHARED_PREF_KEY_NAME, Context.MODE_PRIVATE)
-        val editor = preferences?.edit()
-
-        editor?.putString("data", img.data)
-        editor?.putString("message", img.message)
-        editor?.putInt("code", img.statuscode)
-        Log.d("image", img.data)
-        editor?.apply()
-
-    }
-
 
 }
 
@@ -74,8 +61,4 @@ interface PreferencesHelper {
     fun saveUser(user: User)
 
     fun getUser(): User
-
-    fun saveImage(img: RetrieveImageResponse)
-
-    //fun getImage(): RetrieveImageResponse
 }

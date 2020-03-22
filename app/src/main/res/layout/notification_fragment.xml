@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:context=".views.notifications.NotificationFragment"
+    tools:context=".views.fragments.notifications.NotificationFragment"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View" />
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.notifications.NotificationNavigator" />
+            type="com.naemo.afriscout.views.fragments.notifications.NotificationNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.notifications.NotificationViewModel" />
+            type="com.naemo.afriscout.views.fragments.notifications.NotificationViewModel" />
     </data>
 
     <LinearLayout

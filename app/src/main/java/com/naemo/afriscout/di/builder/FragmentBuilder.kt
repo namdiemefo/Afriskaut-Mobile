@@ -1,11 +1,11 @@
 package com.naemo.afriscout.di.builder
 
-import com.naemo.afriscout.views.notifications.NotificationFragment
-import com.naemo.afriscout.views.notifications.NotificationModule
-import com.naemo.afriscout.views.profile.ProfileFragment
-import com.naemo.afriscout.views.profile.ProfileModule
-import com.naemo.afriscout.views.search.SearchFragment
-import com.naemo.afriscout.views.search.SearchModule
+import com.naemo.afriscout.views.fragments.notifications.NotificationFragment
+import com.naemo.afriscout.views.fragments.notifications.NotificationModule
+import com.naemo.afriscout.views.fragments.profile.ProfileFragment
+import com.naemo.afriscout.views.fragments.profile.ProfileModule
+import com.naemo.afriscout.views.fragments.search.SearchFragment
+import com.naemo.afriscout.views.fragments.search.SearchModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

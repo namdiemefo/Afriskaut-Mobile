@@ -7,9 +7,10 @@ import com.naemo.afriscout.api.models.forgot.ForgotResponse
 import com.naemo.afriscout.api.models.login.LoginRequest
 import com.naemo.afriscout.api.models.login.LoginResponse
 import com.naemo.afriscout.api.models.profile.ProfileImageResponse
-import com.naemo.afriscout.api.models.profile.RetrieveImageResponse
 import com.naemo.afriscout.api.models.register.RegisterRequest
 import com.naemo.afriscout.api.models.register.RegisterResponse
+import com.naemo.afriscout.api.models.search.SearchRequest
+import com.naemo.afriscout.api.models.search.SearchResponse
 import com.naemo.afriscout.db.local.room.profilepicture.ProfilePic
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -22,7 +23,7 @@ import javax.inject.Inject
 
 class Client {
     private var PROD_BASE_URL = "http://18.216.71.154:5000/"
-    private var LOCAL_BASE_URL = "http://192.168.1.5:5000/"
+    private var LOCAL_BASE_URL = "http://192.168.1.3:5000/"
     private var service: Service
     var context: Context? = null
         @Inject set
@@ -76,9 +77,9 @@ interface Service {
     fun upload(@Header("Authorization")token: String, @Part image: MultipartBody.Part): Call<ProfileImageResponse>
 
     @POST("users/getprofileimage")
-    fun retrieve(@Header("Authorization")token: String): Call<RetrieveImageResponse>
-
-    @POST("users/getprofileimage")
     fun retrieveImage(@Header("Authorization")token: String): Call<ProfilePic>
+
+    @POST("users/search")
+    fun search(@Header("Authorization") token: String, @Body searchRequest: SearchRequest): Call<SearchResponse>
 
 }

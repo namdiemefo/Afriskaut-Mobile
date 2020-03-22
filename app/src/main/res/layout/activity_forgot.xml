@@ -2,18 +2,18 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".views.account.forgotpassword.ForgotActivity">
+    tools:context=".views.activities.account.forgotpassword.ForgotActivity">
 
     <data>
         <import type="android.view.View" />
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.account.forgotpassword.ForgotNavigator" />
+            type="com.naemo.afriscout.views.activities.account.forgotpassword.ForgotNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.account.forgotpassword.ForgotViewModel" />
+            type="com.naemo.afriscout.views.activities.account.forgotpassword.ForgotViewModel" />
     </data>
 
 
