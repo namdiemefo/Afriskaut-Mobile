@@ -16,7 +16,6 @@ import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ProfileFragmentBinding
 import com.naemo.afriscout.db.local.preferences.AppPreferences
 import com.naemo.afriscout.db.local.room.profilepicture.ProfilePic
-import com.naemo.afriscout.network.Client
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.base.BaseFragment
 import kotlinx.android.synthetic.main.profile_fragment.*
@@ -40,9 +39,6 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
         @Inject set
 
     var appUtils = AppUtils()
-        @Inject set
-
-    var client = Client()
         @Inject set
 
     companion object {

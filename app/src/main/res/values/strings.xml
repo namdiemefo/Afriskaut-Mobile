@@ -27,5 +27,7 @@
     <string name="change_display_picture">Change display picture</string>
     <string name="radar">Radar</string>
     <string name="victor_osimhen">Victor Osimhen</string>
+    <string name="back">Back</string>
+    <string name="follow">Follow</string>
 
 </resources>

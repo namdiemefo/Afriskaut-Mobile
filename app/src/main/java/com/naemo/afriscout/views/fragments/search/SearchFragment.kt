@@ -12,6 +12,7 @@ import com.naemo.afriscout.databinding.SearchFragmentBinding
 import com.naemo.afriscout.db.local.room.search.Data
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.activities.account.login.LoginActivity
+import com.naemo.afriscout.views.activities.pages.PlayerProfileActivity
 import com.naemo.afriscout.views.adapters.SearchAdapter
 import com.naemo.afriscout.views.base.BaseFragment
 import kotlinx.android.synthetic.main.search_fragment.*
@@ -74,9 +75,10 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         appUtils.showSnackBar(requireActivity().applicationContext, search_frame, msg)
     }
 
-    override fun onItemClicked(name: String, id: String, image: String, playerId: Int, countryId: Int) {
-        startActivity(Intent(requireContext(), LoginActivity::class.java))
+    override fun onItemClicked(id: String) {
+        val intent = Intent(requireContext(), PlayerProfileActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
     }
-
 
 }

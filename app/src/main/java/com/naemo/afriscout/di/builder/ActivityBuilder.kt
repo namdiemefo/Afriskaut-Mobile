@@ -9,6 +9,8 @@ import com.naemo.afriscout.views.activities.account.register.RegisterActivity
 import com.naemo.afriscout.views.activities.account.register.RegisterModule
 import com.naemo.afriscout.views.activities.main.MainActivity
 import com.naemo.afriscout.views.activities.main.MainModule
+import com.naemo.afriscout.views.activities.pages.PlayerProfileActivity
+import com.naemo.afriscout.views.activities.pages.PlayerProfileModule
 import com.naemo.afriscout.views.fragments.profile.ProfileFragment
 import com.naemo.afriscout.views.fragments.profile.ProfileModule
 import dagger.Module
@@ -28,5 +30,8 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [MainModule::class, FragmentBuilder::class])
     abstract fun bindMainActivity(): MainActivity
+
+    @ContributesAndroidInjector(modules = [PlayerProfileModule::class])
+    abstract fun bindPlayerProfileActivity(): PlayerProfileActivity
 
 }

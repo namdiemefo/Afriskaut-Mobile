@@ -6,6 +6,9 @@ import com.naemo.afriscout.api.models.forgot.ForgotRequest
 import com.naemo.afriscout.api.models.forgot.ForgotResponse
 import com.naemo.afriscout.api.models.login.LoginRequest
 import com.naemo.afriscout.api.models.login.LoginResponse
+import com.naemo.afriscout.api.models.player.follow.FollowResponse
+import com.naemo.afriscout.api.models.player.profile.ProfileRequest
+import com.naemo.afriscout.api.models.player.profile.ProfileResponse
 import com.naemo.afriscout.api.models.profile.ProfileImageResponse
 import com.naemo.afriscout.api.models.register.RegisterRequest
 import com.naemo.afriscout.api.models.register.RegisterResponse
@@ -81,5 +84,11 @@ interface Service {
 
     @POST("users/search")
     fun search(@Header("Authorization") token: String, @Body searchRequest: SearchRequest): Call<SearchResponse>
+
+    @POST("users/playerprofile")
+    fun profile(@Header("Authorization") token: String, @Body profileRequest: ProfileRequest): Call<ProfileResponse>
+
+    @POST("users/follow")
+    fun follow(@Header("Authorization") token: String, @Body profileRequest: ProfileRequest): Call<FollowResponse>
 
 }

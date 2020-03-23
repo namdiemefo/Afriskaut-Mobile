@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.activities.pages.PlayerProfile"></activity>
+        <activity android:name=".views.activities.pages.PlayerProfileActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".views.activities.account.forgotpassword.ForgotActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

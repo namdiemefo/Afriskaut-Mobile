@@ -1,7 +1,6 @@
 package com.naemo.afriscout.views.adapters
 
 import android.content.Context
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,15 +35,15 @@ class SearchAdapter(context: Context, private var data: Data,  private var itemC
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val dataList = data
-        val playerId = dataList.playerId
+       // val playerId = dataList.playerId
         val img = dataList.image
         val name = dataList.name
         val id = dataList.id
-        val country = dataList.countryId
+        //val country = dataList.countryId
 
         Glide.with(context!!).load(img).into(holder.playerImage)
         holder.playerName.text = name
-        holder.frame.setOnClickListener { itemClickListener.onItemClicked(name, id, img, playerId, country) }
+        holder.frame.setOnClickListener { itemClickListener.onItemClicked(id) }
     }
 
 
@@ -57,7 +56,7 @@ class SearchAdapter(context: Context, private var data: Data,  private var itemC
 
     interface ItemClicklistener {
 
-        fun onItemClicked(name: String, id: String, image: String, playerId: Int, countryId: Int)
+        fun onItemClicked(id: String)
     }
 
 
