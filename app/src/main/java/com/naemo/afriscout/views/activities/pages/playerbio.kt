@@ -1,13 +1,13 @@
 package com.naemo.afriscout.views.activities.pages
 
 import android.app.Application
-import android.util.Log
 import androidx.databinding.ObservableField
 import com.naemo.afriscout.R
 import com.naemo.afriscout.api.models.player.follow.FollowResponse
 import com.naemo.afriscout.api.models.player.profile.ProfileRequest
 import com.naemo.afriscout.api.models.player.profile.ProfileResponse
 import com.naemo.afriscout.db.local.preferences.AppPreferences
+import com.naemo.afriscout.db.local.room.follow.FollowRepository
 import com.naemo.afriscout.network.Client
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.base.BaseViewModel
@@ -40,6 +40,12 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
     var appUtils = AppUtils()
         @Inject set
 
+    private var repository: FollowRepository? = null
+
+    init {
+        repository = FollowRepository(application)
+    }
+
     fun makeCall(id: String) {
         getNavigator()?.showSpin()
         val user = appPreferences.getUser()
@@ -55,6 +61,7 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
                 val statusCode = player?.statuscode
                 //Log.d("no enter", playerData?.fullname!!)
                 if (statusCode == 200) {
+                    checkFollow(id)
                   //  Log.d("enter", playerData?.fullname!!)
                     val name = playerData?.fullname
                     val playerHeight = playerData?.height
@@ -89,6 +96,15 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
         })
     }
 
+    private fun checkFollow(id: String){
+       val check = repository?.search(id)
+        if (check == true) {
+            followBtn.set("Following")
+        } else {
+            followBtn.set("Follow")
+        }
+    }
+
     fun follow(id: String) {
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
@@ -100,9 +116,12 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
                 val follow: FollowResponse? = response.body()
                 val statusCode = follow?.statuscode
                 val message= follow?.message
+                val data =  follow?.data
                 if (statusCode == 200) {
                     getNavigator()?.showSnackBarMessage(message!!)
                     followBtn.set("Following")
+                    repository?.save(data!!)
+
                 } else {
                     getNavigator()?.showSnackBarMessage("server error")
                 }

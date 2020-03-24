@@ -8,6 +8,7 @@ import com.naemo.afriscout.api.models.search.SearchRequest
 import com.naemo.afriscout.api.models.search.SearchResponse
 import com.naemo.afriscout.db.local.preferences.AppPreferences
 import com.naemo.afriscout.network.Client
+import com.naemo.afriscout.views.fragments.search.SearchViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
@@ -26,6 +27,7 @@ class SearchRepository(application: Application) : CoroutineScope {
     val TAG = "SearchRepository"
     var searchDao: SearchDao? = null
     val context: Context? = null
+    val searchViewModel: SearchViewModel? = null
     var client = Client()
         @Inject set
 
@@ -49,20 +51,28 @@ class SearchRepository(application: Application) : CoroutineScope {
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
         val search = SearchRequest(query)
-
+        Log.d(TAG, "ABOUT TO MAKE SEARCH CALL")
         val searchCall: Call<SearchResponse> = client.getApi().search(token, search)
         searchCall.enqueue(object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
-                Log.d(TAG, "CALL SUCCESSFUL")
-                launch {
-                    Log.d(TAG, "INSERTING SEARCH RESULTS")
-                    val data = response.body()?.data
-                    save(data)
+                val searchResponse: SearchResponse? = response.body()
+                val statusCode = searchResponse?.statuscode
+                if (statusCode == 200) {
+                    Log.d(TAG, "SEARCH CALL SUCCESSFUL")
+                    launch {
+                        Log.d(TAG, "INSERTING SEARCH RESULTS")
+                        val data = response.body()?.data
+                        save(data)
+                    }
+                } else {
+                    searchViewModel?.getNavigator()?.showSnackBarMessage("player not found")
                 }
+
             }
 
             override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                Log.d(TAG, "CALL FAILED")
+                Log.d(TAG, "SEARCH CALL FAILED")
+                searchViewModel?.getNavigator()?.showSnackBarMessage("server error")
             }
         })
     }

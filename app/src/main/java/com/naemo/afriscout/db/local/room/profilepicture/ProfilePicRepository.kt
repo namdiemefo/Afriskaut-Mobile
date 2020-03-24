@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.naemo.afriscout.db.local.preferences.AppPreferences
 import com.naemo.afriscout.network.Client
+import com.naemo.afriscout.views.fragments.profile.ProfileViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
@@ -23,6 +24,7 @@ class ProfilePicRepository(application: Application): CoroutineScope {
 
     val TAG = "repository"
     var profilePicDao: ProfilePicDao?  = null
+    val profileViewModel: ProfileViewModel? = null
     val context: Context? = null
     var client = Client()
         @Inject set
@@ -52,16 +54,21 @@ class ProfilePicRepository(application: Application): CoroutineScope {
         val profilePicCall: Call<ProfilePic> = client.getApi().retrieveImage(token)
         profilePicCall.enqueue(object : Callback<ProfilePic> {
             override fun onResponse(call: Call<ProfilePic>, response: Response<ProfilePic>) {
-                Log.d(TAG, "CALL SUCCESSFUL")
-                launch {
-                    Log.d(TAG, "INSERTING IMAGE")
-                    val image = response.body()
-                    save(image)
+                val picResponse: ProfilePic? = response.body()
+                val statusCode = picResponse?.statuscode
+                if (statusCode == 200) {
+                    Log.d(TAG, "PROFILE CALL SUCCESSFUL")
+                    launch {
+                        Log.d(TAG, "INSERTING IMAGE")
+                        val image = response.body()
+                        save(image)
+                    }
                 }
             }
 
             override fun onFailure(call: Call<ProfilePic>, t: Throwable) {
-                Log.d(TAG, "CALL FAILED")
+                Log.d(TAG, "PROFILE PIC CALL FAILED")
+                profileViewModel?.getNavigator()?.showSnackBarMessage("server error")
             }
         })
     }

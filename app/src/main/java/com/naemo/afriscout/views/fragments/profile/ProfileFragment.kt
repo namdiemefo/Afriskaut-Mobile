@@ -155,7 +155,6 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
         getViewModel()?.retrieveImage()?.observe(requireActivity(), Observer {
             setUpImage(it)
         })
-      //getViewModel()?.retrieve()
     }
 
     private fun setUpImage(it: ProfilePic?) {

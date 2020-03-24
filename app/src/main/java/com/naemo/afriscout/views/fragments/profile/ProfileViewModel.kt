@@ -52,10 +52,6 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
     var imageUrl = ObservableField<String>()
 
 
-    init {
-
-    }
-
     fun setUpProfile() {
         val user = appPreferences.getUser()
         val name = user.firstName.plus(" ").plus(user.lastName)

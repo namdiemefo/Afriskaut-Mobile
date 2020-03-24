@@ -44,6 +44,7 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
         val id = intent.getStringExtra("id")
         Log.d("id", id!!)
         makeNetworkCall(id)
+
     }
 
     private fun makeNetworkCall(id: String) {

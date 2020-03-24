@@ -4,14 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.SearchFragmentBinding
 import com.naemo.afriscout.db.local.room.search.Data
 import com.naemo.afriscout.utils.AppUtils
-import com.naemo.afriscout.views.activities.account.login.LoginActivity
 import com.naemo.afriscout.views.activities.pages.PlayerProfileActivity
 import com.naemo.afriscout.views.adapters.SearchAdapter
 import com.naemo.afriscout.views.base.BaseFragment

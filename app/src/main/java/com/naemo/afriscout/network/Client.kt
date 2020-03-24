@@ -26,7 +26,7 @@ import javax.inject.Inject
 
 class Client {
     private var PROD_BASE_URL = "http://18.216.71.154:5000/"
-    private var LOCAL_BASE_URL = "http://192.168.1.3:5000/"
+    private var LOCAL_BASE_URL = "http://192.168.1.2:5000/"
     private var service: Service
     var context: Context? = null
         @Inject set
@@ -90,5 +90,7 @@ interface Service {
 
     @POST("users/follow")
     fun follow(@Header("Authorization") token: String, @Body profileRequest: ProfileRequest): Call<FollowResponse>
+
+
 
 }
