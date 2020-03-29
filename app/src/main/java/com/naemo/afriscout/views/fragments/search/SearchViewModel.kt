@@ -40,6 +40,10 @@ interface SearchNavigator {
     fun sendSearch()
 
     fun showSnackBarMessage(msg: String)
+
+    fun showSpin()
+
+    fun hideSpin()
 }
 
 @Module

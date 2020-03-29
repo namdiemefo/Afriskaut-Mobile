@@ -1,7 +1,8 @@
 package com.naemo.afriscout.api.models.player.follow
 
 import com.google.gson.annotations.SerializedName
-import com.naemo.afriscout.db.local.room.follow.FollowData
+
+import com.naemo.afriscout.db.local.room.following.FollowingData
 
 data class FollowResponse(
     @SerializedName("data")
@@ -13,4 +14,39 @@ data class FollowResponse(
     @SerializedName("userId")
     val userId: String
 )
+
+data class FollowData(
+    @SerializedName("id")
+    // @ColumnInfo(name = "playerId")
+    val playerId: String,
+    @SerializedName("dob")
+    // @ColumnInfo(name = "dob")
+    val dob: String,
+    @SerializedName("fullname")
+    //  @ColumnInfo(name = "fullName")
+    val fullname: String,
+    @SerializedName("height")
+    // @ColumnInfo(name = "height")
+    val height: String,
+    @SerializedName("image")
+    // @ColumnInfo(name = "image")
+    val image: String,
+    @SerializedName("nationality")
+    //  @ColumnInfo(name = "nationality")
+    val nationality: String,
+    @SerializedName("position")
+    //  @ColumnInfo(name = "position")
+    val position: String
+)
+
+data class FollowingResponse(
+    @SerializedName("data")
+    val `data`: FollowingData,
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("statuscode")
+    val statuscode: Int
+)
+
+
 

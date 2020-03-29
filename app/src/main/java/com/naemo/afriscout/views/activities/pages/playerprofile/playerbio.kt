@@ -1,13 +1,15 @@
-package com.naemo.afriscout.views.activities.pages
+package com.naemo.afriscout.views.activities.pages.playerprofile
 
 import android.app.Application
+import android.util.Log
 import androidx.databinding.ObservableField
 import com.naemo.afriscout.R
 import com.naemo.afriscout.api.models.player.follow.FollowResponse
+import com.naemo.afriscout.api.models.player.follow.FollowingResponse
 import com.naemo.afriscout.api.models.player.profile.ProfileRequest
-import com.naemo.afriscout.api.models.player.profile.ProfileResponse
 import com.naemo.afriscout.db.local.preferences.AppPreferences
 import com.naemo.afriscout.db.local.room.follow.FollowRepository
+import com.naemo.afriscout.db.local.room.following.FollowingRepository
 import com.naemo.afriscout.network.Client
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.base.BaseViewModel
@@ -41,13 +43,23 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
         @Inject set
 
     private var repository: FollowRepository? = null
+    private var followingRepository: FollowingRepository? = null
 
     init {
         repository = FollowRepository(application)
+        followingRepository = FollowingRepository(application)
     }
 
-    fun makeCall(id: String) {
-        getNavigator()?.showSpin()
+    fun makeCall(id: String, img: String, name: String, playerHeight: String, playerDob: String, team: String, playerNationality: String, playerPosition: String, following: Boolean) {
+        fullName.set(name)
+        height.set(playerHeight)
+        dob.set(playerDob)
+        club.set(team)
+        image.set(img)
+        nationality.set(playerNationality)
+        position.set(playerPosition)
+        checkFollow(following)
+    /*    getNavigator()?.showSpin()
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
@@ -59,10 +71,10 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
                 val player: ProfileResponse? = response.body()
                 val playerData = player?.data
                 val statusCode = player?.statuscode
-                //Log.d("no enter", playerData?.fullname!!)
                 if (statusCode == 200) {
-                    checkFollow(id)
-                  //  Log.d("enter", playerData?.fullname!!)
+                    Log.d("CHECK", "ABOUT TO MAKE FOLLOWING CALL")
+                    makeFollowing(id)
+
                     val name = playerData?.fullname
                     val playerHeight = playerData?.height
                     val country = playerData?.nationality
@@ -93,12 +105,51 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
                 }
             }
 
+        })*/
+    }
+
+    private fun makeFollowing(id: String) {
+        makeFollowingCall(id)
+
+    }
+
+    private fun makeFollowingCall(id: String) {
+        val user = appPreferences.getUser()
+        val userToken = user.jwt_token
+        val token = "Bearer $userToken"
+        val followingResponseCall: Call<FollowingResponse> = client.getApi().following(token)
+        followingResponseCall.enqueue(object : Callback<FollowingResponse> {
+            override fun onResponse(call: Call<FollowingResponse>, response: Response<FollowingResponse>) {
+                val followingResponse: FollowingResponse? = response.body()
+                val statusCode = followingResponse?.statuscode
+                val data = followingResponse?.data
+                if (statusCode == 200) {
+                    Log.d("CHECK", "ABOUT TO SAVE FOLLOWING CALL")
+                    followingRepository?.save(data!!)
+                    Log.d("CHECK", "ABOUT TO CHECK FOLLOWING CALL")
+                    //checkFollow(id)
+                } else {
+                    getNavigator()?.showSnackBarMessage("wetin happen")
+                }
+            }
+
+            override fun onFailure(call: Call<FollowingResponse>, t: Throwable) {
+                if (t is IOException) {
+                    getNavigator()?.hideSpin()
+                    call.cancel()
+                    getNavigator()?.showSnackBarMessage("server error")
+                }
+            }
+
+
         })
     }
 
-    private fun checkFollow(id: String){
-       val check = repository?.search(id)
-        if (check == true) {
+    private fun checkFollow(following: Boolean){
+        Log.d("CHECK", "CHECKING FOLLOWING CALL")
+       //val check = followingRepository?.search(id)
+        //Log.d("CHECK", check.toString())
+        if (following) {
             followBtn.set("Following")
         } else {
             followBtn.set("Follow")
@@ -116,12 +167,9 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
                 val follow: FollowResponse? = response.body()
                 val statusCode = follow?.statuscode
                 val message= follow?.message
-                val data =  follow?.data
                 if (statusCode == 200) {
                     getNavigator()?.showSnackBarMessage(message!!)
                     followBtn.set("Following")
-                    repository?.save(data!!)
-
                 } else {
                     getNavigator()?.showSnackBarMessage("server error")
                 }
@@ -129,7 +177,6 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
 
             override fun onFailure(call: Call<FollowResponse>, t: Throwable) {
                 if (t is IOException) {
-                    getNavigator()?.hideSpin()
                     call.cancel()
                     getNavigator()?.showSnackBarMessage("server error")
                 }
@@ -160,7 +207,9 @@ class PlayerProfileModule {
 
     @Provides
     fun providesPlayerProfileViewModel(application: Application): PlayerProfileViewModel {
-        return PlayerProfileViewModel(application)
+        return PlayerProfileViewModel(
+            application
+        )
     }
 
     @Provides

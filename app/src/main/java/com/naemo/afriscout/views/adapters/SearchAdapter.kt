@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.naemo.afriscout.R
+import com.naemo.afriscout.api.models.player.follow.FollowData
 import com.naemo.afriscout.db.local.room.search.Data
 import kotlinx.android.synthetic.main.search_result.view.*
 import javax.inject.Inject
@@ -38,12 +39,18 @@ class SearchAdapter(context: Context, private var data: Data,  private var itemC
        // val playerId = dataList.playerId
         val img = dataList.image
         val name = dataList.name
+        val height = dataList.height
+        val dob = dataList.dob
+        val team = dataList.team
+        val nationality = dataList.nationality
+        val position = dataList.position
         val id = dataList.id
+        val following = dataList.following
         //val country = dataList.countryId
 
         Glide.with(context!!).load(img).into(holder.playerImage)
         holder.playerName.text = name
-        holder.frame.setOnClickListener { itemClickListener.onItemClicked(id) }
+        holder.frame.setOnClickListener { itemClickListener.onItemClicked(id, img, name, height, dob, team, nationality, position, following) }
     }
 
 
@@ -56,7 +63,7 @@ class SearchAdapter(context: Context, private var data: Data,  private var itemC
 
     interface ItemClicklistener {
 
-        fun onItemClicked(id: String)
+        fun onItemClicked(id: String, img: String, name: String, height: String, dob: String, team: String, nationality: String, position: String, Following: Boolean)
     }
 
 

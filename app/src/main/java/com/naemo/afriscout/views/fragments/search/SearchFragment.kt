@@ -10,7 +10,7 @@ import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.SearchFragmentBinding
 import com.naemo.afriscout.db.local.room.search.Data
 import com.naemo.afriscout.utils.AppUtils
-import com.naemo.afriscout.views.activities.pages.PlayerProfileActivity
+import com.naemo.afriscout.views.activities.pages.playerprofile.PlayerProfileActivity
 import com.naemo.afriscout.views.adapters.SearchAdapter
 import com.naemo.afriscout.views.base.BaseFragment
 import kotlinx.android.synthetic.main.search_fragment.*
@@ -73,9 +73,35 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         appUtils.showSnackBar(requireActivity().applicationContext, search_frame, msg)
     }
 
-    override fun onItemClicked(id: String) {
+    override fun showSpin() {
+        appUtils.showDialog(requireContext())
+    }
+
+    override fun hideSpin() {
+        appUtils.cancelDialog()
+    }
+
+    override fun onItemClicked(
+        id: String,
+        img: String,
+        name: String,
+        height: String,
+        dob: String,
+        team: String,
+        nationality: String,
+        position: String,
+        following: Boolean
+    ) {
         val intent = Intent(requireContext(), PlayerProfileActivity::class.java)
         intent.putExtra("id", id)
+        intent.putExtra("img", img)
+        intent.putExtra("name", name)
+        intent.putExtra("height", height)
+        intent.putExtra("dob", dob)
+        intent.putExtra("team", team)
+        intent.putExtra("nationality", nationality)
+        intent.putExtra("position", position)
+        intent.putExtra("following", following)
         startActivity(intent)
     }
 

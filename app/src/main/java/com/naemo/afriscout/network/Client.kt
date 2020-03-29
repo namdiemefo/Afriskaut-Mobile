@@ -7,6 +7,7 @@ import com.naemo.afriscout.api.models.forgot.ForgotResponse
 import com.naemo.afriscout.api.models.login.LoginRequest
 import com.naemo.afriscout.api.models.login.LoginResponse
 import com.naemo.afriscout.api.models.player.follow.FollowResponse
+import com.naemo.afriscout.api.models.player.follow.FollowingResponse
 import com.naemo.afriscout.api.models.player.profile.ProfileRequest
 import com.naemo.afriscout.api.models.player.profile.ProfileResponse
 import com.naemo.afriscout.api.models.profile.ProfileImageResponse
@@ -26,7 +27,7 @@ import javax.inject.Inject
 
 class Client {
     private var PROD_BASE_URL = "http://18.216.71.154:5000/"
-    private var LOCAL_BASE_URL = "http://192.168.1.2:5000/"
+    private var LOCAL_BASE_URL = "http://172.20.10.7:5000/"
     private var service: Service
     var context: Context? = null
         @Inject set
@@ -91,6 +92,7 @@ interface Service {
     @POST("users/follow")
     fun follow(@Header("Authorization") token: String, @Body profileRequest: ProfileRequest): Call<FollowResponse>
 
-
+    @POST("users/following")
+    fun following(@Header("Authorization") token: String): Call<FollowingResponse>
 
 }

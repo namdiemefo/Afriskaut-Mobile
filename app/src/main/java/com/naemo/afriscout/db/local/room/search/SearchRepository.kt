@@ -35,17 +35,18 @@ class SearchRepository(application: Application) : CoroutineScope {
         @Inject set
 
     init {
-
         val database = SearchDatabase.invoke(application)
         searchDao = database.searchDao()
     }
 
     fun loadSearchResults(): LiveData<Data>? {
         Log.d(TAG, "RETURNING THE SEARCH RESULT")
-        return searchDao?.loadSearch()
+        val result = searchDao?.loadSearch()
+        return result
     }
 
     fun saveSearchResults(query: String) {
+        searchViewModel?.getNavigator()?.showSpin()
         Log.d(TAG, query)
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
@@ -55,6 +56,7 @@ class SearchRepository(application: Application) : CoroutineScope {
         val searchCall: Call<SearchResponse> = client.getApi().search(token, search)
         searchCall.enqueue(object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
+                searchViewModel?.getNavigator()?.hideSpin()
                 val searchResponse: SearchResponse? = response.body()
                 val statusCode = searchResponse?.statuscode
                 if (statusCode == 200) {
@@ -63,6 +65,7 @@ class SearchRepository(application: Application) : CoroutineScope {
                         Log.d(TAG, "INSERTING SEARCH RESULTS")
                         val data = response.body()?.data
                         save(data)
+                        //loadSearchResults()
                     }
                 } else {
                     searchViewModel?.getNavigator()?.showSnackBarMessage("player not found")
@@ -71,6 +74,7 @@ class SearchRepository(application: Application) : CoroutineScope {
             }
 
             override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+                searchViewModel?.getNavigator()?.hideSpin()
                 Log.d(TAG, "SEARCH CALL FAILED")
                 searchViewModel?.getNavigator()?.showSnackBarMessage("server error")
             }

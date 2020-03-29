@@ -63,6 +63,8 @@ class ProfilePicRepository(application: Application): CoroutineScope {
                         val image = response.body()
                         save(image)
                     }
+                } else {
+                    profileViewModel?.getNavigator()?.showSnackBarMessage("server error")
                 }
             }
 

@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
+import com.naemo.afriscout.api.models.player.follow.FollowData
 
 @Entity(tableName = "follow_player")
-data class FollowData(
+data class FolloData(
     @SerializedName("id")
    // @ColumnInfo(name = "playerId")
     val playerId: String,
@@ -37,10 +38,10 @@ data class FollowData(
 interface FollowPlayerDao {
 
     @Query("SELECT * FROM follow_player")
-    fun loadFollow(): LiveData<FollowData>
+    fun loadFollow(): LiveData<FolloData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveFollow(data: FollowData)
+    fun saveFollow(data: FolloData)
 
     @Query("SELECT * FROM follow_player WHERE playerId = :playerId")
     fun searchFollow(playerId: String): Boolean
@@ -50,7 +51,7 @@ interface FollowPlayerDao {
 }
 
 
-@Database(entities = [FollowData::class], version = 1, exportSchema = false)
+@Database(entities = [FolloData::class], version = 1, exportSchema = false)
 abstract class FollowPlayerDataBase: RoomDatabase() {
 
     abstract fun followplayerdao(): FollowPlayerDao

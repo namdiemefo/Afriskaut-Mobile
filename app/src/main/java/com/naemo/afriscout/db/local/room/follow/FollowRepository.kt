@@ -24,13 +24,13 @@ class FollowRepository(application: Application): CoroutineScope {
         followPlayerDao = dataBase.followplayerdao()
     }
 
-    fun save(data: FollowData) {
+    fun save(data: FolloData) {
         launch {
             savePlayer(data)
         }
     }
 
-    private suspend fun savePlayer(data: FollowData) {
+    private suspend fun savePlayer(data: FolloData) {
         Log.d(TAG, "SAVING THE FOLLOW")
         withContext(IO) {
             Log.d(TAG, "SAVed THE FOLLOW")

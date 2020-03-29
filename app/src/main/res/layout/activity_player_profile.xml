@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".views.activities.pages.PlayerProfileActivity">
+    tools:context=".views.activities.pages.playerprofile.PlayerProfileActivity">
     
     <data>
         
@@ -11,11 +11,11 @@
         
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.activities.pages.PlayerProfileNavigator" />
+            type="com.naemo.afriscout.views.activities.pages.playerprofile.PlayerProfileNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.activities.pages.PlayerProfileViewModel" />
+            type="com.naemo.afriscout.views.activities.pages.playerprofile.PlayerProfileViewModel" />
     </data>
 
     <LinearLayout

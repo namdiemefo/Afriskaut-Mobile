@@ -9,10 +9,8 @@ import com.naemo.afriscout.views.activities.account.register.RegisterActivity
 import com.naemo.afriscout.views.activities.account.register.RegisterModule
 import com.naemo.afriscout.views.activities.main.MainActivity
 import com.naemo.afriscout.views.activities.main.MainModule
-import com.naemo.afriscout.views.activities.pages.PlayerProfileActivity
-import com.naemo.afriscout.views.activities.pages.PlayerProfileModule
-import com.naemo.afriscout.views.fragments.profile.ProfileFragment
-import com.naemo.afriscout.views.fragments.profile.ProfileModule
+import com.naemo.afriscout.views.activities.pages.playerprofile.PlayerProfileActivity
+import com.naemo.afriscout.views.activities.pages.playerprofile.PlayerProfileModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
