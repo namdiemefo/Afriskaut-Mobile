@@ -14,6 +14,8 @@ interface StatsPageNavigator {
     fun goBack()
 
     fun pickClub()
+
+    fun goToAllTime()
 }
 
 @Module

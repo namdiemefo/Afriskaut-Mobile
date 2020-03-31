@@ -3,10 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".views.activities.pages.playerstats.pickclub.PickClubPage">
+    tools:context=".views.activities.pages.playerstats.pickclub.PickClubActivity">
 
     <data>
         <import type="android.view.View" />
+
+        <variable
+            name="navigator"
+            type="com.naemo.afriscout.views.activities.pages.playerstats.pickclub.PickClubNavigator" />
+
+        <variable
+            name="viewModel"
+            type="com.naemo.afriscout.views.activities.pages.playerstats.pickclub.PickClubViewModel" />
     </data>
 
     <LinearLayout
@@ -22,7 +30,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:onClick="onBack()"
+                android:onClick="@{(view) -> navigator.goBack()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/back_button"

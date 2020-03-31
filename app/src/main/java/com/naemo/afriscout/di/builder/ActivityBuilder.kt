@@ -11,6 +11,10 @@ import com.naemo.afriscout.views.activities.main.MainActivity
 import com.naemo.afriscout.views.activities.main.MainModule
 import com.naemo.afriscout.views.activities.pages.playerprofile.PlayerProfileActivity
 import com.naemo.afriscout.views.activities.pages.playerprofile.PlayerProfileModule
+import com.naemo.afriscout.views.activities.pages.playerstats.allstats.AllStatsActivity
+import com.naemo.afriscout.views.activities.pages.playerstats.allstats.AllStatsModule
+import com.naemo.afriscout.views.activities.pages.playerstats.pickclub.PickClubActivity
+import com.naemo.afriscout.views.activities.pages.playerstats.pickclub.PickClubModule
 import com.naemo.afriscout.views.activities.pages.playerstats.statspage.StatsPageActivity
 import com.naemo.afriscout.views.activities.pages.playerstats.statspage.StatsPageModule
 import dagger.Module
@@ -36,5 +40,11 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [StatsPageModule::class])
     abstract fun bindStatsPageActivity(): StatsPageActivity
+
+    @ContributesAndroidInjector(modules = [PickClubModule::class])
+    abstract fun bindPickClubActivity(): PickClubActivity
+
+    @ContributesAndroidInjector(modules = [AllStatsModule::class])
+    abstract fun bindAllStatsActivity(): AllStatsActivity
 
 }

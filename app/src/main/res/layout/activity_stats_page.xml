@@ -92,6 +92,7 @@
             android:background="@drawable/stats_button" />
 
         <Button
+            android:onClick="@{(view) -> navigator.goToAllTime()}"
             android:layout_width="315dp"
             android:layout_height="54dp"
             android:layout_gravity="center"

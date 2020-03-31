@@ -5,7 +5,8 @@ import android.os.Bundle
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityStatsPageBinding
-import com.naemo.afriscout.views.activities.pages.playerstats.pickclub.PickClubPage
+import com.naemo.afriscout.views.activities.pages.playerstats.allstats.AllStatsActivity
+import com.naemo.afriscout.views.activities.pages.playerstats.pickclub.PickClubActivity
 import com.naemo.afriscout.views.base.BaseActivity
 import javax.inject.Inject
 
@@ -38,7 +39,11 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
     }
 
     override fun pickClub() {
-        startActivity(Intent(this, PickClubPage::class.java))
+        startActivity(Intent(this, PickClubActivity::class.java))
+    }
+
+    override fun goToAllTime() {
+        startActivity(Intent(this, AllStatsActivity::class.java))
     }
 
 
