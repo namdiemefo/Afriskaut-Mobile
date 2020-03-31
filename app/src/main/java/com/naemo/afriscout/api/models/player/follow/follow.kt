@@ -48,5 +48,12 @@ data class FollowingResponse(
     val statuscode: Int
 )
 
+data class UnfollowResponse(
+    @SerializedName("message")
+    val message: String,
+    @SerializedName("statuscode")
+    val statuscode: Int
+)
+
 
 

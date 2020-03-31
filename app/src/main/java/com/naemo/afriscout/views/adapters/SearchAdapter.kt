@@ -43,14 +43,14 @@ class SearchAdapter(context: Context, private var data: Data,  private var itemC
         val dob = dataList.dob
         val team = dataList.team
         val nationality = dataList.nationality
-        val position = dataList.position
+        val playerPosition = dataList.position
         val id = dataList.id
         val following = dataList.following
         //val country = dataList.countryId
 
         Glide.with(context!!).load(img).into(holder.playerImage)
         holder.playerName.text = name
-        holder.frame.setOnClickListener { itemClickListener.onItemClicked(id, img, name, height, dob, team, nationality, position, following) }
+        holder.frame.setOnClickListener { itemClickListener.onItemClicked(id, img, name, height, dob, team, nationality, playerPosition, following) }
     }
 
 
@@ -63,7 +63,7 @@ class SearchAdapter(context: Context, private var data: Data,  private var itemC
 
     interface ItemClicklistener {
 
-        fun onItemClicked(id: String, img: String, name: String, height: String, dob: String, team: String, nationality: String, position: String, Following: Boolean)
+        fun onItemClicked(id: String, img: String, name: String, height: String, dob: String, team: String, nationality: String, position: String, Follow: Boolean)
     }
 
 

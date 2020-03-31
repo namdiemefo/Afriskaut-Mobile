@@ -29,5 +29,20 @@
     <string name="victor_osimhen">Victor Osimhen</string>
     <string name="back">Back</string>
     <string name="follow">Follow</string>
+    <string name="team_statistics">Team Statistics</string>
+    <string name="player_statistics">Player Statistics</string>
+    <string name="position_">Position:</string>
+    <string name="current_club">Current club:</string>
+    <string name="date_of_birth">Date of birth:</string>
+    <string name="nationality">Nationality:</string>
+    <string name="height">Height:</string>
+    <string name="strong_foot">Strong Foot:</string>
+    <string name="full_name_">Full Name:</string>
+    <string name="player_profile__">Player Profile</string>
+    <string name="tournament_statistics">Tournament Statistics</string>
+    <string name="season_statistics">Season Statistics</string>
+    <string name="all_time_statistics">All Time Statistics</string>
+    <string name="club_">CLUB</string>
+    <string name="national_">NATIONAL</string>
 
 </resources>

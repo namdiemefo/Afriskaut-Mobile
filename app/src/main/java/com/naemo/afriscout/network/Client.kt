@@ -8,6 +8,7 @@ import com.naemo.afriscout.api.models.login.LoginRequest
 import com.naemo.afriscout.api.models.login.LoginResponse
 import com.naemo.afriscout.api.models.player.follow.FollowResponse
 import com.naemo.afriscout.api.models.player.follow.FollowingResponse
+import com.naemo.afriscout.api.models.player.follow.UnfollowResponse
 import com.naemo.afriscout.api.models.player.profile.ProfileRequest
 import com.naemo.afriscout.api.models.player.profile.ProfileResponse
 import com.naemo.afriscout.api.models.profile.ProfileImageResponse
@@ -90,9 +91,12 @@ interface Service {
     fun profile(@Header("Authorization") token: String, @Body profileRequest: ProfileRequest): Call<ProfileResponse>
 
     @POST("users/follow")
-    fun follow(@Header("Authorization") token: String, @Body profileRequest: ProfileRequest): Call<FollowResponse>
+    fun follow(@Header("Authorization") token: String, @Body followRequest: ProfileRequest): Call<FollowResponse>
 
     @POST("users/following")
     fun following(@Header("Authorization") token: String): Call<FollowingResponse>
+
+    @POST("users/unfollow")
+    fun unfollow(@Header("Authorization") token: String, @Body unfollowRequest: ProfileRequest): Call<UnfollowResponse>
 
 }

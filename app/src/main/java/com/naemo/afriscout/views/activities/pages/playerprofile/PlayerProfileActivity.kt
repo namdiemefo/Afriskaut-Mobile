@@ -1,13 +1,13 @@
 package com.naemo.afriscout.views.activities.pages.playerprofile
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityPlayerProfileBinding
 import com.naemo.afriscout.utils.AppUtils
-import com.naemo.afriscout.views.activities.pages.playerprofile.PlayerProfileNavigator
-import com.naemo.afriscout.views.activities.pages.playerprofile.PlayerProfileViewModel
+import com.naemo.afriscout.views.activities.pages.playerstats.statspage.StatsPageActivity
 import com.naemo.afriscout.views.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_player_profile.*
 import javax.inject.Inject
@@ -53,12 +53,12 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
         val position = intent.getStringExtra("position")
         val following = intent.getBooleanExtra("following", false)
         Log.d("id", id!!)
-        makeNetworkCall(id, img, name, height, dob, team, nationality, position, following)
+        makeNetworkCall(img, name, height, dob, team, nationality, position, following)
 
     }
 
-    private fun makeNetworkCall(id: String?, img: String?, name: String?, height: String?, dob: String?, team: String?, nationality: String?, position: String?, following: Boolean?) {
-        getViewModel()?.makeCall(id!!, img!!, name!!, height!!, dob!!, team!!, nationality!!, position!!, following!!)
+    private fun makeNetworkCall(img: String?, name: String?, height: String?, dob: String?, team: String?, nationality: String?, position: String?, following: Boolean?) {
+        getViewModel()?.makeCall(img!!, name!!, height!!, dob!!, team!!, nationality!!, position!!, following!!)
     }
 
 
@@ -89,10 +89,20 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
     override fun followPlayer() {
         val intent = intent
         val id = intent.getStringExtra("id")
-        getViewModel()?.follow(id!!)
+        val buttonText = follow_button.text
+        if (buttonText == "Follow") {
+            getViewModel()?.follow(id!!)
+        } else {
+            getViewModel()?.unfollow(id!!)
+        }
+
     }
 
     override fun goBack() {
         onBackPressed()
+    }
+
+    override fun goToStatsPage() {
+        startActivity(Intent(this, StatsPageActivity::class.java))
     }
 }

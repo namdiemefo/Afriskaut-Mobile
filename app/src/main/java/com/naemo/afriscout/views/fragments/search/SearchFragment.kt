@@ -90,7 +90,7 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         team: String,
         nationality: String,
         position: String,
-        following: Boolean
+        follow: Boolean
     ) {
         val intent = Intent(requireContext(), PlayerProfileActivity::class.java)
         intent.putExtra("id", id)
@@ -101,7 +101,7 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         intent.putExtra("team", team)
         intent.putExtra("nationality", nationality)
         intent.putExtra("position", position)
-        intent.putExtra("following", following)
+        intent.putExtra("following", follow)
         startActivity(intent)
     }
 
