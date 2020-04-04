@@ -46,6 +46,9 @@ interface SearchDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveSearch(search: Data)
 
+    @Query("UPDATE search_table SET following=:following WHERE vId=:id")
+    fun update(following: Boolean, id: Int)
+
     @Query("DELETE FROM search_table")
     fun deleteSearch()
 }

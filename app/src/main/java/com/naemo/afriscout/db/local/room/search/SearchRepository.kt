@@ -45,6 +45,18 @@ class SearchRepository(application: Application) : CoroutineScope {
         return result
     }
 
+    fun updateFollowing(following: Boolean, id: Int) {
+        launch {
+            updateField(following, id)
+        }
+    }
+
+    private suspend fun updateField(following: Boolean, id: Int) {
+        withContext(IO) {
+            searchDao?.update(following, id)
+        }
+    }
+
     fun saveSearchResults(query: String) {
         searchViewModel?.getNavigator()?.showSpin()
         Log.d(TAG, query)

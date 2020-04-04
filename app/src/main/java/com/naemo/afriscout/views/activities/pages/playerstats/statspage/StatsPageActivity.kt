@@ -5,9 +5,11 @@ import android.os.Bundle
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityStatsPageBinding
+import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.activities.pages.playerstats.allstats.AllStatsActivity
 import com.naemo.afriscout.views.activities.pages.playerstats.pickclub.PickClubActivity
 import com.naemo.afriscout.views.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_stats_page.*
 import javax.inject.Inject
 
 class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewModel>(),
@@ -17,6 +19,9 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
     @Inject set
 
     var mLayoutId = R.layout.activity_stats_page
+        @Inject set
+
+    var appUtils: AppUtils? = null
         @Inject set
 
     var mBinder: ActivityStatsPageBinding? = null
@@ -32,6 +37,17 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
         mBinder?.viewModel = statsPageViewModel
         mBinder?.navigator = this
         mBinder?.viewModel?.setNavigator(this)
+        initViews()
+    }
+
+    private fun initViews() {
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
+        makeStatsCall(playerId)
+    }
+
+    private fun makeStatsCall(playerId: Int) {
+        getViewModel()?.getPlayerStats(playerId)
     }
 
     override fun goBack() {
@@ -44,6 +60,18 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
 
     override fun goToAllTime() {
         startActivity(Intent(this, AllStatsActivity::class.java))
+    }
+
+    override fun showSnackBarMessage(msg: String) {
+        appUtils?.showSnackBar(this, stats_frame, msg)
+    }
+
+    override fun showSpin() {
+        appUtils?.showDialog(this)
+    }
+
+    override fun hideSpin() {
+        appUtils?.cancelDialog()
     }
 
 

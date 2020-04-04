@@ -11,6 +11,8 @@ import com.naemo.afriscout.api.models.player.follow.FollowingResponse
 import com.naemo.afriscout.api.models.player.follow.UnfollowResponse
 import com.naemo.afriscout.api.models.player.profile.ProfileRequest
 import com.naemo.afriscout.api.models.player.profile.ProfileResponse
+import com.naemo.afriscout.api.models.player.stats.PlayerStatsRequest
+import com.naemo.afriscout.api.models.player.stats.PlayerStatsResponse
 import com.naemo.afriscout.api.models.profile.ProfileImageResponse
 import com.naemo.afriscout.api.models.register.RegisterRequest
 import com.naemo.afriscout.api.models.register.RegisterResponse
@@ -98,5 +100,8 @@ interface Service {
 
     @POST("users/unfollow")
     fun unfollow(@Header("Authorization") token: String, @Body unfollowRequest: ProfileRequest): Call<UnfollowResponse>
+
+    @POST("users/playerstats")
+    fun stats(@Header("Authorization") token: String, @Body playerStatsRequest: PlayerStatsRequest): Call<PlayerStatsResponse>
 
 }

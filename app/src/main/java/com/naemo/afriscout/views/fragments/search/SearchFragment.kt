@@ -2,6 +2,7 @@ package com.naemo.afriscout.views.fragments.search
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -82,6 +83,7 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
     }
 
     override fun onItemClicked(
+        dBid: Int,
         id: String,
         img: String,
         name: String,
@@ -93,6 +95,7 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         follow: Boolean
     ) {
         val intent = Intent(requireContext(), PlayerProfileActivity::class.java)
+        intent.putExtra("dBid", dBid)
         intent.putExtra("id", id)
         intent.putExtra("img", img)
         intent.putExtra("name", name)

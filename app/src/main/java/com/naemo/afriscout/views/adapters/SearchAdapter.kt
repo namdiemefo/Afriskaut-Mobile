@@ -37,6 +37,7 @@ class SearchAdapter(context: Context, private var data: Data,  private var itemC
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val dataList = data
        // val playerId = dataList.playerId
+        val dbId = dataList.vId
         val img = dataList.image
         val name = dataList.name
         val height = dataList.height
@@ -50,7 +51,7 @@ class SearchAdapter(context: Context, private var data: Data,  private var itemC
 
         Glide.with(context!!).load(img).into(holder.playerImage)
         holder.playerName.text = name
-        holder.frame.setOnClickListener { itemClickListener.onItemClicked(id, img, name, height, dob, team, nationality, playerPosition, following) }
+        holder.frame.setOnClickListener { itemClickListener.onItemClicked(dbId, id, img, name, height, dob, team, nationality, playerPosition, following) }
     }
 
 
@@ -63,7 +64,7 @@ class SearchAdapter(context: Context, private var data: Data,  private var itemC
 
     interface ItemClicklistener {
 
-        fun onItemClicked(id: String, img: String, name: String, height: String, dob: String, team: String, nationality: String, position: String, Follow: Boolean)
+        fun onItemClicked(dBid: Int, id: String, img: String, name: String, height: String, dob: String, team: String, nationality: String, position: String, Follow: Boolean)
     }
 
 

@@ -88,12 +88,13 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
 
     override fun followPlayer() {
         val intent = intent
+        val dBid = intent.getIntExtra("dBid", 0)
         val id = intent.getStringExtra("id")
         val buttonText = follow_button.text
         if (buttonText == "Follow") {
-            getViewModel()?.follow(id!!)
+            getViewModel()?.follow(id!!, dBid)
         } else {
-            getViewModel()?.unfollow(id!!)
+            getViewModel()?.unfollow(id!!, dBid)
         }
 
     }

@@ -52,6 +52,10 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerF
         super.onDetach()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
     fun getBaseActivity(): BaseActivity<*, *>? {
         return mActivity
     }

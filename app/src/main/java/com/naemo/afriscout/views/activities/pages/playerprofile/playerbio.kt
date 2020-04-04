@@ -10,6 +10,7 @@ import com.naemo.afriscout.api.models.player.profile.ProfileRequest
 import com.naemo.afriscout.db.local.preferences.AppPreferences
 import com.naemo.afriscout.db.local.room.follow.FollowRepository
 import com.naemo.afriscout.db.local.room.following.FollowingRepository
+import com.naemo.afriscout.db.local.room.search.SearchRepository
 import com.naemo.afriscout.network.Client
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.base.BaseViewModel
@@ -44,10 +45,12 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
 
     private var repository: FollowRepository? = null
     private var followingRepository: FollowingRepository? = null
+    private var searchRepository: SearchRepository? = null
 
     init {
         repository = FollowRepository(application)
         followingRepository = FollowingRepository(application)
+        searchRepository = SearchRepository(application)
     }
 
     fun makeCall(img: String, name: String, playerHeight: String, playerDob: String, team: String, playerNationality: String, playerPosition: String, following: Boolean) {
@@ -70,7 +73,8 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
         }
     }
 
-    fun follow(id: String) {
+    fun follow(id: String, dbId: Int) {
+        Log.d("playerbio", id)
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
@@ -84,6 +88,7 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
                 if (statusCode == 200) {
                     getNavigator()?.showSnackBarMessage(message!!)
                     followBtn.set("Following")
+                    searchRepository?.updateFollowing(true, dbId)
                 } else {
                     getNavigator()?.showSnackBarMessage("server error")
                 }
@@ -100,7 +105,7 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
 
     }
 
-    fun unfollow(id: String) {
+    fun unfollow(id: String, dbId: Int) {
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
@@ -112,8 +117,9 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
                 val statusCode = unfollow?.statuscode
                 val msg = unfollow?.message
                 if (statusCode == 200) {
-                    followBtn.set("Following")
                     getNavigator()?.showSnackBarMessage(msg!!)
+                    followBtn.set("Follow")
+                    searchRepository?.updateFollowing(false, dbId)
                 } else {
                     getNavigator()?.showSnackBarMessage(msg!!)
                 }
