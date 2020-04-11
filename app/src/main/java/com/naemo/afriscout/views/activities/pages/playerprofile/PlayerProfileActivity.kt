@@ -25,6 +25,7 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
         @Inject set
 
     var mBinder: ActivityPlayerProfileBinding? = null
+    var playerId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         hideToolBar()
@@ -45,6 +46,7 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
         val intent = intent
         val id = intent.getStringExtra("id")
         val img = intent.getStringExtra("img")
+        playerId = intent.getIntExtra("playerId", 0)
         val name = intent.getStringExtra("name")
         val height = intent.getStringExtra("height")
         val dob = intent.getStringExtra("dob")
@@ -104,6 +106,9 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
     }
 
     override fun goToStatsPage() {
-        startActivity(Intent(this, StatsPageActivity::class.java))
+        val intent = Intent(this, StatsPageActivity::class.java)
+        Log.d("playPro", playerId.toString())
+        intent.putExtra("playerId", playerId)
+        startActivity(intent)
     }
 }

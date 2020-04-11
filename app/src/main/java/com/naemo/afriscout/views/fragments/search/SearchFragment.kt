@@ -86,6 +86,7 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         dBid: Int,
         id: String,
         img: String,
+        playerId: Int,
         name: String,
         height: String,
         dob: String,
@@ -98,6 +99,7 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         intent.putExtra("dBid", dBid)
         intent.putExtra("id", id)
         intent.putExtra("img", img)
+        intent.putExtra("playerId", playerId)
         intent.putExtra("name", name)
         intent.putExtra("height", height)
         intent.putExtra("dob", dob)

@@ -11,3 +11,4 @@ data class Data(
     @SerializedName("stats")
     val stats: List<Stat>
 )
+
