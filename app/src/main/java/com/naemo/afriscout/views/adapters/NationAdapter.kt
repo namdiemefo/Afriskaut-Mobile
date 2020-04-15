@@ -60,8 +60,9 @@ class NationAdapter(context: Context, private var team: Team, private var itemCl
                 iDs.add(id)
             }
         }
+        val id = iDs[position]
         Log.d("country2", iDs.toString())
-        holder.teamFrame.setOnClickListener{ itemClickListener.onItemClicked(iDs)}
+        holder.teamFrame.setOnClickListener{ itemClickListener.onItemClicked(id)}
     }
 
     class NationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -73,6 +74,6 @@ class NationAdapter(context: Context, private var team: Team, private var itemCl
 
     interface ItemClickListener {
 
-        fun onItemClicked(id: ArrayList<Int>)
+        fun onItemClicked(id: Int)
     }
 }

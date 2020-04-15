@@ -60,8 +60,9 @@ class TeamAdapter(context: Context, private var team: Team, private var itemClic
                 iDs.add(id)
             }
         }
+        val id = iDs[position]
         Log.d("clubs2", iDs.toString())
-        holder.teamFrame.setOnClickListener{ itemClickListener.onItemClicked(iDs)}
+        holder.teamFrame.setOnClickListener{ itemClickListener.onItemClicked(id)}
 
     }
 
@@ -74,6 +75,6 @@ class TeamAdapter(context: Context, private var team: Team, private var itemClic
 
     interface ItemClickListener {
 
-        fun onItemClicked(id: ArrayList<Int>)
+        fun onItemClicked(id: Int)
     }
 }

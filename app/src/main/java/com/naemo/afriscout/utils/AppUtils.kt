@@ -12,6 +12,10 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.google.android.material.snackbar.Snackbar
 import com.naemo.afriscout.R
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class AppUtils() {
 
@@ -63,6 +67,35 @@ class AppUtils() {
         if (dialog.isShowing) {
             dialog.dismiss()
         }
+    }
+
+    fun getAge(age: String?): Int? {
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
+
+       val date = sdf.parse(age.toString())
+
+        val dob = Calendar.getInstance()
+        val today = Calendar.getInstance()
+
+        date?.let {
+            dob.time = it
+        }
+
+        val year = dob[Calendar.YEAR]
+        val month = dob[Calendar.MONTH]
+        val day = dob[Calendar.DAY_OF_MONTH]
+
+        dob.set(year, month+1, day)
+        var myAge = today[Calendar.YEAR] - dob[Calendar.YEAR]
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            myAge--
+        }
+
+        return myAge
+
+
+
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

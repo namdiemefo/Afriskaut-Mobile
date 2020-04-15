@@ -204,11 +204,12 @@
                 android:textColor="@color/colorPlayerImageBackground"
                 android:layout_gravity="center_horizontal" />
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
+                android:id="@+id/stats_recycler_view"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:smoothScrollbar="true" />
 

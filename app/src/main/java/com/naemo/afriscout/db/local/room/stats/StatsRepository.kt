@@ -75,6 +75,10 @@ class StatsRepository(application: Application): CoroutineScope {
         return playerStatsDao?.loadPlayerStats()
     }
 
+    fun getPlayerTeamStats(id: Int): LiveData<PlayerStats>? {
+        return playerStatsDao?.loadPlayerTeamStats(id)
+    }
+
     fun saveCrosses(crosses: Crosses) {
         launch {
             setCrosses(crosses)

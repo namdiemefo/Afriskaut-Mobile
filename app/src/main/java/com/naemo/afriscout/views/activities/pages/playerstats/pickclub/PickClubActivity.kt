@@ -1,5 +1,6 @@
 package com.naemo.afriscout.views.activities.pages.playerstats.pickclub
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityPickClubPageBinding
 import com.naemo.afriscout.db.local.room.team.Team
 import com.naemo.afriscout.utils.AppUtils
+import com.naemo.afriscout.views.activities.pages.playerstats.allstats.AllStatsActivity
 import com.naemo.afriscout.views.adapters.NationAdapter
 import com.naemo.afriscout.views.adapters.TeamAdapter
 import com.naemo.afriscout.views.base.BaseActivity
@@ -90,7 +92,9 @@ class PickClubActivity : BaseActivity<ActivityPickClubPageBinding, PickClubViewM
         nation_recycler_view.layoutManager = LinearLayoutManager(this)
     }
 
-    override fun onItemClicked(id: ArrayList<Int>) {
-
+    override fun onItemClicked(id: Int) {
+        val intent = Intent(this, AllStatsActivity::class.java)
+        intent.putExtra("stats", id)
+        startActivity(intent)
     }
 }

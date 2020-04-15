@@ -46,5 +46,7 @@
     <string name="national_">NATIONAL</string>
     <string name="age">Age:</string>
     <string name="statistics">STATISTICS</string>
+    <string name="appearances">APPEARANCES</string>
+    <string name="_15_">15</string>
 
 </resources>
