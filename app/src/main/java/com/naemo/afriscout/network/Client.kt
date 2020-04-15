@@ -15,7 +15,6 @@ import com.naemo.afriscout.api.models.player.stats.PlayerStatsRequest
 import com.naemo.afriscout.api.models.player.stats.PlayerStatsResponse
 import com.naemo.afriscout.api.models.player.team.TeamNameRequest
 import com.naemo.afriscout.api.models.player.team.TeamNameResponse
-import com.naemo.afriscout.api.models.player.team.TeamNameX
 import com.naemo.afriscout.api.models.profile.ProfileImageResponse
 import com.naemo.afriscout.api.models.register.RegisterRequest
 import com.naemo.afriscout.api.models.register.RegisterResponse
@@ -110,6 +109,4 @@ interface Service {
     @POST("users/team")
     fun team(@Header("Authorization") token: String, @Body teamNameRequest: TeamNameRequest): Call<TeamNameResponse>
 
-    @POST("users/team")
-    fun teams(@Header("Authorization") token: String, @Body teamNameRequest: TeamNameRequest): Call<TeamNameX>
 }

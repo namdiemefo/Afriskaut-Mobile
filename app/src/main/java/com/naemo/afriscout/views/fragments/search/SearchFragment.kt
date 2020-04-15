@@ -64,7 +64,10 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
     }
 
     private fun setUpPlayerSearchResult(it: Data?) {
-        val adapter = SearchAdapter(requireContext().applicationContext, it!!, this)
+        val adapter = it?.let { it1 ->
+            SearchAdapter(requireContext().applicationContext,
+                it1, this)
+        }
         search_results.adapter = adapter
         search_results.layoutManager = LinearLayoutManager(requireContext())
 

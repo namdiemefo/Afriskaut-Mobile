@@ -4,14 +4,21 @@ import com.google.gson.annotations.SerializedName
 
 data class TeamNameRequest(
     @SerializedName("teamId")
-    val teamId: ArrayList<Int>?
+    val teamId: List<Int>?
 )
 
 data class TeamNameResponse(
     @SerializedName("data")
-    val `data`: List<String>,
+    val `data`: Data,
     @SerializedName("message")
     val message: String,
     @SerializedName("statuscode")
     val statuscode: Int
+)
+
+data class Data(
+    @SerializedName("team_flags")
+    val teamFlags: List<String>,
+    @SerializedName("team_names")
+    val teamNames: List<String>
 )

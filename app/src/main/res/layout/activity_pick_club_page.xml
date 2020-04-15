@@ -77,11 +77,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            tools:listitem="@layout/team_result"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/nation_recycler_view" />
 
         <TextView
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/club_"
@@ -100,8 +100,10 @@
             android:background="@color/colorWhite" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/club_recycler_view"
             tools:listitem="@layout/team_result" />
     </LinearLayout>
 

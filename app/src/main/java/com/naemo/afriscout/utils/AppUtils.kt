@@ -4,16 +4,14 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.google.android.material.snackbar.Snackbar
 import com.naemo.afriscout.R
-import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.URL
-import javax.inject.Inject
 
 class AppUtils() {
 
@@ -65,6 +63,294 @@ class AppUtils() {
         if (dialog.isShowing) {
             dialog.dismiss()
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun checkIfCountry(map: Map<Int, String>?): MutableMap<Int, String>? {
+        val kk = mutableMapOf<Int, String>()
+        val countries = arrayListOf("Algeria",
+            "Algeria",
+            "Angola",
+            "Benin",
+            "Botswana",
+            "Burkina Faso",
+            "Burundi",
+            "Cabo Verde",
+            "Cameroon",
+            "Central African Republic",
+            "Chad",
+            "Comoros",
+            "Democratic Republic of the Congo",
+            "Republic of the Congo",
+            "Cote d'Ivoire",
+            "Djibouti",
+            "Egypt",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Eswatini",
+            "Ethiopia",
+            "Gabon",
+            "Gambia",
+            "Ghana",
+            "Guinea",
+            "Guinea-Bissau",
+            "Kenya",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Madagascar",
+            "Malawi",
+            "Mali",
+            "Mauritania",
+            "Mauritius",
+            "Morocco",
+            "Mozambique",
+            "Namibia",
+            "Niger",
+            "Nigeria",
+            "Rwanda",
+            "Sao Tome and Principe",
+            "Senegal",
+            "Seychelles",
+            "Sierra Leone",
+            "Somalia",
+            "South Africa",
+            "South Sudan",
+            "Sudan",
+            "Tanzania",
+            "Togo",
+            "Tunisia",
+            "Uganda",
+            "Zambia",
+            "Zimbabwe")
+
+        map?.let {
+            for ((k, v) in it) {
+                if (countries.contains(v)) {
+                    kk[k] = v
+                }
+            }
+        }
+
+        return kk
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun checkIfClub(map: Map<Int, String>?): MutableMap<Int, String>? {
+        val kk = mutableMapOf<Int, String>()
+        val countries = arrayListOf("Algeria",
+            "Algeria",
+            "Angola",
+            "Benin",
+            "Botswana",
+            "Burkina Faso",
+            "Burundi",
+            "Cabo Verde",
+            "Cameroon",
+            "Central African Republic",
+            "Chad",
+            "Comoros",
+            "Democratic Republic of the Congo",
+            "Republic of the Congo",
+            "Cote d'Ivoire",
+            "Djibouti",
+            "Egypt",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Eswatini",
+            "Ethiopia",
+            "Gabon",
+            "Gambia",
+            "Ghana",
+            "Guinea",
+            "Guinea-Bissau",
+            "Kenya",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Madagascar",
+            "Malawi",
+            "Mali",
+            "Mauritania",
+            "Mauritius",
+            "Morocco",
+            "Mozambique",
+            "Namibia",
+            "Niger",
+            "Nigeria",
+            "Rwanda",
+            "Sao Tome and Principe",
+            "Senegal",
+            "Seychelles",
+            "Sierra Leone",
+            "Somalia",
+            "South Africa",
+            "South Sudan",
+            "Sudan",
+            "Tanzania",
+            "Togo",
+            "Tunisia",
+            "Uganda",
+            "Zambia",
+            "Zimbabwe")
+
+        map?.let { kk.putAll(it) }
+        map?.let {
+            for ((k,v) in it) {
+                if (countries.contains(v)) {
+                    kk.remove(k, v)
+                    Log.d("stuff14", kk.toString())
+                }
+            }
+        }
+
+        Log.d("stuff15", kk.toString())
+        return kk
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun checkIfsCountry(map: Map<String, String>?): MutableMap<String, String>? {
+        val kk = mutableMapOf<String, String>()
+        val countries = arrayListOf("Algeria",
+            "Algeria",
+            "Angola",
+            "Benin",
+            "Botswana",
+            "Burkina Faso",
+            "Burundi",
+            "Cabo Verde",
+            "Cameroon",
+            "Central African Republic",
+            "Chad",
+            "Comoros",
+            "Democratic Republic of the Congo",
+            "Republic of the Congo",
+            "Cote d'Ivoire",
+            "Djibouti",
+            "Egypt",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Eswatini",
+            "Ethiopia",
+            "Gabon",
+            "Gambia",
+            "Ghana",
+            "Guinea",
+            "Guinea-Bissau",
+            "Kenya",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Madagascar",
+            "Malawi",
+            "Mali",
+            "Mauritania",
+            "Mauritius",
+            "Morocco",
+            "Mozambique",
+            "Namibia",
+            "Niger",
+            "Nigeria",
+            "Rwanda",
+            "Sao Tome and Principe",
+            "Senegal",
+            "Seychelles",
+            "Sierra Leone",
+            "Somalia",
+            "South Africa",
+            "South Sudan",
+            "Sudan",
+            "Tanzania",
+            "Togo",
+            "Tunisia",
+            "Uganda",
+            "Zambia",
+            "Zimbabwe")
+
+        map?.let {
+            for ((k, v) in it) {
+                if (countries.contains(k)) {
+                    kk[k] = v
+                }
+            }
+        }
+
+        return kk
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun checkIfsClub(map: Map<String, String>?): MutableMap<String, String>? {
+        val kk = mutableMapOf<String, String>()
+        val countries = arrayListOf("Algeria",
+            "Algeria",
+            "Angola",
+            "Benin",
+            "Botswana",
+            "Burkina Faso",
+            "Burundi",
+            "Cabo Verde",
+            "Cameroon",
+            "Central African Republic",
+            "Chad",
+            "Comoros",
+            "Democratic Republic of the Congo",
+            "Republic of the Congo",
+            "Cote d'Ivoire",
+            "Djibouti",
+            "Egypt",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Eswatini",
+            "Ethiopia",
+            "Gabon",
+            "Gambia",
+            "Ghana",
+            "Guinea",
+            "Guinea-Bissau",
+            "Kenya",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Madagascar",
+            "Malawi",
+            "Mali",
+            "Mauritania",
+            "Mauritius",
+            "Morocco",
+            "Mozambique",
+            "Namibia",
+            "Niger",
+            "Nigeria",
+            "Rwanda",
+            "Sao Tome and Principe",
+            "Senegal",
+            "Seychelles",
+            "Sierra Leone",
+            "Somalia",
+            "South Africa",
+            "South Sudan",
+            "Sudan",
+            "Tanzania",
+            "Togo",
+            "Tunisia",
+            "Uganda",
+            "Zambia",
+            "Zimbabwe")
+
+        map?.let { kk.putAll(it) }
+        map?.let {
+            for ((k,v) in it) {
+                if (countries.contains(k)) {
+                    kk.remove(k, v)
+                    Log.d("stuff14", kk.toString())
+                }
+            }
+        }
+
+        return kk
+
     }
 
 

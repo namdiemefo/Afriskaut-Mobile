@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.team_result.view.*
 import java.util.ArrayList
 import javax.inject.Inject
 
-class TeamAdapter(context: Context, private var team: Team, private var itemClickListener: ItemClickListener): RecyclerView.Adapter<TeamAdapter.TeamViewHolder>()  {
+class NationAdapter(context: Context, private var team: Team, private var itemClickListener: ItemClickListener): RecyclerView.Adapter<NationAdapter.NationViewHolder>() {
 
     var appUtils = AppUtils()
         @Inject set
@@ -32,40 +32,39 @@ class TeamAdapter(context: Context, private var team: Team, private var itemClic
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    val club = appUtils.checkIfClub(team.teamName)
+    val country = appUtils.checkIfCountry(team.teamName)
     @RequiresApi(Build.VERSION_CODES.N)
-    val logo = appUtils.checkIfsClub(team.flag)
+    val logo = appUtils.checkIfsCountry(team.flag)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NationViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.team_result, parent, false)
-        return TeamViewHolder(view)
+        return NationViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return club?.size ?: 0
+        return country?.size ?: 0
     }
 
-    override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NationViewHolder, position: Int) {
         val iDs = ArrayList<Int>()
-        val teams = club?.values?.toList()
+        val teams = country?.values?.toList()
         val logos = logo?.values?.toList()
         val teamName = teams?.get(position)
         val teamLogo = logos?.get(position)
-        Log.d("clubs", teamName.toString())
+        Log.d("country", teamName.toString())
         holder.teamName.text = teamName
         context?.let { Glide.with(it).load(teamLogo).into(holder.teamImage) }
-        val teamId = club?.keys
+        val teamId = country?.keys
         teamId?.let {
             for (id in it) {
                 iDs.add(id)
             }
         }
-        Log.d("clubs2", iDs.toString())
+        Log.d("country2", iDs.toString())
         holder.teamFrame.setOnClickListener{ itemClickListener.onItemClicked(iDs)}
-
     }
 
-    class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class NationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val teamName: TextView = itemView.team_name
         val teamImage: ImageView = itemView.team_image

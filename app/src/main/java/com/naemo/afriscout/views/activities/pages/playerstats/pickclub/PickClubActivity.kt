@@ -2,15 +2,21 @@ package com.naemo.afriscout.views.activities.pages.playerstats.pickclub
 
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityPickClubPageBinding
+import com.naemo.afriscout.db.local.room.team.Team
 import com.naemo.afriscout.utils.AppUtils
+import com.naemo.afriscout.views.adapters.NationAdapter
+import com.naemo.afriscout.views.adapters.TeamAdapter
 import com.naemo.afriscout.views.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_pick_club_page.*
+import java.util.ArrayList
 import javax.inject.Inject
 
-class PickClubActivity : BaseActivity<ActivityPickClubPageBinding, PickClubViewModel>(), PickClubNavigator {
+class PickClubActivity : BaseActivity<ActivityPickClubPageBinding, PickClubViewModel>(), PickClubNavigator,
+    TeamAdapter.ItemClickListener, NationAdapter.ItemClickListener {
 
     var appUtils: AppUtils? = null
         @Inject set
@@ -72,5 +78,19 @@ class PickClubActivity : BaseActivity<ActivityPickClubPageBinding, PickClubViewM
 
     override fun showSnackBarMessage(msg: String) {
         appUtils?.showSnackBar(this, pick_club_frame, msg)
+    }
+
+    override fun retrieveTeams(team: Team?) {
+        val clubAdapter = team?.let { TeamAdapter(this, it, this) }
+        club_recycler_view.adapter = clubAdapter
+        club_recycler_view.layoutManager = LinearLayoutManager(this)
+
+        val countryAdapter = team?.let { NationAdapter(this, it, this) }
+        nation_recycler_view.adapter = countryAdapter
+        nation_recycler_view.layoutManager = LinearLayoutManager(this)
+    }
+
+    override fun onItemClicked(id: ArrayList<Int>) {
+
     }
 }
