@@ -48,5 +48,6 @@
     <string name="statistics">STATISTICS</string>
     <string name="appearances">APPEARANCES</string>
     <string name="_15_">15</string>
+    <string name="not_found">This player has not featured for any national team</string>
 
 </resources>

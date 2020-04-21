@@ -9,7 +9,9 @@ import com.naemo.afriscout.R
 import com.naemo.afriscout.api.models.player.team.TeamNameRequest
 import com.naemo.afriscout.api.models.player.team.TeamNameResponse
 import com.naemo.afriscout.db.local.preferences.AppPreferences
+import com.naemo.afriscout.db.local.room.search.SearchRepository
 import com.naemo.afriscout.db.local.room.stats.PlayerStats
+import com.naemo.afriscout.db.local.room.stats.Stats
 import com.naemo.afriscout.db.local.room.stats.StatsRepository
 import com.naemo.afriscout.db.local.room.team.Team
 import com.naemo.afriscout.network.Client
@@ -34,7 +36,17 @@ class PickClubViewModel(application: Application): BaseViewModel<PickClubNavigat
     var client = Client()
         @Inject set
 
-    fun getTeamName(id: ArrayList<Int>?, type: ArrayList<String>?) {
+    private var repository: StatsRepository? = null
+
+    init {
+        repository = StatsRepository(application)
+    }
+
+    fun loadAPlayerStats(playerId: Int): LiveData<Stats>? {
+       return repository?.loadOne(playerId)
+    }
+
+    fun getTeamName(id: ArrayList<Int>?, type: ArrayList<String>?, playerId: Int?) {
         Log.d("stuff6", id?.toString()!!)
         getNavigator()?.showSpin()
         val user = appPreferences.getUser()

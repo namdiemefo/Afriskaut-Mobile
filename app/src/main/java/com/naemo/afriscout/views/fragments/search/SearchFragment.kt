@@ -57,13 +57,16 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
     }
 
     override fun sendSearch() {
-        getViewModel()?.saveSearchResults()
+        getViewModel()?.save()
+    }
+
+    override fun retrieveFromDb() {
         getViewModel()?.retrieveSearchResults()?.observe(requireActivity(), Observer {
             setUpPlayerSearchResult(it)
         })
     }
 
-    private fun setUpPlayerSearchResult(it: Data?) {
+    private fun setUpPlayerSearchResult(it: List<Data>?) {
         val adapter = it?.let { it1 ->
             SearchAdapter(requireContext().applicationContext,
                 it1, this)
@@ -84,6 +87,8 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
     override fun hideSpin() {
         appUtils.cancelDialog()
     }
+
+
 
     override fun onItemClicked(
         dBid: Int,

@@ -58,6 +58,10 @@ class StatsRepository(application: Application): CoroutineScope {
         return statsDao?.loadStats()
     }
 
+    fun loadOne(playerId: Int): LiveData<Stats>? {
+        return statsDao?.loadOneStat(playerId)
+    }
+
     fun savePlayerStats(playerStats: List<PlayerStats>) {
         launch {
             setStats(playerStats)

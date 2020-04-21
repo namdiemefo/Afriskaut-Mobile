@@ -18,6 +18,9 @@ interface StatsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveStats(stats: Stats)
 
+    @Query("SELECT * FROM stats WHERE playerId =:playerId ")
+    fun loadOneStat(playerId: Int): LiveData<Stats>
+
     @Query("DELETE FROM stats")
     fun deleteStats()
 }

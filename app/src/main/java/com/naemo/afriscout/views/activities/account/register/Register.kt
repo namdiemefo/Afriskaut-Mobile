@@ -19,7 +19,6 @@ import javax.inject.Inject
 
 class RegisterViewModel(application: Application) : BaseViewModel<RegisterNavigator>(application) {
 
-    private var mRoles: String? = null
     var firstName = ObservableField("")
     var lastName = ObservableField("")
     var email = ObservableField("")
@@ -42,7 +41,6 @@ class RegisterViewModel(application: Application) : BaseViewModel<RegisterNaviga
         val mEmail = email.get().toString()
         val mPassword = password.get().toString()
         val mConfirmPassword = confirmPassword.get().toString()
-        mRoles = roles
 
         if (TextUtils.isEmpty(mFirstName)) {
             getNavigator()?.showSnackBar("Enter first name ")
@@ -54,13 +52,13 @@ class RegisterViewModel(application: Application) : BaseViewModel<RegisterNaviga
             getNavigator()?.showSnackBar("Enter password")
         } else if (TextUtils.isEmpty(mConfirmPassword)) {
             getNavigator()?.showSnackBar("confirm password")
-        } else if (TextUtils.isEmpty(mRoles)) {
+        } else if (TextUtils.isEmpty(roles)) {
             getNavigator()?.showSnackBar("Enter role in sports")
         }  else if (appUtils.isEmailValid(mEmail)) {
             if (appUtils.isPasswordValid(mPassword)) {
                  if (appUtils.bothPasswordValid(mPassword, mConfirmPassword)) {
                      getNavigator()?.showSpin()
-                     val register = RegisterRequest(mEmail, mFirstName, mLastName, mPassword, mRoles!!)
+                     val register = RegisterRequest(mEmail, mFirstName, mLastName, mPassword, roles)
                      val registerResponseCall: Call<RegisterResponse> = client.getApi().register(register)
                      registerResponseCall.enqueue(object : Callback<RegisterResponse> {
                          override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {

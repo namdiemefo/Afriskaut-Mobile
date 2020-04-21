@@ -11,7 +11,7 @@ import com.naemo.afriscout.db.local.room.stats.PlayerStats
 import kotlinx.android.synthetic.main.stats_result.view.*
 import javax.inject.Inject
 
-class StatsAdapter(context: Context, private var playerStats: PlayerStats): RecyclerView.Adapter<StatsAdapter.StatsViewHolder>() {
+class StatsAdapter(context: Context, private var playerStats: List<PlayerStats>): RecyclerView.Adapter<StatsAdapter.StatsViewHolder>() {
 
     var context: Context? = null
         @Inject set
@@ -26,12 +26,17 @@ class StatsAdapter(context: Context, private var playerStats: PlayerStats): Recy
     }
 
     override fun getItemCount(): Int {
-        return 1
+        return playerStats.size
     }
 
     override fun onBindViewHolder(holder: StatsViewHolder, position: Int) {
-        val stats = arrayListOf(playerStats)
-        val appearances = stats[position].appearences
+        var keys = mutableListOf<PlayerStats>()
+        for (k in playerStats) {
+            keys.add(k)
+        }
+       // val sum = playerStats.get(1).
+        val stats = playerStats[position]
+        val appearances = stats.appearences
         holder.statScore.text = appearances.toString()
     }
 

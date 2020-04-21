@@ -64,7 +64,9 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
     override fun pickClub() {
         val newArray = ArrayList<Int>()
         val typeArray = ArrayList<String>()
-        val stat = getViewModel()?.getPlayerStat()
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
+        val stat = getViewModel()?.getPlayerStat(playerId)
         stat?.observe(this, Observer {
           //  getTeams(it)
             val listStats = it.playerstats
@@ -90,11 +92,14 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
     }
 
     private fun sendIds(array: ArrayList<Int>?, typeArray: ArrayList<String>?) {
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
         Log.d("stuff3", array.toString())
-        val intent = Intent(this, PickClubActivity::class.java)
-        intent.putIntegerArrayListExtra("teamIds", array)
-        intent.putStringArrayListExtra("type", typeArray)
-        startActivity(intent)
+        val intents = Intent(this, PickClubActivity::class.java)
+        intents.putExtra("playerId", playerId)
+        intents.putIntegerArrayListExtra("teamIds", array)
+        intents.putStringArrayListExtra("type", typeArray)
+        startActivity(intents)
     }
 
     private fun getTeams(it: Stats?) {
@@ -111,7 +116,12 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
     }
 
     override fun goToAllTime() {
-        startActivity(Intent(this, AllStatsActivity::class.java))
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
+        val intents = Intent(this, AllStatsActivity::class.java)
+        intents.putExtra("playerId", playerId)
+        intents.putExtra("allStats", 4)
+        startActivity(intents)
     }
 
     override fun showSnackBarMessage(msg: String) {

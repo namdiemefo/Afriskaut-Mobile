@@ -42,10 +42,17 @@ class NationAdapter(context: Context, private var team: Team, private var itemCl
     }
 
     override fun getItemCount(): Int {
-        return country?.size ?: 0
+        return country?.size ?: 1
     }
 
     override fun onBindViewHolder(holder: NationViewHolder, position: Int) {
+        Log.d("count", country?.size.toString())
+        country?.let {
+            if (it.isEmpty()) {
+                holder.teamName.text = context?.getString(R.string.not_found)
+            }
+        }
+
         val iDs = ArrayList<Int>()
         val teams = country?.values?.toList()
         val logos = logo?.values?.toList()

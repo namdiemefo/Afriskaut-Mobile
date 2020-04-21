@@ -40,8 +40,8 @@ class StatsPageViewModel(application: Application): BaseViewModel<StatsPageNavig
         repository = StatsRepository(application)
     }
 
-    fun getPlayerStat(): LiveData<Stats>? {
-        return repository?.getStats()
+    fun getPlayerStat(playerId: Int): LiveData<Stats>? {
+        return repository?.loadOne(playerId)
     }
 
     fun getPlayerStats(id: Int) {

@@ -1,12 +1,18 @@
 package com.naemo.afriscout.views.activities.pages.playerstats.pickclub
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityPickClubPageBinding
+import com.naemo.afriscout.db.local.room.stats.PlayerStats
+import com.naemo.afriscout.db.local.room.stats.Stats
 import com.naemo.afriscout.db.local.room.team.Team
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.activities.pages.playerstats.allstats.AllStatsActivity
@@ -40,11 +46,12 @@ class PickClubActivity : BaseActivity<ActivityPickClubPageBinding, PickClubViewM
 
     private fun initViews() {
         val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
         val ids = intent?.getIntegerArrayListExtra("teamIds")
         val type = intent?.getStringArrayListExtra("type")
         Log.d("stuff4", ids?.get(0)?.toString()!!)
         Log.d("stuff5", ids.toString())
-        getViewModel()?.getTeamName(ids, type)
+        getViewModel()?.getTeamName(ids, type, playerId)
     }
 
     private fun doBinding() {
@@ -82,7 +89,9 @@ class PickClubActivity : BaseActivity<ActivityPickClubPageBinding, PickClubViewM
         appUtils?.showSnackBar(this, pick_club_frame, msg)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun retrieveTeams(team: Team?) {
+
         val clubAdapter = team?.let { TeamAdapter(this, it, this) }
         club_recycler_view.adapter = clubAdapter
         club_recycler_view.layoutManager = LinearLayoutManager(this)
@@ -93,8 +102,46 @@ class PickClubActivity : BaseActivity<ActivityPickClubPageBinding, PickClubViewM
     }
 
     override fun onItemClicked(id: Int) {
-        val intent = Intent(this, AllStatsActivity::class.java)
-        intent.putExtra("stats", id)
-        startActivity(intent)
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
+        val stats = playerId.let { getViewModel()?.loadAPlayerStats(it) }
+    /*    stats?.observe(this, Observer {
+            setStats(it, id)
+        })*/
+        val intents = Intent(this, AllStatsActivity::class.java)
+        intents.putExtra("allStats", 1)
+        intents.putExtra("playerId", playerId)
+        intents.putExtra("clickedId", id)
+        startActivity(intents)
+    }
+
+    private fun setStats(it: Stats?, id: Int?) {
+        Log.d("sentId", id.toString())
+        val array = ArrayList<Int>()
+        val statsArray = ArrayList<PlayerStats>()
+        val playerStats = it?.playerstats
+        playerStats?.let {
+            for (player in it) {
+                val teamId = player.teamId
+                if (id == teamId) {
+                    val app = player.appearences
+                    app?.let { array.add(app) }
+                    statsArray.add(player)
+
+                }
+            }
+        }
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
+        val intents = Intent(this, AllStatsActivity::class.java)
+        intents.putExtra("allStats", 1)
+        intents.putExtra("playerId", playerId)
+        intents.putIntegerArrayListExtra("apps", array)
+       // intents.putParcelableArrayListExtra("stats", statsArray)
+        startActivity(intents)
     }
 }
+
+/*private fun Parcelable.putParcelableArrayListExtra(s: String, statsArray: ArrayList<PlayerStats>) {
+
+}*/

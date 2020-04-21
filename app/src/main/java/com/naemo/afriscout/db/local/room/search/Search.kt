@@ -6,9 +6,12 @@ import androidx.room.*
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.google.gson.annotations.SerializedName
+import com.naemo.afriscout.db.local.room.stats.ArrayConverter
 
 @Entity(tableName = "search_table")
 data class Data(
+    @PrimaryKey(autoGenerate = true)
+    var vId: Int,
     @SerializedName("country_id")
     @ColumnInfo(name = "countryId")
     val countryId: Int,
@@ -32,19 +35,19 @@ data class Data(
     val playerId: Int,
     @SerializedName("following")
     val following: Boolean
-) {
-    @PrimaryKey(autoGenerate = true)
-    var vId = 0
-}
+)
 
 @Dao
 interface SearchDao {
 
     @Query("SELECT * FROM search_table")
-    fun loadSearch(): LiveData<Data>
+    fun loadSearch(): LiveData<List<Data>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveSearch(search: Data)
+
+    @Query("SELECT * FROM search_table WHERE playerId =:playerId")
+    fun loadPlayer(playerId: Int): LiveData<Data>
 
     @Query("UPDATE search_table SET following=:following WHERE vId=:id")
     fun update(following: Boolean, id: Int)
@@ -53,7 +56,8 @@ interface SearchDao {
     fun deleteSearch()
 }
 
-@Database(entities = [Data::class], version = 2, exportSchema = false)
+@Database(entities = [Data::class], version = 3, exportSchema = false)
+@TypeConverters(ArrayConverter::class)
 abstract class SearchDatabase : RoomDatabase() {
 
     abstract fun searchDao(): SearchDao

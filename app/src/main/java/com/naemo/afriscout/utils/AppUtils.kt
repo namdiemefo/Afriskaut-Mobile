@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.google.android.material.snackbar.Snackbar
 import com.naemo.afriscout.R
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -25,7 +25,6 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
         @Inject set
 
     var mBinder: ActivityPlayerProfileBinding? = null
-    var playerId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         hideToolBar()
@@ -46,7 +45,6 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
         val intent = intent
         val id = intent.getStringExtra("id")
         val img = intent.getStringExtra("img")
-        playerId = intent.getIntExtra("playerId", 0)
         val name = intent.getStringExtra("name")
         val height = intent.getStringExtra("height")
         val dob = intent.getStringExtra("dob")
@@ -94,9 +92,9 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
         val id = intent.getStringExtra("id")
         val buttonText = follow_button.text
         if (buttonText == "Follow") {
-            getViewModel()?.follow(id!!, dBid)
+           id?.let { getViewModel()?.follow(it, dBid)  }
         } else {
-            getViewModel()?.unfollow(id!!, dBid)
+           id?.let { getViewModel()?.unfollow(it, dBid) }
         }
 
     }
@@ -106,9 +104,10 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
     }
 
     override fun goToStatsPage() {
-        val intent = Intent(this, StatsPageActivity::class.java)
-        Log.d("playPro", playerId.toString())
-        intent.putExtra("playerId", playerId)
-        startActivity(intent)
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
+        val intents = Intent(this, StatsPageActivity::class.java)
+        intents.putExtra("playerId", playerId)
+        startActivity(intents)
     }
 }

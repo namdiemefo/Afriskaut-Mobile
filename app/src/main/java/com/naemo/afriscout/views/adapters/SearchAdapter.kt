@@ -14,7 +14,7 @@ import com.naemo.afriscout.db.local.room.search.Data
 import kotlinx.android.synthetic.main.search_result.view.*
 import javax.inject.Inject
 
-class SearchAdapter(context: Context, private var data: Data,  private var itemClickListener: ItemClicklistener) :
+class SearchAdapter(context: Context, private var data: List<Data>,  private var itemClickListener: ItemClicklistener) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     var context: Context? = null
@@ -30,11 +30,11 @@ class SearchAdapter(context: Context, private var data: Data,  private var itemC
     }
 
     override fun getItemCount(): Int {
-        return 1
+        return data.size
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        val dataList = data
+        val dataList = data[position]
 
         val dbId = dataList.vId
         val img = dataList.image

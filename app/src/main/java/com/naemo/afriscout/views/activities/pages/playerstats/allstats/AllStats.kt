@@ -7,6 +7,7 @@ import com.naemo.afriscout.R
 import com.naemo.afriscout.db.local.room.search.Data
 import com.naemo.afriscout.db.local.room.search.SearchRepository
 import com.naemo.afriscout.db.local.room.stats.PlayerStats
+import com.naemo.afriscout.db.local.room.stats.Stats
 import com.naemo.afriscout.db.local.room.stats.StatsRepository
 import com.naemo.afriscout.views.base.BaseViewModel
 import dagger.Module
@@ -28,8 +29,8 @@ class AllStatsViewModel(application: Application): BaseViewModel<AllStatsNavigat
         searchRepository = SearchRepository(application)
     }
 
-    fun getPlayerBio(): LiveData<Data>? {
-        return searchRepository?.loadSearchResults()
+    fun getPlayerBio(playerId: Int): LiveData<Data>? {
+        return searchRepository?.loadPlayerData(playerId)
     }
 
     fun setBio(img: String?, playerAge: String?, nationality: String?, playerPosition: String?) {
@@ -39,8 +40,8 @@ class AllStatsViewModel(application: Application): BaseViewModel<AllStatsNavigat
         position.set(playerPosition)
     }
 
-    fun getStats(id: Int): LiveData<PlayerStats>? {
-        return repository?.getPlayerTeamStats(id)
+    fun getStats(id: Int): LiveData<Stats>? {
+        return repository?.loadOne(id)
     }
 
 }
