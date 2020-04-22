@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityAllStatsBinding
@@ -12,10 +11,7 @@ import com.naemo.afriscout.db.local.room.search.Data
 import com.naemo.afriscout.db.local.room.stats.PlayerStats
 import com.naemo.afriscout.db.local.room.stats.Stats
 import com.naemo.afriscout.utils.AppUtils
-import com.naemo.afriscout.views.adapters.StatsAdapter
 import com.naemo.afriscout.views.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_all_stats.*
-import java.util.ArrayList
 import javax.inject.Inject
 
 class AllStatsActivity : BaseActivity<ActivityAllStatsBinding, AllStatsViewModel>(), AllStatsNavigator {
@@ -50,13 +46,13 @@ class AllStatsActivity : BaseActivity<ActivityAllStatsBinding, AllStatsViewModel
         val allStats = intent.getIntExtra("allStats", 0)
         val playerId = intent.getIntExtra("playerId", 0)
         val clickedId = intent.getIntExtra("clickedId", 0)
-        //val apps = intent.getIntegerArrayListExtra("apps")
 
         val data = getViewModel()?.getPlayerBio(playerId)
         data?.observe(this, Observer {
             setUpBio(it)
         })
 
+        Log.d("apss", allStats.toString())
         if (allStats == 1) {
             displayTeamStats(playerId, clickedId)
         } else if (allStats == 4) {
@@ -75,7 +71,8 @@ class AllStatsActivity : BaseActivity<ActivityAllStatsBinding, AllStatsViewModel
     }
 
     private fun setUpStat(it: Stats?) {
-
+        val playerStats = it?.playerstats
+        getViewModel()?.setStats(playerStats)
     }
 
     private fun displayTeamStats(playerId: Int, clickedId: Int) {
@@ -99,27 +96,21 @@ class AllStatsActivity : BaseActivity<ActivityAllStatsBinding, AllStatsViewModel
 
 
     private fun setUpStats(it: Stats?, id: Int?) {
-       // val appsList = apps?.toList()
-       // val sum = appsList?.sum()
-      //  Log.d("sentApps", appsList.toString())
-      //  Log.d("sentSum", sum.toString())
-       // val array = ArrayList<Int>()
-        val statsArray = ArrayList<PlayerStats>()
+        val statsArray = mutableListOf<PlayerStats>()
         val playerStats = it?.playerstats
         playerStats?.let {
             for (player in it) {
                 val teamId = player.teamId
                 if (id == teamId) {
-                   // val app = player.appearences
-                   // app?.let { array.add(app) }
                     statsArray.add(player)
 
                 }
             }
         }
-        val adapter = StatsAdapter(this, statsArray)
-        stats_recycler_view.adapter = adapter
-        stats_recycler_view.layoutManager = LinearLayoutManager(this)
+        Log.d("statsArray", statsArray.toString())
+        getViewModel()?.setStats(statsArray)
+
+
     }
 
     private fun doBinding() {

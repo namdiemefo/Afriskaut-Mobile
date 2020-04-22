@@ -11,6 +11,8 @@ import android.view.Window
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.naemo.afriscout.R
 import java.text.SimpleDateFormat
 import java.util.*
@@ -93,8 +95,20 @@ class AppUtils() {
 
         return myAge
 
+    }
 
+    fun <T> T.serializeToMap(): Map<String, Any> {
+        return convert()
+    }
 
+    inline fun <reified T> Map<String, Any>.toDataClass(): T {
+        return convert()
+    }
+
+    inline fun <I, reified O> I.convert(): O {
+        val gson = Gson()
+        val json = gson.toJson(this)
+        return gson.fromJson(json, object : TypeToken<O>() {}.type)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
