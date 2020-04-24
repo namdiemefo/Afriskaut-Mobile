@@ -58,6 +58,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/the_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/national_"
@@ -80,31 +81,42 @@
             android:layout_height="wrap_content"
             android:id="@+id/nation_recycler_view" />
 
-        <TextView
-            android:layout_marginTop="40dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/club_"
-            android:textColor="@color/colorPlayerImageBackground"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:fontFamily="@font/montserrat"
-            android:textStyle="normal" />
-
-        <View
+        <LinearLayout
+            android:id="@+id/recycler_layout"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorWhite" />
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/club_recycler_view"
-            tools:listitem="@layout/team_result" />
+            <TextView
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/club_"
+                android:textColor="@color/colorPlayerImageBackground"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:fontFamily="@font/montserrat"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorWhite" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/club_recycler_view"
+                tools:listitem="@layout/team_result" />
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </layout>

@@ -9,8 +9,12 @@ import com.naemo.afriscout.api.models.login.LoginResponse
 import com.naemo.afriscout.api.models.player.follow.FollowResponse
 import com.naemo.afriscout.api.models.player.follow.FollowingResponse
 import com.naemo.afriscout.api.models.player.follow.UnfollowResponse
+import com.naemo.afriscout.api.models.player.league.LeagueNameRequest
+import com.naemo.afriscout.api.models.player.league.LeagueNameResponse
 import com.naemo.afriscout.api.models.player.profile.ProfileRequest
 import com.naemo.afriscout.api.models.player.profile.ProfileResponse
+import com.naemo.afriscout.api.models.player.season.SeasonNameRequest
+import com.naemo.afriscout.api.models.player.season.SeasonNameResponse
 import com.naemo.afriscout.api.models.player.stats.PlayerStatsRequest
 import com.naemo.afriscout.api.models.player.stats.PlayerStatsResponse
 import com.naemo.afriscout.api.models.player.team.TeamNameRequest
@@ -32,7 +36,7 @@ import javax.inject.Inject
 
 class Client {
     private var PROD_BASE_URL = "http://18.216.71.154:5000/"
-    private var LOCAL_BASE_URL = "http://192.168.43.10:5000/"
+    private var LOCAL_BASE_URL = "http://172.20.10.7:5000/"
     private var service: Service
     var context: Context? = null
         @Inject set
@@ -108,5 +112,11 @@ interface Service {
 
     @POST("users/team")
     fun team(@Header("Authorization") token: String, @Body teamNameRequest: TeamNameRequest): Call<TeamNameResponse>
+
+    @POST("users/season")
+    fun season(@Header("Authorization") token: String, @Body seasonNameRequest: SeasonNameRequest): Call<SeasonNameResponse>
+
+    @POST("users/league")
+    fun league(@Header("Authorization") token: String, @Body leagueNameRequest: LeagueNameRequest): Call<LeagueNameResponse>
 
 }

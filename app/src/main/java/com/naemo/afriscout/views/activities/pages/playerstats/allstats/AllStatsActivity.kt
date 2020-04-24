@@ -53,12 +53,66 @@ class AllStatsActivity : BaseActivity<ActivityAllStatsBinding, AllStatsViewModel
         })
 
         Log.d("apss", allStats.toString())
-        if (allStats == 1) {
-            displayTeamStats(playerId, clickedId)
-        } else if (allStats == 4) {
-            displayAllTimeStats(playerId)
+        when (allStats) {
+            1 -> {
+                displayTeamStats(playerId, clickedId)
+            }
+            2 -> {
+                displayTournamentStats(playerId, clickedId)
+            }
+            3 -> {
+                displaySeasonStats(playerId, clickedId)
+            }
+            4 -> {
+                displayAllTimeStats(playerId)
+            }
         }
 
+
+    }
+
+    private fun displayTournamentStats(playerId: Int, clickedId: Int) {
+        val stats = getViewModel()?.getStats(playerId)
+        stats?.observe(this, Observer {
+            setUpTournamentStats(it, clickedId)
+        })
+    }
+
+    private fun setUpTournamentStats(it: Stats?, id: Int) {
+        val statsArray = mutableListOf<PlayerStats>()
+        val playerStats = it?.playerstats
+        playerStats?.let {
+            for (player in it) {
+                val tournamentId = player.leagueId
+                if (id == tournamentId) {
+                    statsArray.add(player)
+                }
+            }
+        }
+        getViewModel()?.setStats(statsArray)
+    }
+
+    private fun displaySeasonStats(playerId: Int, clickedId: Int) {
+        val stats = getViewModel()?.getStats(playerId)
+        stats?.observe(this, Observer {
+            setUpSeasonStats(it, clickedId)
+        })
+    }
+
+    private fun setUpSeasonStats(it: Stats?, id: Int) {
+        val statsArray = mutableListOf<PlayerStats>()
+        val playerStats = it?.playerstats
+        playerStats?.let {
+            for (player in it) {
+                val seasonId = player.seasonId
+                if (id == seasonId) {
+                    statsArray.add(player)
+
+                }
+            }
+        }
+        Log.d("statsArray", statsArray.toString())
+        getViewModel()?.setStats(statsArray)
 
     }
 

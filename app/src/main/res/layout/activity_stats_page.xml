@@ -77,6 +77,7 @@
             android:layout_marginTop="25dp"
             android:fontFamily="@font/montserrat"
             android:textStyle="normal"
+            android:onClick="@{(view) -> navigator.pickLeague()}"
             android:textColor="@color/colorWhite"
             android:text="@string/tournament_statistics"
             android:background="@drawable/stats_button" />
@@ -86,6 +87,7 @@
             android:layout_height="54dp"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
+            android:onClick="@{(view) -> navigator.pickSeason()}"
             android:fontFamily="@font/montserrat"
             android:textStyle="normal"
             android:textColor="@color/colorWhite"

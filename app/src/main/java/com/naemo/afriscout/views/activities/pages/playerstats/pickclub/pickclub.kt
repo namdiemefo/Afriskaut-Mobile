@@ -4,14 +4,14 @@ import android.app.Application
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.LiveData
 import com.naemo.afriscout.R
+import com.naemo.afriscout.api.models.player.league.LeagueNameRequest
+import com.naemo.afriscout.api.models.player.league.LeagueNameResponse
+import com.naemo.afriscout.api.models.player.season.SeasonNameRequest
+import com.naemo.afriscout.api.models.player.season.SeasonNameResponse
 import com.naemo.afriscout.api.models.player.team.TeamNameRequest
 import com.naemo.afriscout.api.models.player.team.TeamNameResponse
 import com.naemo.afriscout.db.local.preferences.AppPreferences
-import com.naemo.afriscout.db.local.room.search.SearchRepository
-import com.naemo.afriscout.db.local.room.stats.PlayerStats
-import com.naemo.afriscout.db.local.room.stats.Stats
 import com.naemo.afriscout.db.local.room.stats.StatsRepository
 import com.naemo.afriscout.db.local.room.team.Team
 import com.naemo.afriscout.network.Client
@@ -42,21 +42,14 @@ class PickClubViewModel(application: Application): BaseViewModel<PickClubNavigat
         repository = StatsRepository(application)
     }
 
-    fun loadAPlayerStats(playerId: Int): LiveData<Stats>? {
-       return repository?.loadOne(playerId)
-    }
 
-    fun getTeamName(id: ArrayList<Int>?, type: ArrayList<String>?, playerId: Int?) {
-        Log.d("stuff6", id?.toString()!!)
+    fun getTeamName(id: ArrayList<Int>?) {
         getNavigator()?.showSpin()
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
-        val newIds = id.toSet().toList()
-        Log.d("stuff7", newIds.toString())
+        val newIds = id?.toSet()?.toList()
         val teamNameRequest = TeamNameRequest(newIds)
-        val map: Map<Int, String>? = newIds.zip(type!!).toMap()
-        Log.d("stuff8", map.toString())
 
         val teamNameResponseCall: Call<TeamNameResponse> = client.getApi().team(token, teamNameRequest)
         teamNameResponseCall.enqueue(object : Callback<TeamNameResponse> {
@@ -70,32 +63,118 @@ class PickClubViewModel(application: Application): BaseViewModel<PickClubNavigat
                 val teams = mutableMapOf<Int, String>()
                 val flags = mutableMapOf<String, String>()
                 val statusCode = teamResponse?.statuscode
-                val msg = teamResponse?.message
+
                 if (statusCode == 200) {
-                    Log.d("baby", teamName.toString())
-                    Log.d("baby2", teamFlags.toString())
+
                    teamName?.let {
-                        val teamMap = newIds.zip(it).toMap()
-                        teams.putAll(teamMap)
-                       Log.d("baby3", teamMap.toString())
+                        val teamMap = newIds?.zip(it)?.toMap()
+                        teamMap?.let { it1 -> teams.putAll(it1) }
+
                     }
 
                     teamFlags?.let {
                         val flagMap = teamName?.zip(it)?.toMap()
                         flagMap?.let { it1 -> flags.putAll(it1) }
-                        Log.d("baby4", flagMap.toString())
                     }
 
                     val team = Team(teams, flags)
                     getNavigator()?.retrieveTeams(team)
 
                 } else {
-                    getNavigator()?.showSnackBarMessage(msg!!)
+                    getNavigator()?.showSnackBarMessage("server error")
                 }
 
             }
 
             override fun onFailure(call: Call<TeamNameResponse>, t: Throwable) {
+                getNavigator()?.hideSpin()
+                if (t is IOException) {
+                    call.cancel()
+                    getNavigator()?.showSnackBarMessage("server error")
+                }
+            }
+        })
+    }
+
+    fun getSeasonName(id: ArrayList<Int>?) {
+        getNavigator()?.showSpin()
+        val user = appPreferences.getUser()
+        val userToken = user.jwt_token
+        val token = "Bearer $userToken"
+        val newIds = id?.toSet()?.toList()
+        Log.d("season2", newIds.toString())
+        val who = arrayListOf<Int>(1929,1934)
+        val seasonNameRequest = SeasonNameRequest(who)
+
+        val seasonNameResponseCall: Call<SeasonNameResponse> = client.getApi().season(token, seasonNameRequest)
+        seasonNameResponseCall.enqueue(object : Callback<SeasonNameResponse> {
+            override fun onResponse(call: Call<SeasonNameResponse>, response: Response<SeasonNameResponse>) {
+                getNavigator()?.hideSpin()
+                val season = mutableMapOf<Int, String>()
+                val seasonResponse = response.body()
+                val statusCode = seasonResponse?.statuscode
+                val data = seasonResponse?.data
+                if (statusCode == 200) {
+                   data?.let {
+                       val seasonMap = id?.zip(it)?.toMap()
+                       seasonMap?.let { it1 -> season.putAll(it1) }
+                   }
+                    getNavigator()?.retrieveSeason(season)
+                } else {
+                    getNavigator()?.showSnackBarMessage("server error")
+                }
+            }
+
+            override fun onFailure(call: Call<SeasonNameResponse>, t: Throwable) {
+                getNavigator()?.hideSpin()
+                if (t is IOException) {
+                    call.cancel()
+                    getNavigator()?.showSnackBarMessage("server error")
+                }
+            }
+        })
+    }
+
+
+    fun getLeagueName(id: ArrayList<Int>?) {
+        getNavigator()?.showSpin()
+        val user = appPreferences.getUser()
+        val userToken = user.jwt_token
+        val token = "Bearer $userToken"
+        val newIds = id?.toSet()?.toList()
+        val who = arrayListOf<Int>(271, 513)
+        val leagueNameRequest = LeagueNameRequest(who)
+
+        val leagueNameResponseCall: Call<LeagueNameResponse> = client.getApi().league(token, leagueNameRequest)
+        leagueNameResponseCall.enqueue(object : Callback<LeagueNameResponse> {
+            override fun onResponse(call: Call<LeagueNameResponse>, response: Response<LeagueNameResponse>) {
+                getNavigator()?.hideSpin()
+                val leagueId = mutableMapOf<Int, String>()
+                val leagueLogo = mutableMapOf<String, String>()
+                val seasonResponse = response.body()
+                val statusCode = seasonResponse?.statuscode
+                val data = seasonResponse?.data
+                val logo = data?.leagueLogo
+                val name = data?.leagueName
+                if (statusCode == 200) {
+                    logo?.let {
+                        val logoName = name?.zip(it)?.toMap()
+                        logoName?.let { it1 -> leagueLogo.putAll(it1) }
+                    }
+
+                    name?.let {
+                        val idName = id?.zip(it)?.toMap()
+                        idName?.let { it1 -> leagueId.putAll(it1) }
+                    }
+                    val team = Team(leagueId, leagueLogo)
+                    getNavigator()?.retrieveLeagues(team)
+
+                } else {
+                    getNavigator()?.showSnackBarMessage("server error")
+                }
+            }
+
+            override fun onFailure(call: Call<LeagueNameResponse>, t: Throwable) {
                 getNavigator()?.hideSpin()
                 if (t is IOException) {
                     call.cancel()
@@ -118,6 +197,10 @@ interface PickClubNavigator {
     fun showSnackBarMessage(msg: String)
 
     fun retrieveTeams(team: Team?)
+
+    fun retrieveLeagues(team: Team?)
+
+    fun retrieveSeason(seasonName: Map<Int, String>?)
 
 }
 

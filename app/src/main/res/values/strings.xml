@@ -83,6 +83,8 @@
     <string name="subbed_bench">On Bench</string>
     <string name="tackles">Tackles</string>
     <string name="saves">Saves</string>
+    <string name="seasons">SEASONS</string>
+    <string name="comps">COMPETITIONS</string>
 
 
 </resources>

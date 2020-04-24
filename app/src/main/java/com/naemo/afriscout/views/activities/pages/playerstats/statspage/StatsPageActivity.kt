@@ -9,7 +9,6 @@ import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityStatsPageBinding
 import com.naemo.afriscout.db.local.room.stats.PlayerStats
 import com.naemo.afriscout.db.local.room.stats.Stats
-import com.naemo.afriscout.db.local.room.stats.StatsRepository
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.activities.pages.playerstats.allstats.AllStatsActivity
 import com.naemo.afriscout.views.activities.pages.playerstats.pickclub.PickClubActivity
@@ -68,7 +67,6 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
         val playerId = intent.getIntExtra("playerId", 0)
         val stat = getViewModel()?.getPlayerStat(playerId)
         stat?.observe(this, Observer {
-          //  getTeams(it)
             val listStats = it.playerstats
             val stuff = listStats?.get(1)?.appearences
             Log.d("stuff", stuff?.toString()!!)
@@ -91,6 +89,62 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
 
     }
 
+    override fun pickLeague() {
+        val leagueArray = ArrayList<Int>()
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
+        val stat = getViewModel()?.getPlayerStat(playerId)
+        stat?.observe(this, Observer { it1 ->
+            val playerStats = it1.playerstats
+            playerStats?.let {
+                for (i in it) {
+                    val league = i.leagueId
+                    league?.let { it2 -> leagueArray.add(it2) }
+                }
+            }
+            sendLeagueIds(leagueArray)
+        })
+
+    }
+
+    private fun sendLeagueIds(leagueArray: ArrayList<Int>) {
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
+        val intents = Intent(this, PickClubActivity::class.java)
+        intents.putExtra("playerId", playerId)
+        intents.putIntegerArrayListExtra("leagueIds", leagueArray)
+        intents.putExtra("pick", 2)
+        startActivity(intents)
+    }
+
+    override fun pickSeason() {
+        val seasonArray = ArrayList<Int>()
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
+        val stat = getViewModel()?.getPlayerStat(playerId)
+        stat?.observe(this, Observer { it1 ->
+            val playerStats = it1.playerstats
+            playerStats?.let {
+                for (i in it) {
+                    val season = i.seasonId
+                    season?.let { it2 -> seasonArray.add(it2) }
+                }
+            }
+            Log.d("season", seasonArray.toString())
+            sendSeasonIds(seasonArray)
+        })
+    }
+
+    private fun sendSeasonIds(seasonArray: ArrayList<Int>) {
+        val intent = intent
+        val playerId = intent.getIntExtra("playerId", 0)
+        val intents = Intent(this, PickClubActivity::class.java)
+        intents.putExtra("playerId", playerId)
+        intents.putIntegerArrayListExtra("seasonIds", seasonArray)
+        intents.putExtra("pick", 3)
+        startActivity(intents)
+    }
+
     private fun sendIds(array: ArrayList<Int>?, typeArray: ArrayList<String>?) {
         val intent = intent
         val playerId = intent.getIntExtra("playerId", 0)
@@ -99,20 +153,8 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
         intents.putExtra("playerId", playerId)
         intents.putIntegerArrayListExtra("teamIds", array)
         intents.putStringArrayListExtra("type", typeArray)
+        intents.putExtra("pick", 1)
         startActivity(intents)
-    }
-
-    private fun getTeams(it: Stats?) {
-        val array = it?.playerstats
-        array?.let {
-            for (i in array) {
-                val id = i.teamId
-                Log.d("teamId", id.toString())
-            }
-        }
-        val ss = it?.playerStatsId
-        Log.d("ss", ss!!)
-        Log.d("timm", it.playerStatsId.toString())
     }
 
     override fun goToAllTime() {

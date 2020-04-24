@@ -2,7 +2,6 @@ package com.naemo.afriscout.views.adapters
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +50,6 @@ class TeamAdapter(context: Context, private var team: Team, private var itemClic
         val logos = logo?.values?.toList()
         val teamName = teams?.get(position)
         val teamLogo = logos?.get(position)
-        Log.d("clubs", teamName.toString())
         holder.teamName.text = teamName
         context?.let { Glide.with(it).load(teamLogo).into(holder.teamImage) }
         val teamId = club?.keys
@@ -61,7 +59,6 @@ class TeamAdapter(context: Context, private var team: Team, private var itemClic
             }
         }
         val id = iDs[position]
-        Log.d("clubs2", iDs.toString())
         holder.teamFrame.setOnClickListener{ itemClickListener.onItemClicked(id)}
 
     }

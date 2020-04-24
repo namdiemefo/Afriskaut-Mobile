@@ -110,6 +110,10 @@ interface StatsPageNavigator {
 
     fun pickClub()
 
+    fun pickLeague()
+
+    fun pickSeason()
+
     fun goToAllTime()
 
     fun showSnackBarMessage(msg: String)

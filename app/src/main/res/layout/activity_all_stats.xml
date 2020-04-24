@@ -207,7 +207,9 @@
 
            <androidx.core.widget.NestedScrollView
                android:layout_width="match_parent"
-               android:layout_height="match_parent">
+               android:layout_height="match_parent"
+               android:scrollbars="vertical"
+               android:scrollbarAlwaysDrawVerticalTrack="true">
 
               <!-- <include
                    layout="@layout/stats_views" />-->
@@ -456,6 +458,37 @@
                            android:textStyle="normal"
                            android:layout_gravity="center_vertical"
                            android:text="@{viewModel.attemptedDribbles}"
+                           android:layout_marginEnd="40dp"
+                           android:gravity="end"
+                           android:textColor="@color/colorWhite" />
+
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="40dp"
+                       android:orientation="horizontal">
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:fontFamily="@font/montserrat"
+                           android:text="@string/dribbles_past"
+                           android:textColor="@color/colorWhite"
+                           android:textSize="13sp"
+                           android:textStyle="normal"
+                           android:layout_gravity="center_vertical"
+                           android:layout_marginStart="20dp" />
+
+                       <TextView
+                           android:id="@+id/past_dribbles"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:fontFamily="@font/montserrat"
+                           android:textSize="13sp"
+                           android:textStyle="normal"
+                           android:layout_gravity="center_vertical"
+                           android:text="@{viewModel.pastDribbles}"
                            android:layout_marginEnd="40dp"
                            android:gravity="end"
                            android:textColor="@color/colorWhite" />
