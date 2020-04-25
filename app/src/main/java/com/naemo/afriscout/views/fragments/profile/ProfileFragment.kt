@@ -7,8 +7,10 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
-import android.view.WindowManager
+import android.view.*
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.naemo.afriscout.BR
@@ -17,6 +19,9 @@ import com.naemo.afriscout.databinding.ProfileFragmentBinding
 import com.naemo.afriscout.db.local.preferences.AppPreferences
 import com.naemo.afriscout.db.local.room.profilepicture.ProfilePic
 import com.naemo.afriscout.utils.AppUtils
+import com.naemo.afriscout.utils.FragmentToolbar
+import com.naemo.afriscout.utils.ToolbarManager
+import com.naemo.afriscout.views.activities.account.login.LoginActivity
 import com.naemo.afriscout.views.base.BaseFragment
 import kotlinx.android.synthetic.main.profile_fragment.*
 import okhttp3.MediaType
@@ -26,16 +31,12 @@ import java.io.*
 import javax.inject.Inject
 
 class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>(),
-    ProfileNavigator {
+    ProfileNavigator, MenuItem.OnMenuItemClickListener {
 
     var profileViewModel: ProfileViewModel? = null
         @Inject set
 
-    var appPreferences = activity?.applicationContext?.let {
-        AppPreferences(
-            it
-        )
-    }
+    var appPreferences = activity?.applicationContext?.let { AppPreferences(it)}
         @Inject set
 
     var appUtils = AppUtils()
@@ -63,6 +64,7 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
         return profileViewModel
     }
 
+
     private fun initViews() {
         getViewModel()?.setUpProfile()
         retrieveImage()
@@ -71,6 +73,39 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         doBinding()
         initViews()
+        ToolbarManager(builder(), view).prepareToolbar()
+    }
+
+    fun builder(): FragmentToolbar {
+        return FragmentToolbar.Builder()
+            .withId(R.id.frag_toolbar)
+            .withMenu(R.menu.nav_menu)
+            .withMenuItems(mutableListOf(R.id.log_out), mutableListOf(this) )
+            .build()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.nav_menu, menu)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+            R.id.log_out -> {
+                logout()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    }
+
+    private fun logout() {
+        appPreferences?.logout()
+        startActivity(Intent(activity, LoginActivity::class.java))
+        activity?.finish()
     }
 
     private fun doBinding() {
@@ -135,7 +170,6 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
     }
 
     private fun createImageData(imageString: String) {
-        Log.d("image", imageString)
         val file = File(imageString)
         processImage(file)
     }
@@ -172,6 +206,11 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
 
     override fun showSnackBarMessage(msg: String) {
         appUtils.showSnackBar(requireActivity().applicationContext, profile_frame, msg)
+    }
+
+    override fun onMenuItemClick(p0: MenuItem?): Boolean {
+        logout()
+        return true
     }
 
 

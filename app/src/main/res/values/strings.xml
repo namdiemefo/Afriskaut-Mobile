@@ -85,6 +85,9 @@
     <string name="saves">Saves</string>
     <string name="seasons">SEASONS</string>
     <string name="comps">COMPETITIONS</string>
+    <string name="logout">Logout</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 
 
 </resources>

@@ -33,6 +33,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     @Inject set
 
     var homeFragment = HomeFragment()
+    @Inject set
 
 
 
@@ -67,8 +68,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         mBinder?.viewPager?.offscreenPageLimit = 4
         mBinder?.viewPager?.setPagingEnabled(true)
 
-        val pagerAdapter =
-            BottomBarAdapter(supportFragmentManager)
+        val pagerAdapter = BottomBarAdapter(supportFragmentManager)
+
+        if (homeFragment.isAdded) {
+            return
+        }
 
         pagerAdapter.addFragments(homeFragment)
         pagerAdapter.addFragments(searchFragment)

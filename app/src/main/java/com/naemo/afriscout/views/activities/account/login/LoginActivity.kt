@@ -9,6 +9,7 @@ import com.naemo.afriscout.R
 import com.naemo.afriscout.databinding.ActivityLoginBinding
 import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.views.activities.account.forgotpassword.ForgotActivity
+import com.naemo.afriscout.views.activities.account.home.HomeActivity
 import com.naemo.afriscout.views.base.BaseActivity
 import com.naemo.afriscout.views.activities.main.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -84,5 +85,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(),
         mBinder?.viewModel = loginViewModel
         mBinder?.navigator = this
         mBinder?.viewModel?.setNavigator(this)
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 }

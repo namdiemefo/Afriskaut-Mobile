@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.naemo.afriscout.utils.FragmentToolbar
+import com.naemo.afriscout.utils.ToolbarManager
 
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
@@ -23,7 +25,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerF
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mViewModel = getViewModel()
-        setHasOptionsMenu(false)
+       // setHasOptionsMenu(false)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,7 +38,10 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerF
         super.onViewCreated(view, savedInstanceState)
         mViewDataBinding?.setVariable(getBindingVariable(), mViewModel)
         mViewDataBinding?.executePendingBindings()
+       // ToolbarManager(builder(), view).prepareToolbar()
     }
+
+    //protected abstract fun builder(): FragmentToolbar
 
     override fun onAttach(context: Context) {
         performDependencyInjection()

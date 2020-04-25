@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.naemo.afriscout.R
 import com.naemo.afriscout.views.activities.account.login.LoginViewModel
 import com.naemo.afriscout.views.base.BaseViewModel
+import com.naemo.afriscout.views.fragments.home.HomeFragment
 import com.naemo.afriscout.views.fragments.notifications.NotificationFragment
 import com.naemo.afriscout.views.fragments.profile.ProfileFragment
 import com.naemo.afriscout.views.fragments.search.SearchFragment
@@ -50,6 +51,11 @@ class MainModule {
     @Provides
     fun providesSearchFragment(): SearchFragment {
         return SearchFragment()
+    }
+
+    @Provides
+    fun providesHomeFragment(): HomeFragment {
+        return HomeFragment()
     }
 }
 

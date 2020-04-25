@@ -17,6 +17,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.naemo.afriscout.BR
 import com.naemo.afriscout.databinding.ActivityRegisterBinding
 import com.naemo.afriscout.utils.AppUtils
+import com.naemo.afriscout.views.activities.account.home.HomeActivity
 import com.naemo.afriscout.views.activities.account.login.LoginActivity
 import com.naemo.afriscout.views.base.BaseActivity
 import com.naemo.afriscout.views.activities.main.MainActivity
@@ -153,6 +154,10 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
 
     override fun goToTos() {
 
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 
 }
