@@ -9,11 +9,11 @@
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.fragments.search.SearchNavigator" />
+            type="com.naemo.afriskaut.views.fragments.search.SearchNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.fragments.search.SearchViewModel" />
+            type="com.naemo.afriskaut.views.fragments.search.SearchViewModel" />
     </data>
 
     <LinearLayout

@@ -10,11 +10,11 @@
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.activities.pages.playerstats.pickclub.PickClubNavigator" />
+            type="com.naemo.afriskaut.views.activities.pages.playerstats.pickclub.PickClubNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.activities.pages.playerstats.pickclub.PickClubViewModel" />
+            type="com.naemo.afriskaut.views.activities.pages.playerstats.pickclub.PickClubViewModel" />
     </data>
 
     <LinearLayout

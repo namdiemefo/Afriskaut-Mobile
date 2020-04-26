@@ -11,11 +11,11 @@
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.activities.pages.playerstats.allstats.AllStatsNavigator" />
+            type="com.naemo.afriskaut.views.activities.pages.playerstats.allstats.AllStatsNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.activities.pages.playerstats.allstats.AllStatsViewModel" />
+            type="com.naemo.afriskaut.views.activities.pages.playerstats.allstats.AllStatsViewModel" />
     </data>
 
     <LinearLayout

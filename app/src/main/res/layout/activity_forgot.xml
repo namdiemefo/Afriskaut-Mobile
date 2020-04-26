@@ -9,11 +9,11 @@
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.activities.account.forgotpassword.ForgotNavigator" />
+            type="com.naemo.afriskaut.views.activities.account.forgotpassword.ForgotNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.activities.account.forgotpassword.ForgotViewModel" />
+            type="com.naemo.afriskaut.views.activities.account.forgotpassword.ForgotViewModel" />
     </data>
 
 

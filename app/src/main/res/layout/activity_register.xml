@@ -10,11 +10,11 @@
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.activities.account.register.RegisterNavigator" />
+            type="com.naemo.afriskaut.views.activities.account.register.RegisterNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.activities.account.register.RegisterViewModel" />
+            type="com.naemo.afriskaut.views.activities.account.register.RegisterViewModel" />
     </data>
 
     <LinearLayout

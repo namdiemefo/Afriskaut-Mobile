@@ -8,11 +8,11 @@
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.activities.pages.radar.RadarViewModel" />
+            type="com.naemo.afriskaut.views.activities.pages.radar.RadarViewModel" />
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.activities.pages.radar.RadarNavigator" />
+            type="com.naemo.afriskaut.views.activities.pages.radar.RadarNavigator" />
     </data>
 
 

@@ -8,11 +8,11 @@
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.fragments.notifications.NotificationNavigator" />
+            type="com.naemo.afriskaut.views.fragments.notifications.NotificationNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.fragments.notifications.NotificationViewModel" />
+            type="com.naemo.afriskaut.views.fragments.notifications.NotificationViewModel" />
     </data>
 
     <LinearLayout

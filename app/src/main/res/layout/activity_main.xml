@@ -9,11 +9,11 @@
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.activities.main.MainNavigator" />
+            type="com.naemo.afriskaut.views.activities.main.MainNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.activities.main.MainViewModel" />
+            type="com.naemo.afriskaut.views.activities.main.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -21,7 +21,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorMainBackground">
 
-        <com.naemo.afriscout.views.common.NoSwipePager
+        <com.naemo.afriskaut.views.common.NoSwipePager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/view_pager" />

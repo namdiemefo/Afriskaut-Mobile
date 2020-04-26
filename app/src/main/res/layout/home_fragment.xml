@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorMainBackground"
     tools:context=".views.fragments.home.HomeFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:layout_marginTop="20dp"
+            android:textFontWeight="600"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:textColor="@color/colorLoginBtn"
+            />
 
-</FrameLayout>
+
+</LinearLayout>

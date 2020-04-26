@@ -9,11 +9,11 @@
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.activities.account.login.LoginNavigator" />
+            type="com.naemo.afriskaut.views.activities.account.login.LoginNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.activities.account.login.LoginViewModel" />
+            type="com.naemo.afriskaut.views.activities.account.login.LoginViewModel" />
     </data>
 
     <LinearLayout

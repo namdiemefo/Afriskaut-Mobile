@@ -10,11 +10,11 @@
 
         <variable
             name="navigator"
-            type="com.naemo.afriscout.views.fragments.profile.ProfileNavigator" />
+            type="com.naemo.afriskaut.views.fragments.profile.ProfileNavigator" />
 
         <variable
             name="viewModel"
-            type="com.naemo.afriscout.views.fragments.profile.ProfileViewModel" />
+            type="com.naemo.afriskaut.views.fragments.profile.ProfileViewModel" />
     </data>
 
     <LinearLayout
@@ -28,31 +28,14 @@
             android:id="@+id/frag_toolbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            app:titleTextColor="@color/colorLoginBtn"
+            app:titleTextAppearance="@font/montserrat"
+            app:titleMarginStart="155dp"
             android:fitsSystemWindows="true"
             android:minHeight="?attr/actionBarSize"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:background="@color/colorMainBackground">
         </androidx.appcompat.widget.Toolbar>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/colorWhite">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/profile_menu"
-                android:fontFamily="@font/montserrat"
-                android:textStyle="normal"
-                android:textFontWeight="600"
-                android:gravity="center_horizontal"
-                android:layout_gravity="center"
-                android:textSize="18sp"
-                android:textColor="@color/colorLoginBtn"/>
-
-        </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -101,6 +84,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|center_vertical"
                             android:layout_marginTop="40dp"
+                            android:elevation="10dp"
                             android:gravity="end"
                             android:paddingStart="10dp"
                             android:onClick="@{(view) -> navigator.openGallery()}"
