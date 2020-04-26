@@ -51,6 +51,7 @@
                 android:inputType="textPersonName"
                 android:textColorHint="@color/colorHint"
                 android:textColor="@color/colorLoginBtn"
+                android:textSize="13sp"
                 android:textStyle="italic"
                 android:fontFamily="@font/montserrat"
                 android:paddingStart="20dp"
@@ -71,28 +72,11 @@
 
         </FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="SEARCH RESULTS"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:textColor="@color/colorLoginBtn"
-            android:textStyle="normal"
-            android:textFontWeight="600"
-            android:fontFamily="@font/montserrat" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorHomeText" />
+
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/search_result"

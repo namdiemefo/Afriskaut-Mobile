@@ -100,7 +100,7 @@
                     android:onClick="@{(view) -> navigator.goToForgot()}"
                     android:text="@string/forgot_password"
                     android:textColor="@color/colorLoginBtn"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:layout_width="235dp"

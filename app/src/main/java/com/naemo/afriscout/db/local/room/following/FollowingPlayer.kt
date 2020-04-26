@@ -4,40 +4,57 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
+import com.naemo.afriscout.db.local.room.stats.ArrayConverter
 
 @Entity(tableName = "following_player")
 data class FollowingData(
+    @SerializedName("dob")
+    val dob: String?,
+    @SerializedName("following")
+    val following: Boolean?,
     @SerializedName("fullname")
-    val fullname: String,
+    val fullname: String?,
+    @SerializedName("height")
+    val height: String?,
     @SerializedName("_id")
-    val playerId: String,
+    val _id: String?,
     @SerializedName("image")
-    val image: String,
+    val image: String?,
     @SerializedName("nationality")
-    val nationality: String,
+    val nationality: String?,
+    @SerializedName("player_id")
+    val playerId: String?,
     @SerializedName("position")
-    val position: String,
+    val position: String?,
     @SerializedName("team")
-    val team: String
+    val team: String?
 ) {
     @PrimaryKey(autoGenerate = true)
-    var id = 0
+    var id: Int = 0
 }
 
 @Dao
 interface FollowingPlayerDao {
 
     @Query("SELECT * FROM following_player")
-    fun loadFollowing(): LiveData<FollowingData>
+    fun loadFollowing(): LiveData<List<FollowingData>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveFollow(data: FollowingData)
 
-    @Query("SELECT * FROM following_player WHERE playerId = :playerId")
-    fun searchFollowing(playerId: String): Boolean
+  /*  @Query("SELECT * FROM following_player WHERE playerId = :playerId")
+    fun searchFollowing(playerId: String): Boolean*/
+
+    @Query("SELECT * FROM following_player WHERE fullname = :name")
+    fun searchFor(name: String): LiveData<List<FollowingData>>
+
+
+    @Query("DELETE FROM following_player")
+    fun deleteRadar()
 }
 
-@Database(entities = [FollowingData::class], version = 1, exportSchema = false)
+@Database(entities = [FollowingData::class], version = 3, exportSchema = false)
+@TypeConverters(ArrayConverter::class)
 abstract class FollowingPlayerDataBase: RoomDatabase() {
 
     abstract fun followingplayerdao(): FollowingPlayerDao
@@ -56,6 +73,8 @@ abstract class FollowingPlayerDataBase: RoomDatabase() {
             }
 
         private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context, FollowingPlayerDataBase::class.java, "Following Player").build()
+            Room.databaseBuilder(context, FollowingPlayerDataBase::class.java, "Following Player")
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }

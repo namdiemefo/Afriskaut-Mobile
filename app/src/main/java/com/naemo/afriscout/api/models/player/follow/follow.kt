@@ -41,7 +41,7 @@ data class FollowData(
 
 data class FollowingResponse(
     @SerializedName("data")
-    val `data`: FollowingData,
+    val `data`: List<FollowingData>,
     @SerializedName("message")
     val message: String,
     @SerializedName("statuscode")

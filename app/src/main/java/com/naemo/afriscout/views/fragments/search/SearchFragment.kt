@@ -2,7 +2,6 @@ package com.naemo.afriscout.views.fragments.search
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -101,7 +100,7 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         team: String,
         nationality: String,
         position: String,
-        follow: Boolean
+        Follow: Boolean
     ) {
         val intent = Intent(requireContext(), PlayerProfileActivity::class.java)
         intent.putExtra("dBid", dBid)
@@ -114,7 +113,7 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         intent.putExtra("team", team)
         intent.putExtra("nationality", nationality)
         intent.putExtra("position", position)
-        intent.putExtra("following", follow)
+        intent.putExtra("following", Follow)
         startActivity(intent)
     }
 

@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.activities.pages.radar.RadarActivity"></activity>
+        <activity android:name=".views.activities.pages.radar.RadarActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".views.activities.pages.playerstats.allstats.AllStatsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

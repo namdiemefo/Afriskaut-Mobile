@@ -111,6 +111,8 @@ interface ProfileNavigator {
 
     fun openGallery()
 
+    fun goToRadar()
+
     fun showSnackBarMessage(msg: String)
 
     fun showSpin()

@@ -42,9 +42,9 @@ class AppUtils() {
         return password == confirmPassword
     }
 
-    fun showToast(msg: String) {
+  /*  fun showToast(msg: String) {
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show()
-    }
+    }*/
 
     fun showActivityToast(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show()

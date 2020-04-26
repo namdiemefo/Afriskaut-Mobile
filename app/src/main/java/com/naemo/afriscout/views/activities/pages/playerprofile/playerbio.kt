@@ -47,6 +47,7 @@ class PlayerProfileViewModel(application: Application) : BaseViewModel<PlayerPro
     private var followingRepository: FollowingRepository? = null
     private var searchRepository: SearchRepository? = null
 
+
     init {
         repository = FollowRepository(application)
         followingRepository = FollowingRepository(application)

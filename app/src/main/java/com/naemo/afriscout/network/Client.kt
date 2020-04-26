@@ -36,7 +36,7 @@ import javax.inject.Inject
 
 class Client {
     private var PROD_BASE_URL = "http://18.216.71.154:5000/"
-    private var LOCAL_BASE_URL = "http://192.168.43.10:5000/"
+    private var LOCAL_BASE_URL = "http://172.20.10.7:5000/"
     private var service: Service
     var context: Context? = null
         @Inject set

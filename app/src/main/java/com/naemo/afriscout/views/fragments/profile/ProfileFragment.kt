@@ -22,6 +22,7 @@ import com.naemo.afriscout.utils.AppUtils
 import com.naemo.afriscout.utils.FragmentToolbar
 import com.naemo.afriscout.utils.ToolbarManager
 import com.naemo.afriscout.views.activities.account.login.LoginActivity
+import com.naemo.afriscout.views.activities.pages.radar.RadarActivity
 import com.naemo.afriscout.views.base.BaseFragment
 import kotlinx.android.synthetic.main.profile_fragment.*
 import okhttp3.MediaType
@@ -132,6 +133,10 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
             pickImageFromGallery()
         }
         activity!!.window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
+
+    override fun goToRadar() {
+        startActivity(Intent(requireContext(), RadarActivity::class.java ))
     }
 
     private fun pickImageFromGallery() {

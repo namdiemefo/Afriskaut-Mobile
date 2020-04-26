@@ -1,9 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.activities.pages.radar.RadarActivity">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.naemo.afriscout.views.activities.pages.radar.RadarViewModel" />
+
+        <variable
+            name="navigator"
+            type="com.naemo.afriscout.views.activities.pages.radar.RadarNavigator" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/radar_frame"
+        tools:context=".views.activities.pages.radar.RadarActivity">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radar"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/colorLoginBtn"
+            android:textStyle="normal"
+            android:textFontWeight="600"
+            android:fontFamily="@font/montserrat"
+            />
+
+       <!-- <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+            <EditText
+                android:layout_width="347dp"
+                android:layout_height="52dp"
+                android:layout_gravity="center"
+                android:text="@={viewModel.search}"
+                android:background="@drawable/search_box"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/colorHint"
+                android:textColor="@color/colorLoginBtn"
+                android:textStyle="italic"
+                android:textSize="13sp"
+                android:fontFamily="@font/montserrat"
+                android:paddingStart="20dp"
+                android:hint="@string/victor_osimhen"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/search_icon"
+                android:src="@drawable/ic_search_white"
+                android:layout_gravity="end"
+                android:foregroundGravity="center"
+                android:onClick="@{(view) -> navigator.sendSearch()}"
+                android:paddingStart="8dp"
+                android:paddingVertical="8dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="4dp"/>
+
+        </FrameLayout>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:id="@+id/radar_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</layout>
