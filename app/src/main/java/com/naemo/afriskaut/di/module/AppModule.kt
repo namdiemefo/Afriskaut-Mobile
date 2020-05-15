@@ -1,6 +1,7 @@
 package com.naemo.afriskaut.di.module
 
 import android.app.Application
+import com.bumptech.glide.Glide
 import android.content.Context
 import com.naemo.afriskaut.db.local.preferences.AppPreferences
 import com.naemo.afriskaut.network.Client
@@ -35,4 +36,10 @@ class AppModule {
     fun providesAppUtils(): AppUtils {
         return AppUtils()
     }
+
+  /*  @Singleton
+    @Provides
+    fun providesGlide(context: Context): Glide {
+        return Glide.get(context)
+    }*/
 }

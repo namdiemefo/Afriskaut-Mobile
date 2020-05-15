@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AfriScout</string>
+    <string name="app_name">Afriskaut</string>
     <string name="welcome">Welcome</string>
     <string name="welcome_message">Gain access to African player statistics from  \nfootball leagues around the world</string>
     <string name="createAccText">Create an account</string>

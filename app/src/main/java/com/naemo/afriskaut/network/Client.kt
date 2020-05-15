@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class Client {
-    private var PROD_BASE_URL = "http://18.216.71.154:5000/"
+    private var PROD_BASE_URL = "https://whispering-castle-67024.herokuapp.com/"
     private var LOCAL_BASE_URL = "http://172.20.10.7:5000/"
     private var service: Service
     var context: Context? = null
@@ -62,7 +62,7 @@ class Client {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(LOCAL_BASE_URL)
+            .baseUrl(PROD_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
