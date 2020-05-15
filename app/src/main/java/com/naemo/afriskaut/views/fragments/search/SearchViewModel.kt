@@ -1,7 +1,6 @@
 package com.naemo.afriskaut.views.fragments.search
 
 import android.app.Application
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import com.naemo.afriskaut.api.models.search.SearchRequest
@@ -35,7 +34,6 @@ class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>
     }
 
     fun retrieveSearchResults(): LiveData<List<Data>>? {
-        Log.d(TAG, "GETTING THE SEARCH RESULTS")
         return repository?.loadSearchResults()
     }
 
@@ -46,7 +44,6 @@ class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
         val search = SearchRequest(query)
-        Log.d(TAG, "ABOUT TO MAKE SEARCH CALL")
         val searchCall: Call<SearchResponse> = client.getApi().search(token, search)
         searchCall.enqueue(object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
@@ -67,7 +64,6 @@ class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>
             override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
                 getNavigator()?.hideSpin()
                 getNavigator()?.retrieveFromDb()
-                Log.d(TAG, "SEARCH CALL FAILED")
                 getNavigator()?.showSnackBarMessage("server error")
             }
         })

@@ -2,7 +2,6 @@ package com.naemo.afriskaut.db.local.room.profilepicture
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.naemo.afriskaut.db.local.preferences.AppPreferences
 import com.naemo.afriskaut.network.Client
@@ -41,12 +40,10 @@ class ProfilePicRepository(application: Application): CoroutineScope {
     }
 
     fun loadTheImage(): LiveData<ProfilePic>? {
-        Log.d(TAG, "RETURNING THE IMAGE")
         return profilePicDao?.loadImage()
     }
 
     fun saveTheImage() {
-        Log.d(TAG, "SAVING THE IMAGE")
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
@@ -57,9 +54,7 @@ class ProfilePicRepository(application: Application): CoroutineScope {
                 val picResponse: ProfilePic? = response.body()
                 val statusCode = picResponse?.statuscode
                 if (statusCode == 200) {
-                    Log.d(TAG, "PROFILE CALL SUCCESSFUL")
                     launch {
-                        Log.d(TAG, "INSERTING IMAGE")
                         val image = response.body()
                         save(image)
                     }
@@ -69,7 +64,6 @@ class ProfilePicRepository(application: Application): CoroutineScope {
             }
 
             override fun onFailure(call: Call<ProfilePic>, t: Throwable) {
-                Log.d(TAG, "PROFILE PIC CALL FAILED")
                 profileViewModel?.getNavigator()?.showSnackBarMessage("server error")
             }
         })
@@ -77,7 +71,6 @@ class ProfilePicRepository(application: Application): CoroutineScope {
 
     private suspend fun save(image: ProfilePic?) {
         withContext(IO) {
-            Log.d(TAG, "IMAGE INSERTED")
             profilePicDao?.deleteImage()
             profilePicDao?.saveImage(image!!)
         }

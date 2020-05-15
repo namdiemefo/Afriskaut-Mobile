@@ -1,7 +1,6 @@
 package com.naemo.afriskaut.views.activities.pages.playerstats.statspage
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.naemo.afriskaut.R
 import com.naemo.afriskaut.api.models.player.stats.PlayerStatsRequest
@@ -45,7 +44,6 @@ class StatsPageViewModel(application: Application): BaseViewModel<StatsPageNavig
     }
 
     fun getPlayerStats(id: Int) {
-        Log.d("ID", id.toString())
         getNavigator()?.showSpin()
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
@@ -66,8 +64,6 @@ class StatsPageViewModel(application: Application): BaseViewModel<StatsPageNavig
                         index = i
                     }
                 }
-                val teamId = index.teamId
-                Log.d("teammid", teamId.toString())
                 val crosses = index.crosses
                 val dribbles = index.dribbles
                 val duels = index.duels

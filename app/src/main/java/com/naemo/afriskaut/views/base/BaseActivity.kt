@@ -59,12 +59,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerA
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
-   fun isOnline(): Boolean {
-       val baseComponent = DaggerBaseComponent.create()
-       val network = baseComponent.getNetwork()
-       return network.isNetworkConnected(this)
-       // return NetworkUtils.isNetworkConnected(this)
-    }
+/*   fun isOnline(): Boolean {
+
+    }*/
 
     fun hideToolBar() {
         window.requestFeature(Window.FEATURE_NO_TITLE)

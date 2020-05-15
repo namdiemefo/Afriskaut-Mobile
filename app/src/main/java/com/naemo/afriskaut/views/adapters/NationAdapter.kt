@@ -2,7 +2,6 @@ package com.naemo.afriskaut.views.adapters
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +45,6 @@ class NationAdapter(context: Context, private var team: Team, private var itemCl
     }
 
     override fun onBindViewHolder(holder: NationViewHolder, position: Int) {
-        Log.d("count", country?.size.toString())
         country?.let {
             if (it.isEmpty()) {
                 holder.teamName.text = context?.getString(R.string.not_found)
@@ -58,7 +56,6 @@ class NationAdapter(context: Context, private var team: Team, private var itemCl
         val logos = logo?.values?.toList()
         val teamName = teams?.get(position)
         val teamLogo = logos?.get(position)
-        Log.d("country", teamName.toString())
         holder.teamName.text = teamName
         context?.let { Glide.with(it).load(teamLogo).into(holder.teamImage) }
         val teamId = country?.keys
@@ -68,7 +65,6 @@ class NationAdapter(context: Context, private var team: Team, private var itemCl
             }
         }
         val id = iDs[position]
-        Log.d("country2", iDs.toString())
         holder.teamFrame.setOnClickListener{ itemClickListener.onItemClicked(id)}
     }
 

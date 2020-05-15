@@ -2,7 +2,6 @@ package com.naemo.afriskaut.views.activities.pages.playerprofile
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
 import com.naemo.afriskaut.databinding.ActivityPlayerProfileBinding
@@ -43,7 +42,6 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
 
     private fun initViews() {
         val intent = intent
-        val id = intent.getStringExtra("id")
         val img = intent.getStringExtra("img")
         val name = intent.getStringExtra("name")
         val height = intent.getStringExtra("height")
@@ -52,7 +50,6 @@ class PlayerProfileActivity : BaseActivity<ActivityPlayerProfileBinding, PlayerP
         val nationality = intent.getStringExtra("nationality")
         val position = intent.getStringExtra("position")
         val following = intent.getBooleanExtra("following", false)
-        Log.d("id", id!!)
         makeNetworkCall(img, name, height, dob, team, nationality, position, following)
 
     }

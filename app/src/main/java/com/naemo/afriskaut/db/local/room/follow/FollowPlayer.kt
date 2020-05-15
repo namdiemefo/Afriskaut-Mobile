@@ -8,25 +8,18 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "follow_player")
 data class FolloData(
     @SerializedName("id")
-   // @ColumnInfo(name = "playerId")
     val playerId: String,
     @SerializedName("dob")
-   // @ColumnInfo(name = "dob")
     val dob: String,
     @SerializedName("fullname")
-  //  @ColumnInfo(name = "fullName")
     val fullname: String,
     @SerializedName("height")
-   // @ColumnInfo(name = "height")
     val height: String,
     @SerializedName("image")
-   // @ColumnInfo(name = "image")
     val image: String,
     @SerializedName("nationality")
-  //  @ColumnInfo(name = "nationality")
     val nationality: String,
     @SerializedName("position")
-  //  @ColumnInfo(name = "position")
     val position: String
 ) {
     @PrimaryKey(autoGenerate = true)

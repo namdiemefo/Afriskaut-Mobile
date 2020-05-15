@@ -1,7 +1,6 @@
 package com.naemo.afriskaut.views.activities.pages.playerstats.allstats
 
 import android.app.Application
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import com.naemo.afriskaut.R
@@ -175,8 +174,6 @@ class AllStatsViewModel(application: Application): BaseViewModel<AllStatsNavigat
             }
         }
 
-        Log.d("aps", appsArray.toString())
-        Log.d("aps1", appsArray.sum().toString())
         val a = appsArray.sum()
         val b = assistsArray.sum()
         val c = blocksArray.sum()
@@ -210,7 +207,6 @@ class AllStatsViewModel(application: Application): BaseViewModel<AllStatsNavigat
         val ez = subOutArray.sum()
         val fy = tacklesArray.sum()
 
-        Log.d("aps2", a.toString())
         appearances.set(a.toString())
         assists.set(b.toString())
         blocks.set(c.toString())

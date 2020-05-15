@@ -1,7 +1,6 @@
 package com.naemo.afriskaut.views.fragments.profile
 
 import android.app.Application
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import com.naemo.afriskaut.R
@@ -55,7 +54,6 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
     fun setUpProfile() {
         val user = appPreferences.getUser()
         val name = user.firstName.plus(" ").plus(user.lastName)
-        Log.d("viewModel", name)
         val profileRole = user.role
         fullName.set(name)
         role.set(profileRole)
@@ -95,12 +93,10 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
     }
 
     fun retrieveImage(): LiveData<ProfilePic>? {
-        Log.d(TAG, "GETTING THE IMAGE")
         return repository?.loadTheImage()
     }
 
     fun saveImageFromNetwork() = CoroutineScope(Main).launch {
-        Log.d(TAG, "PUTTING THE IMAGE")
         repository?.saveTheImage()
     }
 

@@ -42,9 +42,6 @@ interface FollowingPlayerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveFollow(data: FollowingData)
 
-  /*  @Query("SELECT * FROM following_player WHERE playerId = :playerId")
-    fun searchFollowing(playerId: String): Boolean*/
-
     @Query("SELECT * FROM following_player WHERE fullname = :name")
     fun searchFor(name: String): LiveData<List<FollowingData>>
 

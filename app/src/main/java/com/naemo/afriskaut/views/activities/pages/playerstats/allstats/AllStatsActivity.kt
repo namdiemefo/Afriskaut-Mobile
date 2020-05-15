@@ -2,7 +2,6 @@ package com.naemo.afriskaut.views.activities.pages.playerstats.allstats
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
@@ -52,7 +51,6 @@ class AllStatsActivity : BaseActivity<ActivityAllStatsBinding, AllStatsViewModel
             setUpBio(it)
         })
 
-        Log.d("apss", allStats.toString())
         when (allStats) {
             1 -> {
                 displayTeamStats(playerId, clickedId)
@@ -111,7 +109,6 @@ class AllStatsActivity : BaseActivity<ActivityAllStatsBinding, AllStatsViewModel
                 }
             }
         }
-        Log.d("statsArray", statsArray.toString())
         getViewModel()?.setStats(statsArray)
 
     }
@@ -161,7 +158,6 @@ class AllStatsActivity : BaseActivity<ActivityAllStatsBinding, AllStatsViewModel
                 }
             }
         }
-        Log.d("statsArray", statsArray.toString())
         getViewModel()?.setStats(statsArray)
 
 

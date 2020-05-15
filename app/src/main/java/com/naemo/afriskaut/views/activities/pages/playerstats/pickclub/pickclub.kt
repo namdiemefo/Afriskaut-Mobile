@@ -2,7 +2,6 @@ package com.naemo.afriskaut.views.activities.pages.playerstats.pickclub
 
 import android.app.Application
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import com.naemo.afriskaut.R
 import com.naemo.afriskaut.api.models.player.league.LeagueNameRequest
@@ -102,9 +101,8 @@ class PickClubViewModel(application: Application): BaseViewModel<PickClubNavigat
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
         val newIds = id?.toSet()?.toList()
-        Log.d("season2", newIds.toString())
-        val who = arrayListOf<Int>(1929,1934)
-        val seasonNameRequest = SeasonNameRequest(who)
+       // val who = arrayListOf(1929,1934)
+        val seasonNameRequest = SeasonNameRequest(newIds)
 
         val seasonNameResponseCall: Call<SeasonNameResponse> = client.getApi().season(token, seasonNameRequest)
         seasonNameResponseCall.enqueue(object : Callback<SeasonNameResponse> {
@@ -142,8 +140,8 @@ class PickClubViewModel(application: Application): BaseViewModel<PickClubNavigat
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
         val newIds = id?.toSet()?.toList()
-        val who = arrayListOf<Int>(271, 513)
-        val leagueNameRequest = LeagueNameRequest(who)
+     //   val who = arrayListOf<Int>(271, 513)
+        val leagueNameRequest = LeagueNameRequest(newIds)
 
         val leagueNameResponseCall: Call<LeagueNameResponse> = client.getApi().league(token, leagueNameRequest)
         leagueNameResponseCall.enqueue(object : Callback<LeagueNameResponse> {

@@ -1,7 +1,6 @@
 package com.naemo.afriskaut.views.activities.pages.radar
 
 import android.app.Application
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import com.naemo.afriskaut.R
@@ -70,7 +69,6 @@ class RadarViewModel(application: Application): BaseViewModel<RadarNavigator>(ap
 
             override fun onFailure(call: Call<FollowingResponse>, t: Throwable) {
                 getNavigator()?.hideSpin()
-                Log.d("failure", t.message!!)
                 getNavigator()?.showSnackBarMessage("server error")
             }
         })

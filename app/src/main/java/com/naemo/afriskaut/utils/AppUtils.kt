@@ -5,7 +5,6 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Toast
@@ -246,12 +245,10 @@ class AppUtils() {
             for ((k,v) in it) {
                 if (countries.contains(v)) {
                     kk.remove(k, v)
-                    Log.d("stuff14", kk.toString())
                 }
             }
         }
 
-        Log.d("stuff15", kk.toString())
         return kk
     }
 
@@ -390,7 +387,6 @@ class AppUtils() {
             for ((k,v) in it) {
                 if (countries.contains(k)) {
                     kk.remove(k, v)
-                    Log.d("stuff14", kk.toString())
                 }
             }
         }

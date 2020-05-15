@@ -2,7 +2,6 @@ package com.naemo.afriskaut.views.activities.pages.playerstats.statspage
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
@@ -68,18 +67,14 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
         val stat = getViewModel()?.getPlayerStat(playerId)
         stat?.observe(this, Observer {
             val listStats = it.playerstats
-            val stuff = listStats?.get(1)?.appearences
-            Log.d("stuff", stuff?.toString()!!)
-            listStats.let { it1 ->
+            listStats?.let { it1 ->
                 for (i in it1) {
 
                     teams = i
-                    Log.d("stuff1", teams.teamId.toString())
                     val ids = teams.teamId
-                    Log.d("stuff2", ids?.toString()!!)
                     val type = teams.type
-                    newArray.add(ids)
-                    typeArray.add(type!!)
+                    ids?.let { it2 -> newArray.add(it2) }
+                    type?.let { it2 -> typeArray.add(it2) }
 
                 }
             }
@@ -130,7 +125,6 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
                     season?.let { it2 -> seasonArray.add(it2) }
                 }
             }
-            Log.d("season", seasonArray.toString())
             sendSeasonIds(seasonArray)
         })
     }
@@ -148,7 +142,6 @@ class StatsPageActivity : BaseActivity<ActivityStatsPageBinding, StatsPageViewMo
     private fun sendIds(array: ArrayList<Int>?, typeArray: ArrayList<String>?) {
         val intent = intent
         val playerId = intent.getIntExtra("playerId", 0)
-        Log.d("stuff3", array.toString())
         val intents = Intent(this, PickClubActivity::class.java)
         intents.putExtra("playerId", playerId)
         intents.putIntegerArrayListExtra("teamIds", array)

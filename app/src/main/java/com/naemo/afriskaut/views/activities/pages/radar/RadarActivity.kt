@@ -2,7 +2,6 @@ package com.naemo.afriskaut.views.activities.pages.radar
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.naemo.afriskaut.BR
@@ -72,7 +71,6 @@ RadarAdapter.ItemClickListener{
     }
 
     override fun hideSpin() {
-        Log.d("failure1", "hidespin")
         appUtils?.cancelDialog()
     }
 
