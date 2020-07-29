@@ -6,57 +6,32 @@ import androidx.room.*
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.google.gson.annotations.SerializedName
-import com.naemo.afriskaut.db.local.room.stats.ArrayConverter
-
-@Entity(tableName = "search_table")
-data class Data(
-    @PrimaryKey(autoGenerate = true)
-    var vId: Int,
-    @SerializedName("country_id")
-    @ColumnInfo(name = "countryId")
-    val countryId: Int,
-    @SerializedName("height")
-    val height: String,
-    @SerializedName("dob")
-    val dob: String,
-    @SerializedName("team")
-    val team: String,
-    @SerializedName("_id")
-    val id: String,
-    @SerializedName("image")
-    val image: String,
-    @SerializedName("nationality")
-    val nationality: String,
-    @SerializedName("position")
-    val position: String,
-    @SerializedName("name")
-    val name: String,
-    @SerializedName("player_id")
-    val playerId: Int,
-    @SerializedName("following")
-    val following: Boolean
-)
+import com.naemo.afriskaut.api.models.search.Position
+import com.naemo.afriskaut.api.models.search.Stat
+import com.naemo.afriskaut.db.local.room.ArrayConverter
 
 @Dao
 interface SearchDao {
 
-    @Query("SELECT * FROM search_table")
-    fun loadSearch(): LiveData<List<Data>>
+    @Query("SELECT * FROM player_table")
+    fun loadSearch(): LiveData<List<Player>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveSearch(search: Data)
+    fun saveSearch(search: Player)
 
-    @Query("SELECT * FROM search_table WHERE playerId =:playerId")
-    fun loadPlayer(playerId: Int): LiveData<Data>
+    @Query("SELECT * FROM player_table WHERE playerId =:playerId")
+    fun loadPlayer(playerId: Int): LiveData<Player>
 
-    @Query("UPDATE search_table SET following=:following WHERE vId=:id")
-    fun update(following: Boolean, id: Int)
+    @Query("UPDATE player_table SET following=:following WHERE id=:id")
+    fun update(following: Boolean, id: String)
 
-    @Query("DELETE FROM search_table")
+
+
+    @Query("DELETE FROM player_table")
     fun deleteSearch()
 }
 
-@Database(entities = [Data::class], version = 3, exportSchema = false)
+@Database(entities = [Player::class], version = 3, exportSchema = false)
 @TypeConverters(ArrayConverter::class)
 abstract class SearchDatabase : RoomDatabase() {
 
@@ -75,7 +50,7 @@ abstract class SearchDatabase : RoomDatabase() {
             }
 
         private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context, SearchDatabase::class.java, "Search")
+            Room.databaseBuilder(context, SearchDatabase::class.java, "Search_Player")
                 .fallbackToDestructiveMigration()
                 .build()
 

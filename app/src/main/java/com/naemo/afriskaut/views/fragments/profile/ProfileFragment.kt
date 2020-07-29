@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.*
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
@@ -91,13 +92,25 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
 
         return when (item.itemId) {
             R.id.log_out -> {
+                Log.d("change_pass", "no")
                 logout()
+               // changePassword()
                 true
+            }
+
+            R.id.change_pwd -> {
+                Log.d("change_pass", "yes")
+                changePassword()
+                return true
             }
 
             else -> super.onOptionsItemSelected(item)
         }
 
+    }
+
+    private fun changePassword() {
+        getViewModel()?.changePassword()
     }
 
     private fun logout() {
@@ -129,7 +142,13 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
         } else {
             pickImageFromGallery()
         }
-        activity!!.window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
+
+    override fun retrieveFromDb() {
+        getViewModel()?.retrieveImage()?.observe(requireActivity(), Observer {
+            setUpImage(it)
+        })
     }
 
     override fun goToRadar() {
@@ -187,14 +206,11 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
     }
 
     private fun retrieveImage() {
-        getViewModel()?.saveImageFromNetwork()
-        getViewModel()?.retrieveImage()?.observe(requireActivity(), Observer {
-            setUpImage(it)
-        })
+        getViewModel()?.saveImage()
     }
 
     private fun setUpImage(it: ProfilePic?) {
-        val url = it?.data
+        val url = it?.filename
         Glide.with(requireContext()).load(url).into(profile_image)
     }
 

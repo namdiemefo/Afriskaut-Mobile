@@ -34,21 +34,12 @@ class RadarAdapter(context: Context, private var data: List<FollowingData>, priv
 
     override fun onBindViewHolder(holder: RadarViewHolder, position: Int) {
         val followingList = data[position]
-        val dbId = followingList.id
-        val img = followingList.image
+        val img = followingList.imagePath
         val name = followingList.fullname
-        val height = followingList.height
-        val dob = followingList.dob
-        val team = followingList.team
-        val nationality = followingList.nationality
-        val playerPosition = followingList.position
-        val id = followingList._id
-        val playerId = followingList.playerId?.toInt()
-        val following = followingList.following
 
         context?.let { Glide.with(it).load(img).into(holder.playerImage) }
         holder.playerName.text = name
-        holder.frame.setOnClickListener { itemClickListener.onItemClicked(dbId, id, img, playerId, name, height, dob, team, nationality, playerPosition, following) }
+        holder.frame.setOnClickListener { itemClickListener.onItemClicked(followingList) }
     }
 
 
@@ -61,6 +52,6 @@ class RadarAdapter(context: Context, private var data: List<FollowingData>, priv
 
     interface ItemClickListener {
 
-        fun onItemClicked(dBid: Int?, id: String?, img: String?, playerId: Int?, name: String?, height: String?, dob: String?, team: String?, nationality: String?, position: String?, Follow: Boolean?)
+        fun onItemClicked(player: FollowingData)
     }
 }

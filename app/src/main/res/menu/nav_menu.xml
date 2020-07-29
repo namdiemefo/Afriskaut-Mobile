@@ -7,5 +7,9 @@
             android:id="@+id/log_out"
             android:title="@string/logout" />
 
+        <item
+            android:id="@+id/change_pwd"
+            android:title="@string/change_password" />
+
 
 </menu>

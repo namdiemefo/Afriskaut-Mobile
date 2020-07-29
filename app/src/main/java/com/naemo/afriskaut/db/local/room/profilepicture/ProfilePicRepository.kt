@@ -3,6 +3,7 @@ package com.naemo.afriskaut.db.local.room.profilepicture
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
+import com.naemo.afriskaut.api.models.profile.ProfilePicResponse
 import com.naemo.afriskaut.db.local.preferences.AppPreferences
 import com.naemo.afriskaut.network.Client
 import com.naemo.afriskaut.views.fragments.profile.ProfileViewModel
@@ -43,36 +44,17 @@ class ProfilePicRepository(application: Application): CoroutineScope {
         return profilePicDao?.loadImage()
     }
 
-    fun saveTheImage() {
-        val user = appPreferences.getUser()
-        val userToken = user.jwt_token
-        val token = "Bearer $userToken"
+    fun savePic(image: ProfilePic?) {
+        launch {
+            save(image)
+        }
 
-        val profilePicCall: Call<ProfilePic> = client.getApi().retrieveImage(token)
-        profilePicCall.enqueue(object : Callback<ProfilePic> {
-            override fun onResponse(call: Call<ProfilePic>, response: Response<ProfilePic>) {
-                val picResponse: ProfilePic? = response.body()
-                val statusCode = picResponse?.statuscode
-                if (statusCode == 200) {
-                    launch {
-                        val image = response.body()
-                        save(image)
-                    }
-                } else {
-                    profileViewModel?.getNavigator()?.showSnackBarMessage("server error")
-                }
-            }
-
-            override fun onFailure(call: Call<ProfilePic>, t: Throwable) {
-                profileViewModel?.getNavigator()?.showSnackBarMessage("server error")
-            }
-        })
     }
 
     private suspend fun save(image: ProfilePic?) {
         withContext(IO) {
             profilePicDao?.deleteImage()
-            profilePicDao?.saveImage(image!!)
+            image?.let { profilePicDao?.saveImage(it) }
         }
     }
 

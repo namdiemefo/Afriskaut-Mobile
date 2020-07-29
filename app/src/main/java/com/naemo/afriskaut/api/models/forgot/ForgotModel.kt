@@ -23,3 +23,20 @@ data class ForgotRequest(
     @SerializedName("email")
     val email: String
 )
+
+//data class ChangePasswordResponse(
+//    @SerializedName("response")
+//    val response: ChangeResponse?
+//)
+//
+//data class ChangeResponse(
+//    @SerializedName("message")
+//    val message: String?,
+//    @SerializedName("statuscode")
+//    val statuscode: Int?
+//)
+//
+//data class ChangePasswordRequest(
+//    val email: String?
+//
+//)

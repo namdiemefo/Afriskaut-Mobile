@@ -88,6 +88,10 @@
     <string name="logout">Logout</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="place_of_birth">Place of birth:</string>
+    <string name="weight">Weight:</string>
+    <string name="current_password">Current password</string>
+    <string name="change_password">Change password</string>
 
 
 </resources>

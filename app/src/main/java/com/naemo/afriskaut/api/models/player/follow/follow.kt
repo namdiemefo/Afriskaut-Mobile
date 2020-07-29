@@ -3,57 +3,47 @@ package com.naemo.afriskaut.api.models.player.follow
 import com.google.gson.annotations.SerializedName
 
 import com.naemo.afriskaut.db.local.room.following.FollowingData
+import com.naemo.afriskaut.db.local.room.search.Player
+
+data class FollowRequest(
+    val playerId: String
+)
+
+data class UnfollowRequest(
+    val playerId: String
+)
 
 data class FollowResponse(
     @SerializedName("data")
-    val `data`: FollowData,
+    val `data`: List<Any>?,
     @SerializedName("message")
-    val message: String,
+    val message: String?,
     @SerializedName("statuscode")
-    val statuscode: Int,
-    @SerializedName("userId")
-    val userId: String
+    val statuscode: Int?
 )
 
-data class FollowData(
-    @SerializedName("id")
-    // @ColumnInfo(name = "playerId")
-    val playerId: String,
-    @SerializedName("dob")
-    // @ColumnInfo(name = "dob")
-    val dob: String,
-    @SerializedName("fullname")
-    //  @ColumnInfo(name = "fullName")
-    val fullname: String,
-    @SerializedName("height")
-    // @ColumnInfo(name = "height")
-    val height: String,
-    @SerializedName("image")
-    // @ColumnInfo(name = "image")
-    val image: String,
-    @SerializedName("nationality")
-    //  @ColumnInfo(name = "nationality")
-    val nationality: String,
-    @SerializedName("position")
-    //  @ColumnInfo(name = "position")
-    val position: String
+data class UnFollowResponse(
+    @SerializedName("data")
+    val `data`: List<Any>?,
+    @SerializedName("message")
+    val message: String?,
+    @SerializedName("statuscode")
+    val statuscode: Int?
 )
 
 data class FollowingResponse(
     @SerializedName("data")
-    val `data`: List<FollowingData>,
+    val `data`: List<FollowingData>?,
     @SerializedName("message")
-    val message: String,
+    val message: String?,
     @SerializedName("statuscode")
-    val statuscode: Int
+    val statuscode: Int?
 )
 
-data class UnfollowResponse(
-    @SerializedName("message")
-    val message: String,
-    @SerializedName("statuscode")
-    val statuscode: Int
-)
+
+
+
+
 
 
 

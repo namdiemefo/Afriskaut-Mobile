@@ -7,16 +7,18 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "profile_image")
 data class ProfilePic(
-    @SerializedName("data")
-    val data: String,
-    @SerializedName("message")
-    val message: String,
-    @SerializedName("statuscode")
-    val statuscode: Int
-) {
-    @PrimaryKey(autoGenerate = false)
-    var id = 0
-}
+    @SerializedName("date")
+    val date: String?,
+    @SerializedName("filename")
+    val filename: String?,
+    @SerializedName("_id")
+    @PrimaryKey
+    val id: String,
+    @SerializedName("userId")
+    val userId: String?,
+    @SerializedName("__v")
+    val v: Int?
+)
 
 @Dao
 interface ProfilePicDao {
@@ -32,7 +34,7 @@ interface ProfilePicDao {
 
 }
 
-@Database(entities = [ProfilePic::class], version = 1, exportSchema = false)
+@Database(entities = [ProfilePic::class], version = 2, exportSchema = false)
 abstract class ProfilePicDataBase: RoomDatabase() {
 
     abstract fun profilepicdao(): ProfilePicDao
@@ -51,6 +53,8 @@ abstract class ProfilePicDataBase: RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context, ProfilePicDataBase::class.java, "Profile Image").build()
+            Room.databaseBuilder(context, ProfilePicDataBase::class.java, "Profile Image")
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }

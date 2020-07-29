@@ -8,45 +8,44 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.naemo.afriskaut.Afriskaut"
+        android:name=".Afriskaut"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_roun"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.naemo.afriskaut.views.activities.pages.radar.RadarActivity"
+        <activity android:name=".views.activities.account.changepassword.ChangePasswordActivity"></activity>
+        <activity
+            android:name=".views.activities.pages.playerstats.FragmentContainer"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.naemo.afriskaut.views.activities.pages.playerstats.allstats.AllStatsActivity"
+            android:name=".views.activities.pages.radar.RadarActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.naemo.afriskaut.views.activities.pages.playerstats.pickclub.PickClubActivity"
+            android:name=".views.activities.pages.playerstats.pickclub.PickClubActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.naemo.afriskaut.views.activities.pages.playerstats.statspage.StatsPageActivity"
+            android:name=".views.activities.pages.playerprofile.PlayerProfileActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.naemo.afriskaut.views.activities.pages.playerprofile.PlayerProfileActivity"
+            android:name=".views.activities.account.forgotpassword.ForgotActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.naemo.afriskaut.views.activities.account.forgotpassword.ForgotActivity"
+            android:name=".views.activities.account.register.RegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.naemo.afriskaut.views.activities.account.register.RegisterActivity"
+            android:name=".views.activities.account.login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.naemo.afriskaut.views.activities.account.login.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name="com.naemo.afriskaut.views.activities.account.home.HomeActivity"
+            android:name=".views.activities.account.home.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.naemo.afriskaut.views.activities.main.MainActivity"
+            android:name=".views.activities.main.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.naemo.afriskaut.views.activities.splash.SplashActivity"
+            android:name=".views.activities.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>

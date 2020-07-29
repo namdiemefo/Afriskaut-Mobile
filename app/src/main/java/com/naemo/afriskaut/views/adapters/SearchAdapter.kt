@@ -10,11 +10,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.naemo.afriskaut.R
-import com.naemo.afriskaut.db.local.room.search.Data
+import com.naemo.afriskaut.db.local.room.search.Player
 import kotlinx.android.synthetic.main.search_result.view.*
 import javax.inject.Inject
 
-class SearchAdapter(context: Context, private var data: List<Data>,  private var itemClickListener: ItemClicklistener) :
+class SearchAdapter(context: Context, private var data: List<Player>,  private var itemClickListener: ItemClicklistener) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     var context: Context? = null
@@ -36,21 +36,21 @@ class SearchAdapter(context: Context, private var data: List<Data>,  private var
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val dataList = data[position]
 
-        val dbId = dataList.vId
-        val img = dataList.image
-        val name = dataList.name
-        val height = dataList.height
-        val dob = dataList.dob
-        val team = dataList.team
-        val nationality = dataList.nationality
-        val playerPosition = dataList.position
-        val id = dataList.id
-        val playerId = dataList.playerId
-        val following = dataList.following
+       // val dbId = dataList.id
+        val img = dataList.imagePath
+        val name = dataList.displayName
+//        val weight = dataList.weight
+//        val height = dataList.height
+//        val dob = dataList.birthdate
+//        val pob = dataList.birthplace
+//        val nationality = dataList.nationality
+//        val playerPosition = dataList.position?.name
+//        val playerId = dataList.playerId
+//        val following = dataList.following
 
         context?.let { Glide.with(it).load(img).into(holder.playerImage) }
         holder.playerName.text = name
-        holder.frame.setOnClickListener { itemClickListener.onItemClicked(dbId, id, img, playerId, name, height, dob, team, nationality, playerPosition, following) }
+        holder.frame.setOnClickListener { itemClickListener.onItemClicked(dataList) }
     }
 
 
@@ -63,7 +63,7 @@ class SearchAdapter(context: Context, private var data: List<Data>,  private var
 
     interface ItemClicklistener {
 
-        fun onItemClicked(dBid: Int, id: String, img: String, playerId: Int, name: String, height: String, dob: String, team: String, nationality: String, position: String, Follow: Boolean)
+        fun onItemClicked(player: Player)
     }
 
 

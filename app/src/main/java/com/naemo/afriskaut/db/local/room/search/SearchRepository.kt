@@ -30,37 +30,32 @@ class SearchRepository(application: Application) : CoroutineScope {
         searchDao = database.searchDao()
     }
 
-    fun loadSearchResults(): LiveData<List<Data>>? {
+    fun loadSearchResults(): LiveData<List<Player>>? {
         return searchDao?.loadSearch()
     }
 
-    fun updateFollowing(following: Boolean, id: Int) {
+    fun updateFollowing(following: Boolean, id: String) {
         launch {
             updateField(following, id)
         }
     }
 
-    private suspend fun updateField(following: Boolean, id: Int) {
+    private suspend fun updateField(following: Boolean, id: String) {
         withContext(IO) {
             searchDao?.update(following, id)
         }
     }
 
-    fun saveTheResult(data: Data?) {
+    fun saveTheResult(data: Player?) {
         launch {
             save(data)
         }
     }
 
-    private suspend fun save(data: Data?) {
+    private suspend fun save(data: Player?) {
         withContext(IO) {
-            searchDao?.deleteSearch()
             searchDao?.saveSearch(data!!)
         }
-    }
-
-    fun loadPlayerData(playerId: Int): LiveData<Data>? {
-        return searchDao?.loadPlayer(playerId)
     }
 
 }

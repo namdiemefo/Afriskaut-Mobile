@@ -3,10 +3,10 @@ package com.naemo.afriskaut.views.fragments.search
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
-import com.naemo.afriskaut.api.models.search.SearchRequest
-import com.naemo.afriskaut.api.models.search.SearchResponse
+import com.naemo.afriskaut.api.models.search.SearchPlayerRequest
+import com.naemo.afriskaut.api.models.search.SearchPlayerResponse
 import com.naemo.afriskaut.db.local.preferences.AppPreferences
-import com.naemo.afriskaut.db.local.room.search.Data
+import com.naemo.afriskaut.db.local.room.search.Player
 import com.naemo.afriskaut.db.local.room.search.SearchRepository
 import com.naemo.afriskaut.network.Client
 import com.naemo.afriskaut.views.base.BaseViewModel
@@ -33,27 +33,33 @@ class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>
         repository = SearchRepository(application)
     }
 
-    fun retrieveSearchResults(): LiveData<List<Data>>? {
+    fun retrieveSearchResults(): LiveData<List<Player>>? {
         return repository?.loadSearchResults()
     }
 
     fun save() {
         getNavigator()?.showSpin()
-        val query = search.get().toString()
+        val field = search.get().toString()
+        val keyword = search.get().toString()
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
-        val search = SearchRequest(query)
-        val searchCall: Call<SearchResponse> = client.getApi().search(token, search)
-        searchCall.enqueue(object : Callback<SearchResponse> {
-            override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
+        val search = SearchPlayerRequest(field, keyword)
+        val searchCall: Call<SearchPlayerResponse> = client.getApi().search(token, search)
+        searchCall.enqueue(object : Callback<SearchPlayerResponse> {
+            override fun onResponse(call: Call<SearchPlayerResponse>, response: Response<SearchPlayerResponse>) {
                 getNavigator()?.hideSpin()
-                val searchResponse: SearchResponse? = response.body()
+                val searchResponse: SearchPlayerResponse? = response.body()
                 val statusCode = searchResponse?.statuscode
                 if (statusCode == 200) {
-                        val data = response.body()?.data
-                        saveResult(data)
-                    getNavigator()?.retrieveFromDb()
+                        val data = response.body()?.players
+                    if (data != null) {
+                        for (player in data) {
+                            saveResult(player)
+                        }
+                    }
+                    data?.let { getNavigator()?.load(it) }
+                    //getNavigator()?.retrieveFromDb()
                 } else {
                     getNavigator()?.retrieveFromDb()
                     getNavigator()?.showSnackBarMessage("player not found")
@@ -61,7 +67,7 @@ class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>
 
             }
 
-            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+            override fun onFailure(call: Call<SearchPlayerResponse>, t: Throwable) {
                 getNavigator()?.hideSpin()
                 getNavigator()?.retrieveFromDb()
                 getNavigator()?.showSnackBarMessage("server error")
@@ -69,7 +75,7 @@ class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>
         })
     }
 
-    private fun saveResult(data: Data?) {
+    private fun saveResult(data: Player?) {
         repository?.saveTheResult(data)
     }
 }
@@ -82,6 +88,8 @@ interface SearchNavigator {
     fun showSpin()
 
     fun hideSpin()
+
+    fun load(player: List<Player>)
 
     fun retrieveFromDb()
 }

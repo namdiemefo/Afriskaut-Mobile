@@ -69,6 +69,7 @@ class RadarViewModel(application: Application): BaseViewModel<RadarNavigator>(ap
 
             override fun onFailure(call: Call<FollowingResponse>, t: Throwable) {
                 getNavigator()?.hideSpin()
+                getNavigator()?.loadFromDb()
                 getNavigator()?.showSnackBarMessage("server error")
             }
         })

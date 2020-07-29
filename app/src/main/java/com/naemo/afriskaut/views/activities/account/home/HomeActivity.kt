@@ -6,13 +6,15 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import com.naemo.afriskaut.R
+import com.naemo.afriskaut.db.local.preferences.AppPreferences
 import com.naemo.afriskaut.views.activities.account.login.LoginActivity
 import com.naemo.afriskaut.views.activities.account.register.RegisterActivity
+import com.naemo.afriskaut.views.activities.main.MainActivity
 import kotlinx.android.synthetic.main.activity_home.*
+import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity(),
     HomeNavigator {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

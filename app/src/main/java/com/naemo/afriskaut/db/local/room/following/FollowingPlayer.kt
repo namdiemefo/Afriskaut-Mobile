@@ -4,34 +4,9 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
-import com.naemo.afriskaut.db.local.room.stats.ArrayConverter
-
-@Entity(tableName = "following_player")
-data class FollowingData(
-    @SerializedName("dob")
-    val dob: String?,
-    @SerializedName("following")
-    val following: Boolean?,
-    @SerializedName("fullname")
-    val fullname: String?,
-    @SerializedName("height")
-    val height: String?,
-    @SerializedName("_id")
-    val _id: String?,
-    @SerializedName("image")
-    val image: String?,
-    @SerializedName("nationality")
-    val nationality: String?,
-    @SerializedName("player_id")
-    val playerId: String?,
-    @SerializedName("position")
-    val position: String?,
-    @SerializedName("team")
-    val team: String?
-) {
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
-}
+import com.naemo.afriskaut.api.models.search.Position
+import com.naemo.afriskaut.api.models.search.Stat
+import com.naemo.afriskaut.db.local.room.ArrayConverter
 
 @Dao
 interface FollowingPlayerDao {
@@ -50,7 +25,7 @@ interface FollowingPlayerDao {
     fun deleteRadar()
 }
 
-@Database(entities = [FollowingData::class], version = 3, exportSchema = false)
+@Database(entities = [FollowingData::class], version = 4, exportSchema = false)
 @TypeConverters(ArrayConverter::class)
 abstract class FollowingPlayerDataBase: RoomDatabase() {
 

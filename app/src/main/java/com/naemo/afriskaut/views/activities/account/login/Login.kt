@@ -61,7 +61,6 @@ class LoginViewModel(application: Application) : BaseViewModel<LoginNavigator>(a
                         } else {
                             val msg = loginResponse?.message
                             msg?.let{getNavigator()?.showSnackBar(it)}
-                          //  getNavigator()?.showSnackBar(msg)
                         }
                     }
 

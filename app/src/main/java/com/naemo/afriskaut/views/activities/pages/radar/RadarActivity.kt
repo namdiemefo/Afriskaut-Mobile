@@ -8,8 +8,9 @@ import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
 import com.naemo.afriskaut.databinding.ActivityRadarBinding
 import com.naemo.afriskaut.db.local.room.following.FollowingData
+import com.naemo.afriskaut.db.local.room.search.Player
 import com.naemo.afriskaut.utils.AppUtils
-import com.naemo.afriskaut.views.activities.pages.playerprofile.PlayerProfileActivity
+import com.naemo.afriskaut.views.activities.pages.playerstats.FragmentContainer
 import com.naemo.afriskaut.views.adapters.RadarAdapter
 import com.naemo.afriskaut.views.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_radar.*
@@ -97,32 +98,36 @@ RadarAdapter.ItemClickListener{
         radar_recycler.layoutManager = LinearLayoutManager(this)
     }
 
-    override fun onItemClicked(
-        dBid: Int?,
-        id: String?,
-        img: String?,
-        playerId: Int?,
-        name: String?,
-        height: String?,
-        dob: String?,
-        team: String?,
-        nationality: String?,
-        position: String?,
-        Follow: Boolean?
-    ) {
-        val intent = Intent(this, PlayerProfileActivity::class.java)
-        intent.putExtra("dBid", dBid)
-        intent.putExtra("id", id)
-        intent.putExtra("img", img)
-        intent.putExtra("playerId", playerId)
-        intent.putExtra("name", name)
-        intent.putExtra("height", height)
-        intent.putExtra("dob", dob)
-        intent.putExtra("team", team)
-        intent.putExtra("nationality", nationality)
-        intent.putExtra("position", position)
-        intent.putExtra("following", Follow)
+    override fun onItemClicked(player: FollowingData) {
+        val intent = Intent(this, FragmentContainer::class.java)
+        val newPlayer = player.player()
+        intent.putExtra("player", newPlayer)
         startActivity(intent)
     }
+
+    fun FollowingData.player() = Player(
+        birthcountry = birthcountry,
+        birthdate = birthdate,
+        birthplace = birthplace,
+        commonName = commonName,
+        countryId = countryId,
+        displayName = displayName,
+        firstname = firstname,
+        fullname = fullname,
+        height = height,
+        id = id,
+        imagePath = imagePath,
+        lastname = lastname,
+        nationality = nationality,
+        playerId = playerId,
+        position = position,
+        positionId = positionId,
+        stats = stats,
+        teamId = teamId,
+        teamName = teamName,
+        weight = weight,
+        following = following
+    )
+
 
 }

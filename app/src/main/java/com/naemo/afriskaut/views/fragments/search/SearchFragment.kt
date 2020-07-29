@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
 import com.naemo.afriskaut.databinding.SearchFragmentBinding
-import com.naemo.afriskaut.db.local.room.search.Data
+import com.naemo.afriskaut.db.local.room.search.Player
 import com.naemo.afriskaut.utils.AppUtils
-import com.naemo.afriskaut.views.activities.pages.playerprofile.PlayerProfileActivity
+import com.naemo.afriskaut.views.activities.pages.playerstats.FragmentContainer
 import com.naemo.afriskaut.views.adapters.SearchAdapter
 import com.naemo.afriskaut.views.base.BaseFragment
 import kotlinx.android.synthetic.main.search_fragment.*
@@ -65,7 +65,7 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         })
     }
 
-    private fun setUpPlayerSearchResult(it: List<Data>?) {
+    private fun setUpPlayerSearchResult(it: List<Player>?) {
         val adapter = it?.let { it1 ->
             SearchAdapter(requireContext().applicationContext,
                 it1, this)
@@ -87,33 +87,15 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         appUtils.cancelDialog()
     }
 
+    override fun load(player: List<Player>) {
+        val adapter = SearchAdapter(requireContext().applicationContext, player, this)
+        search_results.adapter = adapter
+        search_results.layoutManager = LinearLayoutManager(requireContext())
+    }
 
-
-    override fun onItemClicked(
-        dBid: Int,
-        id: String,
-        img: String,
-        playerId: Int,
-        name: String,
-        height: String,
-        dob: String,
-        team: String,
-        nationality: String,
-        position: String,
-        Follow: Boolean
-    ) {
-        val intent = Intent(requireContext(), PlayerProfileActivity::class.java)
-        intent.putExtra("dBid", dBid)
-        intent.putExtra("id", id)
-        intent.putExtra("img", img)
-        intent.putExtra("playerId", playerId)
-        intent.putExtra("name", name)
-        intent.putExtra("height", height)
-        intent.putExtra("dob", dob)
-        intent.putExtra("team", team)
-        intent.putExtra("nationality", nationality)
-        intent.putExtra("position", position)
-        intent.putExtra("following", Follow)
+    override fun onItemClicked(player: Player) {
+        val intent = Intent(requireContext(), FragmentContainer::class.java)
+        intent.putExtra("player", player)
         startActivity(intent)
     }
 

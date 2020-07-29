@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/playerInfoFragment">
+    <fragment
+        android:id="@+id/playerInfoFragment"
+        android:name="com.naemo.afriskaut.views.fragments.player.playerinfo.PlayerInfoFragment"
+        android:label="fragment_player_info"
+        tools:layout="@layout/fragment_player_info" >
+        <action
+            android:id="@+id/action_playerInfoFragment_to_pickStatsFragment"
+            app:destination="@id/pickStatsFragment" />
+        <argument
+            android:name="player"
+            app:argType="com.naemo.afriskaut.db.local.room.search.Player" />
+    </fragment>
+    <fragment
+        android:id="@+id/pickStatsFragment"
+        android:name="com.naemo.afriskaut.views.fragments.player.pickstats.PickStatsFragment"
+        android:label="fragment_pick_stats"
+        tools:layout="@layout/fragment_pick_stats" >
+        <action
+            android:id="@+id/action_pickStatsFragment_to_statsFragment"
+            app:destination="@id/statsFragment" />
+        <argument
+            android:name="player"
+            app:argType="com.naemo.afriskaut.db.local.room.search.Player" />
+        <action
+            android:id="@+id/action_pickStatsFragment_to_playerInfoFragment"
+            app:destination="@id/playerInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.naemo.afriskaut.views.fragments.player.stats.StatsFragment"
+        android:label="fragment_stats"
+        tools:layout="@layout/fragment_stats" >
+        <argument
+            android:name="player"
+            app:argType="com.naemo.afriskaut.db.local.room.search.Player" />
+        <action
+            android:id="@+id/action_statsFragment_to_pickStatsFragment"
+            app:destination="@id/pickStatsFragment" />
+    </fragment>
+</navigation>
