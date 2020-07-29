@@ -22,9 +22,7 @@ class ProfilePicRepository(application: Application): CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
-    val TAG = "repository"
     var profilePicDao: ProfilePicDao?  = null
-    val profileViewModel: ProfileViewModel? = null
     val context: Context? = null
     var client = Client()
         @Inject set

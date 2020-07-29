@@ -21,7 +21,6 @@ class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>
 
     var search = ObservableField("")
     private var repository: SearchRepository? = null
-    val TAG = "SearchViewModel"
 
     var client = Client()
         @Inject set

@@ -39,7 +39,6 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
         @Inject set
 
     private var repository: ProfilePicRepository? = null
-    val TAG = "ProfilePicViewModel"
 
     init {
         repository =
