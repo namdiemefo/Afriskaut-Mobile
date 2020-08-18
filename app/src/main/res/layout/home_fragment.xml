@@ -1,25 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorMainBackground"
     tools:context=".views.fragments.home.HomeFragment">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:layout_marginTop="20dp"
-            android:textFontWeight="600"
-            android:textStyle="normal"
-            android:textSize="18sp"
-            android:textColor="@color/colorLoginBtn"
-            />
+        <data>
+                <import type="android.view.View" />
+
+                <variable
+                    name="navigator"
+                    type="com.naemo.afriskaut.views.fragments.home.HomeNavigator" />
+
+                <variable
+                    name="viewModel"
+                    type="com.naemo.afriskaut.views.fragments.home.HomeViewModel" />
+        </data>
+
+        <LinearLayout
+            android:id="@+id/home_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/colorMainBackground">
+
+                <TextView
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_marginTop="20dp"
+                    android:textFontWeight="600"
+                    android:textStyle="normal"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorLoginBtn"
+                    />
+
+                <FrameLayout
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/rounded_field">
+
+                        <EditText
+                            android:imeOptions="actionNext"
+                            android:background="@android:color/transparent"
+                            android:text="@={viewModel.age}"
+                            android:textColorHint="@color/colorHint"
+                            android:paddingStart="20dp"
+                            android:hint="@string/age_"
+                            android:fontFamily="@font/montserrat"
+                            android:textSize="13sp"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/age" />
+                </FrameLayout>
+
+<!--                <FrameLayout-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_margin="15dp"-->
+<!--                    android:background="@drawable/rounded_field">-->
+
+<!--                        <EditText-->
+<!--                            android:imeOptions="actionDone"-->
+<!--                            android:background="@android:color/transparent"-->
+<!--                            android:text="@={viewModel.team}"-->
+<!--                            android:textColorHint="@color/colorHint"-->
+<!--                            android:gravity="center"-->
+<!--                            android:hint="@string/team_"-->
+<!--                            android:fontFamily="@font/montserrat"-->
+<!--                            android:textSize="13sp"-->
+<!--                            android:inputType="text"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:id="@+id/team" />-->
+<!--                </FrameLayout>-->
 
 
-</LinearLayout>
+                        <FrameLayout
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/rounded_field">
+
+                                <Spinner
+                                    android:padding="10dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:id="@+id/nation"
+                                    android:fontFamily="@font/montserrat"
+                                    android:imeOptions="actionDone"
+                                    android:textColorHint="@color/colorHint"
+                                    android:textSize="10sp" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/rounded_field">
+
+                                <Spinner
+                                    android:padding="10dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:id="@+id/player_position"
+                                    android:fontFamily="@font/montserrat"
+                                    android:imeOptions="actionDone"
+                                    android:textColorHint="@color/colorHint"
+                                    android:textSize="10sp" />
+                        </FrameLayout>
+
+
+                <Button
+                    android:onClick="@{(view) -> navigator.scout()}"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/scout_btn"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="top|center"
+                    android:background="@drawable/login_round_button"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/scout"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    android:clickable="true"
+                    android:focusable="true"
+                    />
+
+
+        </LinearLayout>
+
+
+</layout>

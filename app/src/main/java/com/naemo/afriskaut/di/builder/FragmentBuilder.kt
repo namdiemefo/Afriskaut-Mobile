@@ -1,7 +1,11 @@
 package com.naemo.afriskaut.di.builder
 
+import com.naemo.afriskaut.views.fragments.home.HomeFragment
+import com.naemo.afriskaut.views.fragments.home.HomeModule
 import com.naemo.afriskaut.views.fragments.notifications.NotificationFragment
 import com.naemo.afriskaut.views.fragments.notifications.NotificationModule
+import com.naemo.afriskaut.views.fragments.player.decidestats.DecideStats
+import com.naemo.afriskaut.views.fragments.player.decidestats.DecideStatsModule
 import com.naemo.afriskaut.views.fragments.player.pickstats.PickStatsFragment
 import com.naemo.afriskaut.views.fragments.player.pickstats.PickStatsModule
 import com.naemo.afriskaut.views.fragments.player.playerinfo.PlayerInfoFragment
@@ -27,6 +31,9 @@ abstract class FragmentBuilder {
 
     @ContributesAndroidInjector(modules = [SearchModule::class])
     abstract fun contribueSearchFragment(): SearchFragment
+
+    @ContributesAndroidInjector(modules = [HomeModule::class])
+    abstract fun contributeHomeFragment(): HomeFragment
 }
 
 @Module
@@ -40,4 +47,7 @@ abstract class PageFragmentBuilder {
 
     @ContributesAndroidInjector(modules = [StatsModule::class])
     abstract fun contributeStatsFragment(): StatsFragment
+
+    @ContributesAndroidInjector(modules = [DecideStatsModule::class])
+    abstract fun contributeDecideStatsFragment(): DecideStats
 }

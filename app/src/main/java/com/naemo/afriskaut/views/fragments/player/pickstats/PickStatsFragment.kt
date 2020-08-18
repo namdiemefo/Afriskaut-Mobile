@@ -61,25 +61,25 @@ class PickStatsFragment : BaseFragment<FragmentPickStatsBinding, PickStatsViewMo
     override fun goToTeamStats() {
         val args by navArgs<PickStatsFragmentArgs>()
         val player = args.player
-        fragmentNavigator.navigateToStatsPage(player)
+        fragmentNavigator.navigateToDecideStatsPage(player)
     }
 
     override fun goToTournamentStats() {
         val args by navArgs<PickStatsFragmentArgs>()
         val player = args.player
-        fragmentNavigator.navigateToStatsPage(player)
+        fragmentNavigator.navigateToDecideStatsPage(player)
     }
 
     override fun goToSeasonStats() {
         val args by navArgs<PickStatsFragmentArgs>()
         val player = args.player
-        fragmentNavigator.navigateToStatsPage(player)
+        fragmentNavigator.navigateToDecideStatsPage(player)
     }
 
     override fun goToAllTimeStats() {
         val args by navArgs<PickStatsFragmentArgs>()
         val player = args.player
-        fragmentNavigator.navigateToStatsPage(player)
+        fragmentNavigator.navigateToDecideStatsPage(player)
 
     }
 

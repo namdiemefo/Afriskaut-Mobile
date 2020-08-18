@@ -11,8 +11,13 @@ import com.naemo.afriskaut.api.models.profile.ProfileImageResponse
 import com.naemo.afriskaut.api.models.profile.ProfilePicResponse
 import com.naemo.afriskaut.api.models.register.RegisterRequest
 import com.naemo.afriskaut.api.models.register.RegisterResponse
+import com.naemo.afriskaut.api.models.report.*
+import com.naemo.afriskaut.api.models.search.ScoutPlayerRequest
+import com.naemo.afriskaut.api.models.search.ScoutPlayerResponse
 import com.naemo.afriskaut.api.models.search.SearchPlayerRequest
 import com.naemo.afriskaut.api.models.search.SearchPlayerResponse
+import com.naemo.afriskaut.api.models.suggestion.SuggestionRequest
+import com.naemo.afriskaut.api.models.suggestion.SuggestionResponse
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -24,7 +29,7 @@ import javax.inject.Inject
 
 class Client {
     private var PROD_BASE_URL = "https://afriskaut-api.herokuapp.com/"
-    private var LOCAL_BASE_URL = "http://172.20.10.7:5000/"
+   // private var LOCAL_BASE_URL = "http://172.20.10.7:5000/"
     private var service: Service
     var context: Context? = null
         @Inject set
@@ -83,6 +88,9 @@ interface Service {
     @POST("search/player")
     fun search(@Header("Authorization") token: String, @Body searchPlayerRequest: SearchPlayerRequest): Call<SearchPlayerResponse>
 
+    @POST("search/scout")
+    fun scout(@Header("Authorization") token: String, @Body scoutPlayerRequest: ScoutPlayerRequest): Call<ScoutPlayerResponse>
+
     @POST("users/follow")
     fun follow(@Header("Authorization") token: String, @Body followRequest: FollowRequest): Call<FollowResponse>
 
@@ -91,6 +99,21 @@ interface Service {
 
     @POST("users/unfollow")
     fun unfollow(@Header("Authorization") token: String, @Body unfollowRequest: UnfollowRequest): Call<UnFollowResponse>
+
+    @POST("users/suggestions")
+    fun suggestion(@Header("Authorization") token: String, @Body suggestionRequest: SuggestionRequest): Call<SuggestionResponse>
+
+    @POST("users/create-match-report")
+    fun createReport(@Header("Authorization") token: String, @Body createReportRequest: CreateReportRequest): Call<CreateReportResponse>
+
+    @POST("users/view-match-report")
+    fun viewReport(@Header("Authorization") token: String, @Body viewReportRequest: ViewReportRequest): Call<ViewReportResponse>
+
+    @POST("users/delete-match-report")
+    fun deleteReport(@Header("Authorization") token: String, @Body deleteReportRequest: DeleteReportRequest): Call<CreateReportResponse>
+
+    @POST("users/view-all-report")
+    fun viewAllReport(@Header("Authorization") token: String): Call<ViewReportResponse>
 
 
 

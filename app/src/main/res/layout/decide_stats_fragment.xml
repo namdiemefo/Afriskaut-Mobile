@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".views.fragments.player.decidestats.DecideStats">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="navigator"
+            type="com.naemo.afriskaut.views.fragments.player.decidestats.DecideStatsNavigator" />
+
+        <variable
+            name="viewModel"
+            type="com.naemo.afriskaut.views.fragments.player.decidestats.DecideStatsViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:background="@color/colorPlayerBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/pick_club_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:onClick="@{(view) -> navigator.goBack()}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/back_button"
+                    android:drawableStart="@drawable/ic_back"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"
+                    android:layout_margin="30dp"
+                    android:textStyle="normal"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/player_statistics"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="50dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:textStyle="normal"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/the_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/national_"
+                android:textColor="@color/colorPlayerImageBackground"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:fontFamily="@font/montserrat"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorWhite" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nation_recycler_view" />
+
+            <LinearLayout
+                android:id="@+id/recycler_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_marginTop="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/club_"
+                    android:textColor="@color/colorPlayerImageBackground"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="normal" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorWhite" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/club_recycler_view" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</layout>
+

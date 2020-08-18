@@ -55,13 +55,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerA
 
     fun hideKeyBoard() {
         val view: View? = this.currentFocus
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager //casting
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
-
-/*   fun isOnline(): Boolean {
-
-    }*/
 
     fun hideToolBar() {
         window.requestFeature(Window.FEATURE_NO_TITLE)

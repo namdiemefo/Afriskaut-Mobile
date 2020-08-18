@@ -3,7 +3,6 @@ package com.naemo.afriskaut.api.models.player.follow
 import com.google.gson.annotations.SerializedName
 
 import com.naemo.afriskaut.db.local.room.following.FollowingData
-import com.naemo.afriskaut.db.local.room.search.Player
 
 data class FollowRequest(
     val playerId: String

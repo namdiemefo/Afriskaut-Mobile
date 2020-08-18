@@ -15,18 +15,21 @@
         android:roundIcon="@mipmap/ic_launcher_roun"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.activities.account.changepassword.ChangePasswordActivity"></activity>
+        <activity android:name=".views.activities.pages.report.create.CreateReportActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".views.activities.pages.report.view.ViewMatchReportsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".views.activities.pages.suggest.SuggestionActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".views.activities.pages.scout.ScoutActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".views.activities.pages.playerstats.FragmentContainer"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".views.activities.pages.radar.RadarActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".views.activities.pages.playerstats.pickclub.PickClubActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".views.activities.pages.playerprofile.PlayerProfileActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".views.activities.account.forgotpassword.ForgotActivity"

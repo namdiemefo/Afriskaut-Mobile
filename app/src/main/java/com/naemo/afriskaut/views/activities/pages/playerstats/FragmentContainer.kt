@@ -1,18 +1,17 @@
 package com.naemo.afriskaut.views.activities.pages.playerstats
 
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.findNavController
 import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
+import com.naemo.afriskaut.api.models.search.Stats
 import com.naemo.afriskaut.databinding.ActivityFragmentContainerBinding
 import com.naemo.afriskaut.db.local.room.search.Player
-import com.naemo.afriskaut.views.activities.main.MainActivity
 import com.naemo.afriskaut.views.base.BaseActivity
+import com.naemo.afriskaut.views.fragments.player.decidestats.DecideStatsDirections
 import com.naemo.afriskaut.views.fragments.player.pickstats.PickStatsFragmentDirections
 import com.naemo.afriskaut.views.fragments.player.playerinfo.PlayerInfoFragmentDirections
-import com.naemo.afriskaut.views.fragments.player.stats.StatsFragmentDirections
 import javax.inject.Inject
 
 class FragmentContainer : BaseActivity<ActivityFragmentContainerBinding, FragmentContainerViewModel>(),
@@ -51,13 +50,18 @@ class FragmentContainer : BaseActivity<ActivityFragmentContainerBinding, Fragmen
         navController.setGraph(R.navigation.main_nav, bundle)
     }
 
-    override fun navigateToStatsPage(player: Player) {
-        val action = PickStatsFragmentDirections.actionPickStatsFragmentToStatsFragment(player)
+    override fun navigateToDecideStatsPage(player: Player) {
+        val action = PickStatsFragmentDirections.actionPickStatsFragmentToDecideStats(player)
+        findNavController(R.id.nav_host_fragment).navigate(action)
+    }
+
+    override fun navigateToStatsPageFromDecidesPage(stats: Array<Stats>) {
+        val action = DecideStatsDirections.actionDecideStatsToStatsFragment(stats)
         findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
     override fun navigateToPickStatsPage(player: Player) {
-        val action = StatsFragmentDirections.actionStatsFragmentToPickStatsFragment(player)
+        val action = DecideStatsDirections.actionDecideStatsToPickStatsFragment2(player)
         findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
@@ -73,10 +77,6 @@ class FragmentContainer : BaseActivity<ActivityFragmentContainerBinding, Fragmen
 
     override fun moveBack() {
         onBackPressed()
-    }
-
-    override fun onBackPressed() {
-        startActivity(Intent(this, MainActivity::class.java))
     }
 
     override fun getBindingVariable(): Int {

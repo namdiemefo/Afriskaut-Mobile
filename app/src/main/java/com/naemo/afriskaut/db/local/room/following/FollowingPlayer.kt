@@ -3,9 +3,6 @@ package com.naemo.afriskaut.db.local.room.following
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.google.gson.annotations.SerializedName
-import com.naemo.afriskaut.api.models.search.Position
-import com.naemo.afriskaut.api.models.search.Stat
 import com.naemo.afriskaut.db.local.room.ArrayConverter
 
 @Dao
@@ -25,7 +22,7 @@ interface FollowingPlayerDao {
     fun deleteRadar()
 }
 
-@Database(entities = [FollowingData::class], version = 4, exportSchema = false)
+@Database(entities = [FollowingData::class], version = 5, exportSchema = false)
 @TypeConverters(ArrayConverter::class)
 abstract class FollowingPlayerDataBase: RoomDatabase() {
 

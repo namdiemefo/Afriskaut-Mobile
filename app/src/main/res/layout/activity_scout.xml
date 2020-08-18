@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="navigator"
+            type="com.naemo.afriskaut.views.activities.pages.scout.ScoutNavigator" />
+
+        <variable
+            name="viewModel"
+            type="com.naemo.afriskaut.views.activities.pages.scout.ScoutViewModel" />
+    </data>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.activities.pages.scout.ScoutActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scout_recycler" />
+
+    </LinearLayout>
+
+
+</layout>

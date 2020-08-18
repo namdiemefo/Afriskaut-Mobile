@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_margin="20dp"
+    android:id="@+id/scout_result_frame"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        android:background="@drawable/parameter_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_margin="15dp"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/scout_player_name"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/montserrat"
+                android:textStyle="normal"
+                android:text="VICTOR MOSES"
+                android:textSize="13sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textFontWeight="600" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/scout_player_age"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/_7"
+                    android:textColor="@android:color/white"
+
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/scout_player_position"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="normal"
+                    android:text="VICTOR MOSES"
+                    android:textSize="13sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textFontWeight="600" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/myCardView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="end"
+            android:background="@drawable/search_icon">
+
+            <ImageView
+                android:background="@android:color/transparent"
+                android:id="@+id/scout_player_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:scaleType="centerInside" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</FrameLayout>

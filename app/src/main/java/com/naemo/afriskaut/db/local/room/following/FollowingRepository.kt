@@ -1,6 +1,7 @@
 package com.naemo.afriskaut.db.local.room.following
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,8 +14,7 @@ class FollowingRepository(application: Application): CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
-    val TAG = "Followingrepository"
-    var followingPlayerDao: FollowingPlayerDao? = null
+    private var followingPlayerDao: FollowingPlayerDao? = null
 
     init {
         val dataBase = FollowingPlayerDataBase.invoke(application)
@@ -33,8 +33,19 @@ class FollowingRepository(application: Application): CoroutineScope {
 
     private suspend fun saveFollowing(data: FollowingData) {
         withContext(IO) {
-            followingPlayerDao?.deleteRadar()
+            delete()
             followingPlayerDao?.saveFollow(data)
+        }
+    }
+
+    fun delete() {
+        launch { deleteFollowing() }
+    }
+
+    private suspend fun deleteFollowing() {
+        withContext(IO) {
+            Log.d("delete", "deleted")
+            followingPlayerDao?.deleteRadar()
         }
     }
 

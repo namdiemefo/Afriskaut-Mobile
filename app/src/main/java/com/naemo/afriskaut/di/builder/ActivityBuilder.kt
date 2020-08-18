@@ -12,6 +12,14 @@ import com.naemo.afriskaut.views.activities.main.MainActivity
 import com.naemo.afriskaut.views.activities.main.MainModule
 import com.naemo.afriskaut.views.activities.pages.radar.RadarActivity
 import com.naemo.afriskaut.views.activities.pages.radar.RadarModule
+import com.naemo.afriskaut.views.activities.pages.report.create.CreateReportActivity
+import com.naemo.afriskaut.views.activities.pages.report.create.CreateReportModule
+import com.naemo.afriskaut.views.activities.pages.report.view.ViewMatchReportsActivity
+import com.naemo.afriskaut.views.activities.pages.report.view.ViewMatchReportsModule
+import com.naemo.afriskaut.views.activities.pages.scout.ScoutActivity
+import com.naemo.afriskaut.views.activities.pages.scout.ScoutModule
+import com.naemo.afriskaut.views.activities.pages.suggest.SuggestionActivity
+import com.naemo.afriskaut.views.activities.pages.suggest.SuggestionModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -35,5 +43,17 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [RadarModule::class])
     abstract fun bindRadarActivity(): RadarActivity
+
+    @ContributesAndroidInjector(modules = [ScoutModule::class])
+    abstract fun bindScoutActivity(): ScoutActivity
+
+    @ContributesAndroidInjector(modules = [SuggestionModule::class])
+    abstract fun bindSuggestionActivity(): SuggestionActivity
+
+    @ContributesAndroidInjector(modules = [ViewMatchReportsModule::class])
+    abstract fun bindViewMatchReportsActivity(): ViewMatchReportsActivity
+
+    @ContributesAndroidInjector(modules = [CreateReportModule::class])
+    abstract fun bindCreateReportActivity(): CreateReportActivity
 
 }

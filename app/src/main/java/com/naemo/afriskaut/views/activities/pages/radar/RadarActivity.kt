@@ -11,6 +11,8 @@ import com.naemo.afriskaut.db.local.room.following.FollowingData
 import com.naemo.afriskaut.db.local.room.search.Player
 import com.naemo.afriskaut.utils.AppUtils
 import com.naemo.afriskaut.views.activities.pages.playerstats.FragmentContainer
+import com.naemo.afriskaut.views.activities.pages.report.create.CreateReportActivity
+import com.naemo.afriskaut.views.activities.pages.report.view.ViewMatchReportsActivity
 import com.naemo.afriskaut.views.adapters.RadarAdapter
 import com.naemo.afriskaut.views.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_radar.*
@@ -105,28 +107,39 @@ RadarAdapter.ItemClickListener{
         startActivity(intent)
     }
 
+    override fun goToCreateReportPage(name: String?, id: String?) {
+        val intent = Intent(this, CreateReportActivity::class.java)
+        intent.putExtra("name", name)
+        intent.putExtra("id", id)
+        intent.putExtra("from", 2)
+        startActivity(intent)
+    }
+
+    override fun goToAllReportsPage(id: String?) {
+        val intent = Intent(this, ViewMatchReportsActivity::class.java)
+        intent.putExtra("from", 2)
+        intent.putExtra("id", id)
+        startActivity(intent)
+    }
+
     fun FollowingData.player() = Player(
+        age = age,
         birthcountry = birthcountry,
         birthdate = birthdate,
         birthplace = birthplace,
-        commonName = commonName,
         countryId = countryId,
         displayName = displayName,
-        firstname = firstname,
+        dob = dob,
+        following = following,
         fullname = fullname,
         height = height,
         id = id,
         imagePath = imagePath,
-        lastname = lastname,
         nationality = nationality,
-        playerId = playerId,
         position = position,
-        positionId = positionId,
+        score = score,
         stats = stats,
-        teamId = teamId,
-        teamName = teamName,
-        weight = weight,
-        following = following
+        weight = weight
     )
 
 

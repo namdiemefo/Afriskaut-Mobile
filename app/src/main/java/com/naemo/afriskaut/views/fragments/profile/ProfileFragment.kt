@@ -20,6 +20,7 @@ import com.naemo.afriskaut.utils.FragmentToolbar
 import com.naemo.afriskaut.utils.ToolbarManager
 import com.naemo.afriskaut.views.activities.account.login.LoginActivity
 import com.naemo.afriskaut.views.activities.pages.radar.RadarActivity
+import com.naemo.afriskaut.views.activities.pages.report.view.ViewMatchReportsActivity
 import com.naemo.afriskaut.views.base.BaseFragment
 import kotlinx.android.synthetic.main.profile_fragment.*
 import okhttp3.MediaType
@@ -124,6 +125,12 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
         mBinder?.viewModel = profileViewModel
         mBinder?.navigator = this
         mBinder?.viewModel?.setNavigator(this)
+    }
+
+    override fun showReports() {
+        val intent = Intent(requireContext(), ViewMatchReportsActivity::class.java)
+        intent.putExtra("from", 1)
+        startActivity(intent)
     }
 
     override fun openGallery() {

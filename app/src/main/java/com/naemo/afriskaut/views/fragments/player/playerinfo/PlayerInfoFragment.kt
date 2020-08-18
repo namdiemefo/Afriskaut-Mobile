@@ -94,9 +94,9 @@ class PlayerInfoFragment : BaseFragment<FragmentPlayerInfoBinding, PlayerInfoVie
         val dBid = player.id
         val buttonText = follow_button.text.toString()
         if (buttonText == "Follow") {
-            dBid.let { getViewModel()?.follow(it)  }
+            dBid.let { it?.let { it1 -> getViewModel()?.follow(it1) } }
         } else {
-            dBid.let { getViewModel()?.unfollow(it) }
+            dBid.let { it?.let { it1 -> getViewModel()?.unfollow(it1) } }
         }
 
     }

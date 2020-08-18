@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.naemo.afriskaut.R
 import com.naemo.afriskaut.db.local.room.following.FollowingData
-import kotlinx.android.synthetic.main.search_result.view.*
+import kotlinx.android.synthetic.main.radar_result.view.*
 import javax.inject.Inject
 
 class RadarAdapter(context: Context, private var data: List<FollowingData>, private var itemClickListener: ItemClickListener): RecyclerView.Adapter<RadarAdapter.RadarViewHolder>() {
@@ -24,7 +25,7 @@ class RadarAdapter(context: Context, private var data: List<FollowingData>, priv
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RadarViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.search_result, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.radar_result, parent, false)
         return RadarViewHolder(view)
     }
 
@@ -35,23 +36,32 @@ class RadarAdapter(context: Context, private var data: List<FollowingData>, priv
     override fun onBindViewHolder(holder: RadarViewHolder, position: Int) {
         val followingList = data[position]
         val img = followingList.imagePath
-        val name = followingList.fullname
+        val name = followingList.displayName
+        val id = followingList.id
 
         context?.let { Glide.with(it).load(img).into(holder.playerImage) }
         holder.playerName.text = name
         holder.frame.setOnClickListener { itemClickListener.onItemClicked(followingList) }
+        holder.create.setOnClickListener { itemClickListener.goToCreateReportPage(name, id) }
+        holder.viewAll.setOnClickListener { itemClickListener.goToAllReportsPage(id) }
     }
 
 
     class RadarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val playerImage: ImageView = itemView.search_player_image
-        val playerName: TextView = itemView.search_player_name
-        val frame: LinearLayout = itemView.search_result_frame
+        val playerImage: ImageView = itemView.radar_player_image
+        val playerName: TextView = itemView.radar_player_name
+        val frame: LinearLayout = itemView.radar_result_frame
+        val viewAll: ImageButton = itemView.view_report_button
+        val create: ImageButton = itemView.create_report_button
     }
 
     interface ItemClickListener {
 
         fun onItemClicked(player: FollowingData)
+
+        fun goToCreateReportPage(name: String?, id: String?)
+
+        fun goToAllReportsPage(id: String?)
     }
 }

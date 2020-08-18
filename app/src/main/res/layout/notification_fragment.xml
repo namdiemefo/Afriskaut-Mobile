@@ -16,6 +16,7 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/suggestion_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -24,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/notifications"
+            android:text="@string/suggestions"
             android:layout_gravity="center"
             android:gravity="center"
             android:fontFamily="@font/montserrat"
@@ -34,6 +35,128 @@
             android:textSize="18sp"
             android:textColor="@color/colorLoginBtn"
             />
+
+
+        <LinearLayout
+            android:elevation="5dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="@{(view) -> navigator.goToU19()}"
+            android:orientation="horizontal"
+            android:background="@drawable/parameter_buttons"
+            android:layout_width="315dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:text="@string/best_under_19_talent"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="95dp"
+                android:background="@drawable/search_icon"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:elevation="5dp"
+            android:layout_margin="20dp"
+            android:onClick="@{(view) -> navigator.goToU21()}"
+            android:orientation="horizontal"
+            android:background="@drawable/parameter_buttons"
+            android:layout_width="315dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:text="@string/best_under_21_talent"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="95dp"
+                android:background="@drawable/search_icon"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:elevation="5dp"
+            android:layout_margin="20dp"
+            android:onClick="@{(view) -> navigator.goToU23()}"
+            android:orientation="horizontal"
+            android:background="@drawable/parameter_buttons"
+            android:layout_width="315dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:text="@string/best_under_23_talent"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="95dp"
+                android:background="@drawable/search_icon"/>
+
+
+        </LinearLayout>
+
+
+
 
     </LinearLayout>
 </layout>

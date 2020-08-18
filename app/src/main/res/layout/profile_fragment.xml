@@ -126,22 +126,88 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="200dp"
                     android:orientation="vertical">
 
-                    <Button
-                        android:layout_width="315dp"
-                        android:layout_height="54dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="80dp"
-                        android:background="@drawable/radar_btn"
-                        android:paddingEnd="200dp"
+                    <LinearLayout
+                        android:elevation="5dp"
+                        android:layout_margin="20dp"
                         android:onClick="@{(view) -> navigator.goToRadar()}"
-                        android:textColor="@color/colorWhite"
-                        android:fontFamily="@font/montserrat"
-                        android:textStyle="normal"
-                        android:text="@string/radar" />
+                        android:orientation="horizontal"
+                        android:background="@drawable/parameter_buttons"
+                        android:layout_width="315dp"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/white"
+                                android:text="@string/radar"
+                                android:fontFamily="@font/montserrat"
+                                android:textSize="13sp"
+                                android:layout_gravity="center"/>
+
+                        </LinearLayout>
+
+
+                        <FrameLayout
+                            android:layout_width="70dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="end"
+                            android:layout_marginStart="200dp"
+                            android:background="@drawable/search_icon"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:elevation="5dp"
+                        android:onClick="@{(view) -> navigator.showReports()}"
+                        android:orientation="horizontal"
+                        android:background="@drawable/parameter_buttons"
+                        android:layout_width="315dp"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/white"
+                                android:text="@string/view_all_match_reports"
+                                android:fontFamily="@font/montserrat"
+                                android:textSize="13sp"
+                                android:layout_gravity="center"/>
+
+                        </LinearLayout>
+
+
+                        <FrameLayout
+                            android:layout_width="70dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="end"
+                            android:layout_marginStart="140dp"
+                            android:background="@drawable/search_icon"/>
+
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 

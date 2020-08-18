@@ -10,21 +10,20 @@ data class SearchPlayerRequest(
 
 data class SearchPlayerResponse(
     @SerializedName("players")
-    val players: List<Player>?,
+    val players: List<Player>,
     @SerializedName("statuscode")
     val statuscode: Int?
 )
 
 data class ScoutPlayerRequest(
-    val nationality: String,
-    val position: String,
-    val age: String,
-    val team_name: String
+    val nationality: String?,
+    val position: String?,
+    val age: String?
 )
 
 data class ScoutPlayerResponse(
     @SerializedName("players")
-    val players: List<Player>?,
+    val players: List<com.naemo.afriskaut.db.local.room.scout.Player>,
     @SerializedName("statuscode")
-    val statuscode: Int?
+    val statuscode: Int
 )

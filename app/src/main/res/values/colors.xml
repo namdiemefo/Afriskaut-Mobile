@@ -15,4 +15,5 @@
     <color name="colorSearchBackground">#FAFAFA</color>
     <color name="colorPlayerBackground">#1B203C</color>
     <color name="colorPlayerImageBackground">#E6702C</color>
+    <color name="colorDarkOrange">#D76828</color>
 </resources>

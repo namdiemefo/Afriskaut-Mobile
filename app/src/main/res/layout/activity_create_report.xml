@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.activities.pages.report.create.CreateReportActivity">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.naemo.afriskaut.views.activities.pages.report.create.CreateReportViewModel" />
+
+        <variable
+            name="navigator"
+            type="com.naemo.afriskaut.views.activities.pages.report.create.CreateReportNavigator" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/container"
+        android:background="@color/colorPlayerBackground"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:onClick="@{(view) -> navigator.goBack()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/back_button"
+                android:drawableStart="@drawable/ic_back"
+                android:textColor="@color/colorWhite"
+                android:layout_margin="30dp"
+                android:textStyle="normal"
+                android:fontFamily="@font/montserrat"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/match_report"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/montserrat"
+                android:textStyle="normal"
+                android:textSize="12sp" />
+
+            <ImageButton
+                android:onClick="@{(view) -> navigator.save()}"
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPlayerBackground"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_save"
+                android:layout_marginStart="80dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/player_name"
+                    android:layout_marginStart="20dp"
+                    android:text="NNAMDI"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/vs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="vs"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="50dp"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/remark_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:src="@drawable/ic_create" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/opponent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:paddingStart="30dp"
+            android:hint="@string/insert_opponent_team"
+            android:textColor="@color/colorPlayerImageBackground"
+            android:textColorHint="@color/colorHint"
+            android:fontFamily="@font/montserrat"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_stats"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat"
+                android:textStyle="normal"
+                android:textSize="15sp"
+                android:text="@string/match_param"
+                android:textColor="@color/colorPlayerImageBackground"
+                android:layout_gravity="center_horizontal" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/passing"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/passing" />
+
+                            <TextView
+                                android:id="@+id/pass_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground" />
+
+
+                        </FrameLayout>
+
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/composure"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/composure" />
+
+                            <TextView
+                                android:id="@+id/composure_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground" />
+
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/heading"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/heading" />
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/heading_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground" />
+
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/first_n_touch"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/first_touch" />
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/ft_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground"  />
+
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/technique"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/technique" />
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/technique_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground"  />
+
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/finishing"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/finishing" />
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/finishing_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground" />
+
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/ballcontrol"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/ball_control" />
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/bc_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground"  />
+
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/decision_n_making"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/decision_making" />
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/dm_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground"  />
+
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/shot_stopping"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/shot_stopping" />
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/ss_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground" />
+
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="Long \nPass"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/long_pass" />
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/lp_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground"  />
+
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/positioning"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/positioning" />
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/positioning_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground" />
+
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="100dp">
+
+                            <Button
+                                android:text="@string/pressing"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@android:color/white"
+                                android:background="@drawable/home_round_button"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/pressing" />
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/pressing_score"
+                                android:background="@android:color/transparent"
+                                android:elevation="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:paddingEnd="5dp"
+                                android:fontFamily="@font/montserrat"
+                                android:text="@string/_7"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorPlayerImageBackground" />
+
+
+                        </FrameLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+
+            </androidx.core.widget.NestedScrollView>
+
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</layout>

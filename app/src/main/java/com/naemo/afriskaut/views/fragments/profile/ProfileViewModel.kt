@@ -173,6 +173,8 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
 
 interface ProfileNavigator {
 
+    fun showReports()
+
     fun openGallery()
 
     fun retrieveFromDb()

@@ -2,6 +2,7 @@ package com.naemo.afriskaut.views.activities.pages.playerstats
 
 import android.app.Application
 import com.naemo.afriskaut.R
+import com.naemo.afriskaut.api.models.search.Stats
 import com.naemo.afriskaut.db.local.room.search.Player
 import com.naemo.afriskaut.views.base.BaseViewModel
 import dagger.Module
@@ -12,7 +13,9 @@ class FragmentContainerViewModel(application: Application): BaseViewModel<Fragme
 
 interface FragmentContainerNavigator {
 
-    fun navigateToStatsPage(player: Player)
+    fun navigateToDecideStatsPage(player: Player)
+
+    fun navigateToStatsPageFromDecidesPage(stats: Array<Stats>)
 
     fun navigateToPickStatsPage(player: Player)
 

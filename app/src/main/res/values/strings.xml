@@ -22,7 +22,6 @@
     <string name="notifications">Notifications</string>
     <string name="profile_menu">Profile</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="change_display_picture">Change display picture</string>
     <string name="radar">Radar</string>
@@ -92,6 +91,32 @@
     <string name="weight">Weight:</string>
     <string name="current_password">Current password</string>
     <string name="change_password">Change password</string>
+    <string name="age_">Age</string>
+    <string name="team_">Team</string>
+    <string name="scout">Scout</string>
+    <string name="suggestions">Suggestions</string>
+    <string name="best_under_19_talent">Top under 19 Talent</string>
+    <string name="best_under_21_talent">Top under 21 Talent</string>
+    <string name="best_under_23_talent">Top under 23 Talent</string>
+    <string name="match_report">Match Report</string>
+    <string name="match_param">Match Parameters</string>
+    <string name="_7">1</string>
+    <string name="shot_stopping">Shot \n Stopping</string>
+    <string name="ballcontrol">Ball \n Control</string>
+    <string name="finishing">Finishing</string>
+    <string name="technique">Technique</string>
+    <string name="first_n_touch">First \n Touch</string>
+    <string name="heading">Heading</string>
+    <string name="composure">Composure</string>
+    <string name="passing">Short \nPass</string>
+    <string name="victor_n_osimhen_">Victor \nOsimhen</string>
+    <string name="decision_n_making">Decision \n Making</string>
+    <string name="over">/</string>
+    <string name="positioning">Positioning</string>
+    <string name="insert_opponent_team">insert opponent team</string>
+    <string name="victor_moses__">VICTOR MOSES</string>
+    <string name="view_all_match_reports">Match Reports</string>
+    <string name="pressing">Pressing</string>
 
 
 </resources>
