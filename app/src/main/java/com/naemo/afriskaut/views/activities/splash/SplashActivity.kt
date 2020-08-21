@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.content.Intent
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import com.naemo.afriskaut.R
@@ -30,10 +31,14 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             val user = appPreferences.getUser()
             val token = user.jwt_token
-            if (token.isNotEmpty()) {
+            Log.d("token", token)
+            if (token.isNullOrEmpty()) {
                 goToMainActivity()
             } else {
-                startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
+                val intent = Intent(this@SplashActivity, HomeActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
                 finish()
             }
         }, 2000)

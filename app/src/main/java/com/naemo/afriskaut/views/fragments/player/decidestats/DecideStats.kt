@@ -108,7 +108,7 @@ NationAdapter.ItemClickListener {
     override fun goBack() {
         val args by navArgs<DecideStatsArgs>()
         val player = args.player
-        fragmentNavigator.navigateToPickStatsPage(player)
+        fragmentNavigator.navigateToInfoPageFromDecidesPage(player)
     }
 
     override fun onClubItemClicked(name: String) {

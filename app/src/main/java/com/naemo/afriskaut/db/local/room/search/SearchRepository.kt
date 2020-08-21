@@ -2,7 +2,6 @@ package com.naemo.afriskaut.db.local.room.search
 
 import android.app.Application
 import android.content.Context
-import androidx.lifecycle.LiveData
 import com.naemo.afriskaut.db.local.preferences.AppPreferences
 import com.naemo.afriskaut.network.Client
 import kotlinx.coroutines.CoroutineScope
@@ -30,9 +29,13 @@ class SearchRepository(application: Application) : CoroutineScope {
         searchDao = database.searchDao()
     }
 
-    fun loadSearchResults(): LiveData<List<Player>>? {
-        return searchDao?.loadSearch()
+    suspend fun loadSearchResults(): List<Player>? {
+        return withContext(IO) {
+            searchDao?.loadSearch()
+        }
+
     }
+
 
     fun updateFollowing(following: Boolean, id: String) {
         launch {

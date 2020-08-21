@@ -3,7 +3,6 @@ package com.naemo.afriskaut.views.fragments.search
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
@@ -14,9 +13,14 @@ import com.naemo.afriskaut.views.activities.pages.playerstats.FragmentContainer
 import com.naemo.afriskaut.views.adapters.SearchAdapter
 import com.naemo.afriskaut.views.base.BaseFragment
 import kotlinx.android.synthetic.main.search_fragment.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
-class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), SearchNavigator, SearchAdapter.ItemClicklistener {
+class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), SearchNavigator, SearchAdapter.ItemClicklistener,
+    CoroutineScope {
 
     var searchViewModel: SearchViewModel? = null
     @Inject set
@@ -60,19 +64,19 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
     }
 
     override fun retrieveFromDb() {
-        getViewModel()?.retrieveSearchResults()?.observe(requireActivity(), Observer {
-            setUpPlayerSearchResult(it)
-        })
+        launch {
+            val players =  getViewModel()?.retrieveSearchResults()
+            setUpPlayerSearchResult(players)
+        }
+
     }
 
     private fun setUpPlayerSearchResult(it: List<Player>?) {
-        val adapter = it?.let { it1 ->
-            SearchAdapter(requireContext().applicationContext,
+        val adapter = it?.let { it1 -> SearchAdapter(requireContext().applicationContext,
                 it1, this)
         }
         search_results.adapter = adapter
         search_results.layoutManager = LinearLayoutManager(requireContext())
-
     }
 
     override fun showSnackBarMessage(msg: String) {
@@ -98,5 +102,8 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>(), S
         intent.putExtra("player", player)
         startActivity(intent)
     }
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main
 
 }

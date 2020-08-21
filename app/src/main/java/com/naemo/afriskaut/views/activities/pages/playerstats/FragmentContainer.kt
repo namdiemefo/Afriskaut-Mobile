@@ -10,8 +10,8 @@ import com.naemo.afriskaut.databinding.ActivityFragmentContainerBinding
 import com.naemo.afriskaut.db.local.room.search.Player
 import com.naemo.afriskaut.views.base.BaseActivity
 import com.naemo.afriskaut.views.fragments.player.decidestats.DecideStatsDirections
-import com.naemo.afriskaut.views.fragments.player.pickstats.PickStatsFragmentDirections
 import com.naemo.afriskaut.views.fragments.player.playerinfo.PlayerInfoFragmentDirections
+import com.naemo.afriskaut.views.fragments.player.stats.StatsFragmentDirections
 import javax.inject.Inject
 
 class FragmentContainer : BaseActivity<ActivityFragmentContainerBinding, FragmentContainerViewModel>(),
@@ -50,8 +50,8 @@ class FragmentContainer : BaseActivity<ActivityFragmentContainerBinding, Fragmen
         navController.setGraph(R.navigation.main_nav, bundle)
     }
 
-    override fun navigateToDecideStatsPage(player: Player) {
-        val action = PickStatsFragmentDirections.actionPickStatsFragmentToDecideStats(player)
+    override fun navigateToDecideStatsPageFromInfoPage(player: Player) {
+        val action = PlayerInfoFragmentDirections.actionPlayerInfoFragmentToDecideStats(player)
         findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
@@ -60,20 +60,16 @@ class FragmentContainer : BaseActivity<ActivityFragmentContainerBinding, Fragmen
         findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
-    override fun navigateToPickStatsPage(player: Player) {
-        val action = DecideStatsDirections.actionDecideStatsToPickStatsFragment2(player)
+    override fun navigateToInfoPageFromDecidesPage(player: Player) {
+        val action = DecideStatsDirections.actionDecideStatsToPlayerInfoFragment(player)
         findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
-    override fun fromInfoToPickStats(player: Player) {
-        val action = PlayerInfoFragmentDirections.actionPlayerInfoFragmentToPickStatsFragment(player)
+    override fun navigateToDecidesPageFromStatsPage(player: Player) {
+        val action = StatsFragmentDirections.actionStatsFragmentToDecideStats(player)
         findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
-    override fun fromPickStatsToInfo(player: Player) {
-        val action = PickStatsFragmentDirections.actionPickStatsFragmentToPlayerInfoFragment(player)
-        findNavController(R.id.nav_host_fragment).navigate(action)
-    }
 
     override fun moveBack() {
         onBackPressed()

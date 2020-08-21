@@ -13,15 +13,13 @@ class FragmentContainerViewModel(application: Application): BaseViewModel<Fragme
 
 interface FragmentContainerNavigator {
 
-    fun navigateToDecideStatsPage(player: Player)
+    fun navigateToDecideStatsPageFromInfoPage(player: Player)
 
     fun navigateToStatsPageFromDecidesPage(stats: Array<Stats>)
 
-    fun navigateToPickStatsPage(player: Player)
+    fun navigateToInfoPageFromDecidesPage(player: Player)
 
-    fun fromInfoToPickStats(player: Player)
-
-    fun fromPickStatsToInfo(player: Player)
+    fun navigateToDecidesPageFromStatsPage(player: Player)
 
     fun moveBack()
 

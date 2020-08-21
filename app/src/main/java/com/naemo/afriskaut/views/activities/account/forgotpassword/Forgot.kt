@@ -44,7 +44,7 @@ class ForgotViewModel(application: Application) : BaseViewModel<ForgotNavigator>
                     getNavigator()?.hideSpin()
                     if (t is IOException) {
                         call.cancel()
-                        getNavigator()?.showSnackBar("server error")
+                        getNavigator()?.showSnackBar("an error occurred while trying to reach your email, try again")
                     }
                 }
 
@@ -54,10 +54,10 @@ class ForgotViewModel(application: Application) : BaseViewModel<ForgotNavigator>
                     val resCode = forgotResponse?.response?.statuscode
                     val msg = forgotResponse?.response?.message
                     if (resCode == 200) {
-                        getNavigator()?.showSnackBar(msg!!)
+                        msg?.let { getNavigator()?.showSnackBar(it) }
                         email.set("")
                     } else {
-                        getNavigator()?.showSnackBar(msg!!)
+                        getNavigator()?.showSnackBar("an error occurred while trying to reach your email, try again")
                     }
                 }
 

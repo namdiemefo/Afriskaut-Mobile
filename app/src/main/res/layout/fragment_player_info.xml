@@ -314,12 +314,12 @@
                     android:layout_marginStart="200dp" />
 
                 <Button
-                    android:onClick="@{(view) -> navigator.moveToPickStats()}"
+                    android:onClick="@{(view) -> navigator.moveToDecideStats()}"
                     android:id="@+id/player_stats_btn"
                     android:layout_width="315dp"
                     android:layout_height="54dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginBottom="30dp"
                     android:fontFamily="@font/montserrat"
                     android:textStyle="normal"

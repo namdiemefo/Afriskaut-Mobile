@@ -9,7 +9,7 @@ import com.naemo.afriskaut.db.local.room.ArrayConverter
 interface SearchDao {
 
     @Query("SELECT * FROM player_table")
-    fun loadSearch(): LiveData<List<Player>>
+    fun loadSearch(): List<Player>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveSearch(search: Player)

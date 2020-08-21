@@ -149,7 +149,7 @@ interface PlayerInfoNavigator {
 
     fun hideSpin()
 
-    fun moveToPickStats()
+    fun moveToDecideStats()
 
     fun followPlayer()
 

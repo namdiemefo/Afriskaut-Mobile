@@ -82,10 +82,10 @@ class PlayerInfoFragment : BaseFragment<FragmentPlayerInfoBinding, PlayerInfoVie
         appUtils.cancelDialog()
     }
 
-    override fun moveToPickStats() {
+    override fun moveToDecideStats() {
         val args by navArgs<PlayerInfoFragmentArgs>()
         val player = args.player
-        fragmentNavigator.fromInfoToPickStats(player)
+        fragmentNavigator.navigateToDecideStatsPageFromInfoPage(player)
     }
 
     override fun followPlayer() {
@@ -94,9 +94,9 @@ class PlayerInfoFragment : BaseFragment<FragmentPlayerInfoBinding, PlayerInfoVie
         val dBid = player.id
         val buttonText = follow_button.text.toString()
         if (buttonText == "Follow") {
-            dBid.let { it?.let { it1 -> getViewModel()?.follow(it1) } }
+            dBid.let { it.let { it1 -> getViewModel()?.follow(it1) } }
         } else {
-            dBid.let { it?.let { it1 -> getViewModel()?.unfollow(it1) } }
+            dBid.let { it.let { it1 -> getViewModel()?.unfollow(it1) } }
         }
 
     }

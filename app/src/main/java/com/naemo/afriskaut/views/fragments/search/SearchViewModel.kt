@@ -12,10 +12,15 @@ import com.naemo.afriskaut.network.Client
 import com.naemo.afriskaut.views.base.BaseViewModel
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>(application) {
 
@@ -32,8 +37,10 @@ class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>
         repository = SearchRepository(application)
     }
 
-    fun retrieveSearchResults(): LiveData<List<Player>>? {
-        return repository?.loadSearchResults()
+    suspend fun retrieveSearchResults(): List<Player>? {
+            return repository?.loadSearchResults()
+
+
     }
 
     fun save() {

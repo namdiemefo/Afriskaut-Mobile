@@ -78,7 +78,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="390dp"
             tools:listitem="@layout/search_result"
             android:id="@+id/search_results" />
 

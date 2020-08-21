@@ -9,26 +9,11 @@
         android:name="com.naemo.afriskaut.views.fragments.player.playerinfo.PlayerInfoFragment"
         android:label="fragment_player_info"
         tools:layout="@layout/fragment_player_info" >
-        <action
-            android:id="@+id/action_playerInfoFragment_to_pickStatsFragment"
-            app:destination="@id/pickStatsFragment" />
-        <argument
-            android:name="player"
-            app:argType="com.naemo.afriskaut.db.local.room.search.Player" />
-    </fragment>
-    <fragment
-        android:id="@+id/pickStatsFragment"
-        android:name="com.naemo.afriskaut.views.fragments.player.pickstats.PickStatsFragment"
-        android:label="fragment_pick_stats"
-        tools:layout="@layout/fragment_pick_stats" >
         <argument
             android:name="player"
             app:argType="com.naemo.afriskaut.db.local.room.search.Player" />
         <action
-            android:id="@+id/action_pickStatsFragment_to_playerInfoFragment"
-            app:destination="@id/playerInfoFragment" />
-        <action
-            android:id="@+id/action_pickStatsFragment_to_decideStats"
+            android:id="@+id/action_playerInfoFragment_to_decideStats"
             app:destination="@id/decideStats" />
     </fragment>
     <fragment
@@ -39,6 +24,9 @@
         <argument
             android:name="stats"
             app:argType="com.naemo.afriskaut.api.models.search.Stats[]" />
+        <action
+            android:id="@+id/action_statsFragment_to_decideStats"
+            app:destination="@id/decideStats" />
     </fragment>
     <fragment
         android:id="@+id/decideStats"
@@ -48,11 +36,11 @@
         <action
             android:id="@+id/action_decideStats_to_statsFragment"
             app:destination="@id/statsFragment" />
-        <action
-            android:id="@+id/action_decideStats_to_pickStatsFragment2"
-            app:destination="@id/pickStatsFragment" />
         <argument
             android:name="player"
             app:argType="com.naemo.afriskaut.db.local.room.search.Player" />
+        <action
+            android:id="@+id/action_decideStats_to_playerInfoFragment"
+            app:destination="@id/playerInfoFragment" />
     </fragment>
 </navigation>

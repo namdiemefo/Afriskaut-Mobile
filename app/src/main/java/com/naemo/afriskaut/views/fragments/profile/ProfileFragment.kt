@@ -99,12 +99,6 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
                 true
             }
 
-            R.id.change_pwd -> {
-                Log.d("change_pass", "yes")
-                changePassword()
-                return true
-            }
-
             else -> super.onOptionsItemSelected(item)
         }
 

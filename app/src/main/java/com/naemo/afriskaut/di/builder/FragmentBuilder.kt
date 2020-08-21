@@ -6,11 +6,8 @@ import com.naemo.afriskaut.views.fragments.notifications.NotificationFragment
 import com.naemo.afriskaut.views.fragments.notifications.NotificationModule
 import com.naemo.afriskaut.views.fragments.player.decidestats.DecideStats
 import com.naemo.afriskaut.views.fragments.player.decidestats.DecideStatsModule
-import com.naemo.afriskaut.views.fragments.player.pickstats.PickStatsFragment
-import com.naemo.afriskaut.views.fragments.player.pickstats.PickStatsModule
 import com.naemo.afriskaut.views.fragments.player.playerinfo.PlayerInfoFragment
 import com.naemo.afriskaut.views.fragments.player.playerinfo.PlayerInfoModule
-import com.naemo.afriskaut.views.fragments.player.playerinfo.PlayerInfoNavigator
 import com.naemo.afriskaut.views.fragments.player.stats.StatsFragment
 import com.naemo.afriskaut.views.fragments.player.stats.StatsModule
 import com.naemo.afriskaut.views.fragments.profile.ProfileFragment
@@ -41,9 +38,6 @@ abstract class PageFragmentBuilder {
 
     @ContributesAndroidInjector(modules = [PlayerInfoModule::class])
     abstract fun contributePlayerInfoFragment(): PlayerInfoFragment
-
-    @ContributesAndroidInjector(modules = [PickStatsModule::class])
-    abstract fun contributePickStatsFragment(): PickStatsFragment
 
     @ContributesAndroidInjector(modules = [StatsModule::class])
     abstract fun contributeStatsFragment(): StatsFragment
