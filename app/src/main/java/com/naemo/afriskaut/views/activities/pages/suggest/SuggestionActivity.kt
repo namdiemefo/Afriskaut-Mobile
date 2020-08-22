@@ -36,7 +36,7 @@ class SuggestionActivity : BaseActivity<ActivitySuggestionBinding, SuggestionVie
         val intent = intent
         val players = intent.getParcelableArrayListExtra<SuggestData>("players")
         displayPlayers(players)
-//        getViewModel()?.retrieveSuggestion()?.observe(this, Observer {
+//      getViewModel()?.retrieveSuggestion()?.observe(this, Observer {
 //            display(it)
 //        })
     }
@@ -76,10 +76,10 @@ class SuggestionActivity : BaseActivity<ActivitySuggestionBinding, SuggestionVie
     }
 
     override fun onItemClicked(player: SuggestData) {
-        val intents = Intent(this, FragmentContainer::class.java)
-        val players = player.player()
-        intents.putExtra("player", players)
-        startActivity(intents)
+//        val intents = Intent(this, FragmentContainer::class.java)
+//        val players = player.player()
+//        intents.putExtra("player", players)
+//        startActivity(intents)
     }
 
     fun SuggestData.player() = com.naemo.afriskaut.db.local.room.search.Player(

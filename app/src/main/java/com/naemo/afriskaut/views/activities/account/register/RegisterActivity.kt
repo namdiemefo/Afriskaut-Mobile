@@ -74,9 +74,11 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
                 if (position == 0) {
                     tv.setTextColor(getColor(R.color.colorHint))
                     tv.setTypeface(typeface, Typeface.ITALIC)
+                    tv.textSize = 12f
                 } else {
                     tv.setTextColor(getColor(R.color.colorHomeText))
                     tv.setTypeface(typeface, Typeface.ITALIC)
+                    tv.textSize = 12f
                 }
                 return view
             }
@@ -90,9 +92,11 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
                 if (position == 0) {
                     tv.setTextColor(getColor(R.color.colorHint))
                     tv.setTypeface(typeface, Typeface.ITALIC)
+                    tv.textSize = 12f
                 } else {
                     tv.setTextColor(getColor(R.color.colorHomeText))
                     tv.setTypeface(typeface, Typeface.ITALIC)
+                    tv.textSize = 12f
 
                 }
                 return view

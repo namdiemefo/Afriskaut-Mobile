@@ -5,18 +5,13 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class ForgotResponse(
-    @SerializedName("response")
-    val response: Response
+    @SerializedName("statuscode")
+    val statuscode: Int,
+    @SerializedName("message")
+    val message: String
+
 )
 
-data class Response(
-    @SerializedName("message")
-    val message: String,
-    @SerializedName("reset_token")
-    val resetToken: String,
-    @SerializedName("statuscode")
-    val statuscode: Int
-)
 
 data class ForgotRequest(
     @Expose

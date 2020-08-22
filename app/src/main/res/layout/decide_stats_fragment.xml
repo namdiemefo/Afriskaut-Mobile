@@ -56,7 +56,7 @@
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:textStyle="normal"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/medium_text" />
 
             </LinearLayout>
 
@@ -67,7 +67,7 @@
                 android:text="@string/national_"
                 android:textColor="@color/colorPlayerImageBackground"
                 android:layout_gravity="center"
-                android:textSize="15sp"
+                android:textSize="@dimen/medium_text"
                 android:fontFamily="@font/montserrat"
                 android:textStyle="normal" />
 
@@ -97,7 +97,7 @@
                     android:text="@string/club_"
                     android:textColor="@color/colorPlayerImageBackground"
                     android:layout_gravity="center"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/medium_text"
                     android:fontFamily="@font/montserrat"
                     android:textStyle="normal" />
 

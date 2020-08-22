@@ -106,15 +106,15 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
             override fun onResponse(call: Call<ForgotResponse>, response: Response<ForgotResponse>) {
                 getNavigator()?.hideSpin()
                 val change = response.body()
-                val resCode = change?.response?.statuscode
+                val resCode = change?.statuscode
                 if (resCode == 200) {
-                    val msg = change.response.message
+                    val msg = change.message
                     msg.let {
                         getNavigator()?.showSnackBarMessage(it)
                     }
 
                 } else {
-                    val message = change?.response?.message
+                    val message = change?.message
                     message?.let {
                         getNavigator()?.showSnackBarMessage(message)
                     }

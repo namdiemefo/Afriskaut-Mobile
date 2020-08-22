@@ -51,13 +51,13 @@ class ForgotViewModel(application: Application) : BaseViewModel<ForgotNavigator>
                 override fun onResponse(call: Call<ForgotResponse>, response: Response<ForgotResponse>) {
                     val forgotResponse: ForgotResponse? = response.body()
                     getNavigator()?.hideSpin()
-                    val resCode = forgotResponse?.response?.statuscode
-                    val msg = forgotResponse?.response?.message
+                    val resCode = forgotResponse?.statuscode
+                    val msg = forgotResponse?.message
                     if (resCode == 200) {
                         msg?.let { getNavigator()?.showSnackBar(it) }
                         email.set("")
                     } else {
-                        getNavigator()?.showSnackBar("an error occurred while trying to reach your email, try again")
+                        msg?.let { getNavigator()?.showSnackBar(it) }
                     }
                 }
 

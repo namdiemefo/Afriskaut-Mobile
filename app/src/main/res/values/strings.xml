@@ -117,6 +117,7 @@
     <string name="victor_moses__">VICTOR MOSES</string>
     <string name="view_all_match_reports">Match Reports</string>
     <string name="pressing">Pressing</string>
+    <string name="long_npass">Long \nPass</string>
 
 
 </resources>

@@ -29,7 +29,7 @@
             android:fontFamily="@font/montserrat"
             android:textStyle="normal"
             android:textColor="@color/colorLoginBtn"
-            android:textSize="18sp"
+            android:textSize="@dimen/big_text"
             android:text="@string/createAccText"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"/>
@@ -53,7 +53,7 @@
                     android:inputType="textPersonName"
                     android:hint="@string/first_name"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/medium_text"
                     android:text="@={viewModel.firstName}"
                     android:textColor="@color/colorHomeText"
                     android:textColorHint="@color/colorHint"
@@ -70,7 +70,7 @@
                     android:layout_height="60dp"
                     android:inputType="textPersonName"
                     android:hint="@string/last_name"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/medium_text"
                     android:fontFamily="@font/montserrat"
                     android:text="@={viewModel.lastName}"
                     android:textColor="@color/colorHomeText"
@@ -88,7 +88,7 @@
                     android:layout_height="60dp"
                     android:inputType="textEmailAddress"
                     android:hint="@string/e_mail"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/medium_text"
                     android:fontFamily="@font/montserrat"
                     android:text="@={viewModel.email}"
                     android:textColor="@color/colorHomeText"
@@ -106,7 +106,7 @@
                     android:layout_height="60dp"
                     android:inputType="textPassword"
                     android:hint="@string/password"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/medium_text"
                     android:fontFamily="@font/montserrat"
                     android:text="@={viewModel.password}"
                     android:textColor="@color/colorHomeText"
@@ -125,7 +125,7 @@
                     android:inputType="textPassword"
                     android:hint="@string/confirm_password"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/medium_text"
                     android:text="@={viewModel.confirmPassword}"
                     android:textColor="@color/colorHomeText"
                     android:textColorHint="@color/colorHint"
@@ -148,7 +148,7 @@
                         android:fontFamily="@font/montserrat"
                         android:imeOptions="actionDone"
                         android:textColorHint="@color/colorHint"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/medium_text" />
                 </FrameLayout>
 
                 <Button
@@ -162,6 +162,7 @@
                     android:gravity="center"
                     android:onClick="@{(view) -> navigator.sendRegister()}"
                     android:text="@string/submit"
+                    android:textSize="@dimen/medium_text"
                     android:textColor="@color/colorWhite" />
 
                 <TextView
@@ -169,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorLoginBtn"
                     android:textStyle="normal"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/medium_text"
                     android:text="@string/already_a_member_sign_in"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
@@ -188,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorLoginBtn"
                         android:textStyle="normal"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/medium_text"
                         android:text="@string/tos"
                         android:layout_gravity="bottom|start"
                         android:onClick="@{(view) -> navigator.goToTos()}"/>
@@ -199,10 +200,9 @@
                         android:layout_gravity="bottom"
                         android:layout_marginStart="120dp"
                         android:layout_marginTop="60dp"
-
                         android:text="@string/pp"
                         android:textColor="@color/colorLoginBtn"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/medium_text"
                         android:textStyle="normal" />
 
                 </LinearLayout>

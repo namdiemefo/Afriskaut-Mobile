@@ -53,6 +53,7 @@ class PlayerInfoViewModel(application: Application) : BaseViewModel<PlayerInfoNa
     }
 
     fun fillFilelds(player: Player) {
+        Log.d("follow", player.following.toString())
         fullName.set(player.displayName)
         height.set(player.height)
         weight.set(player.weight)

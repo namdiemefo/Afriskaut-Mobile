@@ -65,7 +65,7 @@ class RegisterViewModel(application: Application) : BaseViewModel<RegisterNaviga
                              getNavigator()?.hideSpin()
                              if (t is IOException) {
                                  call.cancel()
-                                 getNavigator()?.showSnackBar("server error")
+                                 getNavigator()?.showSnackBar("server error, try again later")
                              }
                          }
 
@@ -74,11 +74,11 @@ class RegisterViewModel(application: Application) : BaseViewModel<RegisterNaviga
                              getNavigator()?.hideSpin()
                              val resCode = registerResponse?.statuscode
                              val msg = registerResponse?.message
-                             if (resCode == 201) {
-                                 getNavigator()?.showSnackBar(msg!!)
+                             if (resCode == 200) {
+                                 msg?.let { getNavigator()?.showSnackBar(it) }
                                  clearFields()
                              } else {
-                                 getNavigator()?.showSnackBar(msg!!)
+                                 msg?.let { getNavigator()?.showSnackBar(it) }
                              }
 
                          }

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
@@ -118,6 +119,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>(), HomeNav
                 } else true
             }
 
+            @RequiresApi(Build.VERSION_CODES.O)
             @TargetApi(Build.VERSION_CODES.M)
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent)
@@ -126,11 +128,30 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>(), HomeNav
                 if (position == 0) {
                     tv.setTextColor(requireContext().getColor(R.color.colorHomeText))
                     tv.setTypeface(typeface, Typeface.ITALIC)
-                    tv.textSize = 10f
+                    tv.textSize = 12f
                 } else {
                     tv.setTextColor(requireContext().getColor(R.color.colorHomeText))
                     tv.setTypeface(typeface, Typeface.ITALIC)
-                    tv.textSize = 10f
+                    tv.textSize = 12f
+                }
+                return view
+            }
+
+            @TargetApi(Build.VERSION_CODES.O)
+            @RequiresApi(Build.VERSION_CODES.M)
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getDropDownView(position, convertView, parent)
+                val typeface = ResourcesCompat.getFont(requireContext(), R.font.montserrat)
+                val tv = view as TextView
+                if (position == 0) {
+                    tv.setTextColor(requireContext().getColor(R.color.colorHint))
+                    tv.setTypeface(typeface, Typeface.ITALIC)
+                    tv.textSize = 12f
+                } else {
+                    tv.setTextColor(requireContext().getColor(R.color.colorHomeText))
+                    tv.setTypeface(typeface, Typeface.ITALIC)
+                    tv.textSize = 12f
+
                 }
                 return view
             }
@@ -156,19 +177,39 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>(), HomeNav
                 } else true
             }
 
+            @RequiresApi(Build.VERSION_CODES.O)
             @TargetApi(Build.VERSION_CODES.M)
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent)
-                val typeface = ResourcesCompat.getFont(requireContext(), R.font.montserrat)
+                val typeface = ResourcesCompat.getFont(requireActivity(), R.font.montserrat)
                 val tv = view as TextView
                 if (position == 0) {
                     tv.setTextColor(requireContext().getColor(R.color.colorHomeText))
                     tv.setTypeface(typeface, Typeface.ITALIC)
-                    tv.textSize = 10f
+                    tv.textSize = 12f
                 } else {
                     tv.setTextColor(requireContext().getColor(R.color.colorHomeText))
                     tv.setTypeface(typeface, Typeface.ITALIC)
-                    tv.textSize = 10f
+                    tv.textSize = 12f
+                }
+                return view
+            }
+
+            @TargetApi(Build.VERSION_CODES.O)
+            @RequiresApi(Build.VERSION_CODES.M)
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getDropDownView(position, convertView, parent)
+                val typeface = ResourcesCompat.getFont(requireContext(), R.font.montserrat)
+                val tv = view as TextView
+                if (position == 0) {
+                    tv.setTextColor(requireContext().getColor(R.color.colorHint))
+                    tv.setTypeface(typeface, Typeface.ITALIC)
+                    tv.textSize = 12f
+                } else {
+                    tv.setTextColor(requireContext().getColor(R.color.colorHomeText))
+                    tv.setTypeface(typeface, Typeface.ITALIC)
+                    tv.textSize = 12f
+
                 }
                 return view
             }

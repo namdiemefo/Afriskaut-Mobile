@@ -32,7 +32,7 @@
             android:layout_marginTop="20dp"
             android:textFontWeight="600"
             android:textStyle="normal"
-            android:textSize="18sp"
+            android:textSize="@dimen/big_text"
             android:textColor="@color/colorLoginBtn"
             />
 
@@ -61,7 +61,7 @@
                     android:textColor="@android:color/white"
                     android:text="@string/best_under_19_talent"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/medium_text"
                     android:layout_gravity="center"/>
 
             </LinearLayout>
@@ -100,7 +100,7 @@
                     android:textColor="@android:color/white"
                     android:text="@string/best_under_21_talent"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/medium_text"
                     android:layout_gravity="center"/>
 
             </LinearLayout>
@@ -139,7 +139,7 @@
                     android:textColor="@android:color/white"
                     android:text="@string/best_under_23_talent"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/medium_text"
                     android:layout_gravity="center"/>
 
             </LinearLayout>

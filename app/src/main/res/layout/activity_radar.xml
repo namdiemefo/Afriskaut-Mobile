@@ -31,7 +31,7 @@
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="@dimen/big_text"
             android:textColor="@color/colorLoginBtn"
             android:textStyle="normal"
             android:textFontWeight="600"

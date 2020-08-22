@@ -154,7 +154,7 @@
                                 android:textColor="@android:color/white"
                                 android:text="@string/radar"
                                 android:fontFamily="@font/montserrat"
-                                android:textSize="13sp"
+                                android:textSize="@dimen/medium_text"
                                 android:layout_gravity="center"/>
 
                         </LinearLayout>
@@ -192,7 +192,7 @@
                                 android:textColor="@android:color/white"
                                 android:text="@string/view_all_match_reports"
                                 android:fontFamily="@font/montserrat"
-                                android:textSize="13sp"
+                                android:textSize="@dimen/medium_text"
                                 android:layout_gravity="center"/>
 
                         </LinearLayout>
@@ -202,7 +202,7 @@
                             android:layout_width="70dp"
                             android:layout_height="50dp"
                             android:layout_gravity="end"
-                            android:layout_marginStart="140dp"
+                            android:layout_marginStart="150dp"
                             android:background="@drawable/search_icon"/>
 
 

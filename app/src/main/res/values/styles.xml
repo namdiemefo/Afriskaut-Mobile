@@ -23,4 +23,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <dimen name="huge_text">20sp</dimen>
+    <dimen name="big_text">18sp</dimen>
+    <dimen name="medium_text">12sp</dimen>
+    <dimen name="small_text">10sp</dimen>
+    <dimen name="very_small_text">7sp</dimen>
+
 </resources>

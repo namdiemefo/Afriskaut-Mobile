@@ -69,7 +69,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -85,7 +86,7 @@
                     android:text="NNAMDI"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/huge_text" />
 
                 <TextView
                     android:id="@+id/vs"
@@ -96,7 +97,7 @@
                     android:textColor="@android:color/white"
                     android:layout_marginStart="50dp"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/big_text" />
 
             </LinearLayout>
 
@@ -162,7 +163,8 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="15dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
 
                         <FrameLayout
                             android:layout_width="0dp"
@@ -173,7 +175,7 @@
 
                             <Button
                                 android:text="@string/passing"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -193,7 +195,7 @@
                                 android:layout_marginTop="15dp"
                                 android:layout_marginEnd="5dp"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground" />
 
 
@@ -209,7 +211,7 @@
 
                             <Button
                                 android:text="@string/composure"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -229,7 +231,7 @@
                                 android:layout_marginEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground" />
 
 
@@ -244,7 +246,7 @@
 
                             <Button
                                 android:text="@string/heading"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -264,7 +266,7 @@
                                 android:paddingEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground" />
 
 
@@ -288,7 +290,7 @@
 
                             <Button
                                 android:text="@string/first_n_touch"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -308,7 +310,7 @@
                                 android:paddingEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground"  />
 
 
@@ -323,7 +325,7 @@
 
                             <Button
                                 android:text="@string/technique"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -343,7 +345,7 @@
                                 android:paddingEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground"  />
 
 
@@ -358,7 +360,7 @@
 
                             <Button
                                 android:text="@string/finishing"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -378,7 +380,7 @@
                                 android:paddingEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground" />
 
 
@@ -402,7 +404,7 @@
 
                             <Button
                                 android:text="@string/ballcontrol"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -422,7 +424,7 @@
                                 android:paddingEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground"  />
 
 
@@ -437,7 +439,7 @@
 
                             <Button
                                 android:text="@string/decision_n_making"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -457,7 +459,7 @@
                                 android:paddingEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground"  />
 
 
@@ -472,7 +474,7 @@
 
                             <Button
                                 android:text="@string/shot_stopping"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -492,7 +494,7 @@
                                 android:paddingEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground" />
 
 
@@ -515,8 +517,8 @@
                             android:layout_height="100dp">
 
                             <Button
-                                android:text="Long \nPass"
-                                android:textSize="10sp"
+                                android:text="@string/long_npass"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -536,7 +538,7 @@
                                 android:paddingEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground"  />
 
 
@@ -551,7 +553,7 @@
 
                             <Button
                                 android:text="@string/positioning"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -571,7 +573,7 @@
                                 android:paddingEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground" />
 
 
@@ -586,7 +588,7 @@
 
                             <Button
                                 android:text="@string/pressing"
-                                android:textSize="10sp"
+                                android:textSize="@dimen/small_text"
                                 android:fontFamily="@font/montserrat"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/home_round_button"
@@ -606,7 +608,7 @@
                                 android:paddingEnd="5dp"
                                 android:fontFamily="@font/montserrat"
                                 android:text="@string/_7"
-                                android:textSize="20sp"
+                                android:textSize="@dimen/big_text"
                                 android:textColor="@color/colorPlayerImageBackground" />
 
 

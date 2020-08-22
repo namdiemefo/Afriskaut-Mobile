@@ -34,7 +34,7 @@
                     android:layout_marginTop="20dp"
                     android:textFontWeight="600"
                     android:textStyle="normal"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/big_text"
                     android:textColor="@color/colorLoginBtn"
                     />
 
@@ -53,7 +53,7 @@
                             android:paddingStart="20dp"
                             android:hint="@string/age_"
                             android:fontFamily="@font/montserrat"
-                            android:textSize="13sp"
+                            android:textSize="@dimen/medium_text"
                             android:inputType="number"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -98,7 +98,7 @@
                                     android:fontFamily="@font/montserrat"
                                     android:imeOptions="actionDone"
                                     android:textColorHint="@color/colorHint"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/medium_text" />
                         </FrameLayout>
 
                         <FrameLayout
@@ -116,7 +116,7 @@
                                     android:fontFamily="@font/montserrat"
                                     android:imeOptions="actionDone"
                                     android:textColorHint="@color/colorHint"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/medium_text" />
                         </FrameLayout>
 
 
@@ -130,7 +130,7 @@
                     android:background="@drawable/login_round_button"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/scout"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/medium_text"
                     android:textColor="#FFFFFF"
                     android:clickable="true"
                     android:focusable="true"
