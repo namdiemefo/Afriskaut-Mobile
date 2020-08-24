@@ -23,7 +23,7 @@ interface SearchDao {
     fun deleteSearch()
 }
 
-@Database(entities = [Player::class], version = 4, exportSchema = false)
+@Database(entities = [Player::class], version = 5, exportSchema = false)
 @TypeConverters(ArrayConverter::class)
 abstract class SearchDatabase : RoomDatabase() {
 

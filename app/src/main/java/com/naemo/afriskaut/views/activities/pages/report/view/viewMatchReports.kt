@@ -46,6 +46,7 @@ class ViewMatchReportsViewModel(application: Application): BaseViewModel<ViewMat
                 val msg = body?.message
                 if (statusCode == 200) {
                     getNavigator()?.displayReports(data)
+                    msg?.let { getNavigator()?.showSnackBarMessage(it) }
                 } else {
                     msg?.let { getNavigator()?.showSnackBarMessage(it) }
                 }

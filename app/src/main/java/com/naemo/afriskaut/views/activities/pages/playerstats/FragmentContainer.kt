@@ -2,6 +2,7 @@ package com.naemo.afriskaut.views.activities.pages.playerstats
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.findNavController
 import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
@@ -42,7 +43,7 @@ class FragmentContainer : BaseActivity<ActivityFragmentContainerBinding, Fragmen
     private fun initViews() {
         val intent = intent
         val player = intent.getParcelableExtra<Player>("player")
-
+        Log.d("radar0.1", player.toString())
         val bundle = Bundle()
         bundle.putParcelable("player", player)
 

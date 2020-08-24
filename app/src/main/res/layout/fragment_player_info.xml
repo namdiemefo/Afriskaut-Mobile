@@ -306,11 +306,12 @@
                     android:id="@+id/follow_button"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.followBtn}"
+                    android:text="@string/follow"
                     android:onClick="@{(view) -> navigator.followPlayer()}"
                     android:background="@drawable/home_round_button"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/medium_text"
+                    android:fontFamily="@font/montserrat"
                     android:layout_marginTop="30dp"
                     android:layout_marginStart="200dp" />
 

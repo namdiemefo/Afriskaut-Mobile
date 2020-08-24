@@ -2,6 +2,7 @@ package com.naemo.afriskaut.views.activities.pages.suggest
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
@@ -35,10 +36,8 @@ class SuggestionActivity : BaseActivity<ActivitySuggestionBinding, SuggestionVie
     private fun initViews() {
         val intent = intent
         val players = intent.getParcelableArrayListExtra<SuggestData>("players")
+        Log.d("suggestionplayers", players.toString())
         displayPlayers(players)
-//      getViewModel()?.retrieveSuggestion()?.observe(this, Observer {
-//            display(it)
-//        })
     }
 
     private fun displayPlayers(players: ArrayList<SuggestData>?) {
@@ -82,7 +81,8 @@ class SuggestionActivity : BaseActivity<ActivitySuggestionBinding, SuggestionVie
 //        startActivity(intents)
     }
 
-    fun SuggestData.player() = com.naemo.afriskaut.db.local.room.search.Player(
+    fun SuggestData.player() = following?.let {
+        com.naemo.afriskaut.db.local.room.search.Player(
         age = age,
         birthcountry = birthcountry,
         birthdate = birthdate,
@@ -90,7 +90,7 @@ class SuggestionActivity : BaseActivity<ActivitySuggestionBinding, SuggestionVie
         countryId = countryId,
         displayName = displayName,
         dob = dob,
-        following = following,
+        following = it,
         fullname = fullname,
         height = height,
         id = id,
@@ -101,4 +101,5 @@ class SuggestionActivity : BaseActivity<ActivitySuggestionBinding, SuggestionVie
         stats = stats,
         weight = weight
     )
+    }
 }

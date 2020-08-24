@@ -1,8 +1,8 @@
 package com.naemo.afriskaut.views.fragments.search
 
 import android.app.Application
+import android.util.Log
 import androidx.databinding.ObservableField
-import androidx.lifecycle.LiveData
 import com.naemo.afriskaut.api.models.search.SearchPlayerRequest
 import com.naemo.afriskaut.api.models.search.SearchPlayerResponse
 import com.naemo.afriskaut.db.local.preferences.AppPreferences
@@ -12,15 +12,10 @@ import com.naemo.afriskaut.network.Client
 import com.naemo.afriskaut.views.base.BaseViewModel
 import dagger.Module
 import dagger.Provides
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>(application) {
 
@@ -63,8 +58,10 @@ class SearchViewModel(application: Application) : BaseViewModel<SearchNavigator>
                         for (player in data) {
                             saveResult(player)
                         }
+                        Log.d("followings", data.toString())
+                        getNavigator()?.load(data)
                     }
-                    data?.let { getNavigator()?.load(it) }
+
                     //getNavigator()?.retrieveFromDb()
                 } else {
                     getNavigator()?.retrieveFromDb()

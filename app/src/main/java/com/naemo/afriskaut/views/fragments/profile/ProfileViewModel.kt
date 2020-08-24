@@ -73,6 +73,7 @@ class ProfileViewModel(application: Application) : BaseViewModel<ProfileNavigato
                         val image = response.body()
                         val img = image?.data
                         save(img)
+                    getNavigator()?.retrieveFromDb()
                 } else {
                     getNavigator()?.retrieveFromDb()
                     //getNavigator()?.showSnackBarMessage("server error")

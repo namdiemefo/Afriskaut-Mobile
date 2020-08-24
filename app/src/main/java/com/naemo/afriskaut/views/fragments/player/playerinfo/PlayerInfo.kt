@@ -32,7 +32,7 @@ class PlayerInfoViewModel(application: Application) : BaseViewModel<PlayerInfoNa
     var dob = ObservableField("")
     var pob = ObservableField("")
     var position = ObservableField("")
-    var followBtn = ObservableField("")
+    //var followBtn = ObservableField("")
 
     var client = Client()
         @Inject set
@@ -52,30 +52,30 @@ class PlayerInfoViewModel(application: Application) : BaseViewModel<PlayerInfoNa
         searchRepository = SearchRepository(application)
     }
 
-    fun fillFilelds(player: Player) {
+    fun fillFields(player: Player) {
         Log.d("follow", player.following.toString())
         fullName.set(player.displayName)
         height.set(player.height)
         weight.set(player.weight)
-        dob.set(player.birthdate)
+        dob.set(player.dob)
         pob.set(player.birthplace)
         image.set(player.imagePath)
         nationality.set(player.nationality)
         position.set(player.position?.name)
-        checkFollow(player.following)
+       // checkFollow(player.following)
     }
 
-    private fun checkFollow(following: Boolean?) {
-        Log.d("CHECK", "CHECKING FOLLOWING CALL")
-        following?.let {
-            if (it) {
-                followBtn.set("Following")
-            } else {
-                followBtn.set("Follow")
-            }
-        }
-
-    }
+//    private fun checkFollow(following: Boolean) {
+//        Log.d("CHECK", "CHECKING FOLLOWING CALL")
+//        following.let {
+//            if (it) {
+//                followBtn.set("Following")
+//            } else {
+//                followBtn.set("Follow")
+//            }
+//        }
+//
+//    }
 
     fun follow(id: String) {
         Log.d("playerbio", id)
@@ -91,7 +91,8 @@ class PlayerInfoViewModel(application: Application) : BaseViewModel<PlayerInfoNa
                 val message= follow?.message
                 if (statusCode == 200) {
                     getNavigator()?.showSnackBarMessage(message!!)
-                    followBtn.set("Following")
+                    //followBtn.set("Following")
+                    getNavigator()?.setFollowing("Following")
                     searchRepository?.updateFollowing(true, id)
                 } else {
                     getNavigator()?.showSnackBarMessage("server error")
@@ -122,7 +123,8 @@ class PlayerInfoViewModel(application: Application) : BaseViewModel<PlayerInfoNa
                 val msg = unfollow?.message
                 if (statusCode == 200) {
                     getNavigator()?.showSnackBarMessage(msg!!)
-                    followBtn.set("Follow")
+                   // followBtn.set("Follow")
+                    getNavigator()?.setFollowing("Follow")
                     searchRepository?.updateFollowing(false, id)
                 } else {
                     getNavigator()?.showSnackBarMessage(msg!!)
@@ -149,6 +151,8 @@ interface PlayerInfoNavigator {
     fun showSpin()
 
     fun hideSpin()
+
+    fun setFollowing(string: String)
 
     fun moveToDecideStats()
 

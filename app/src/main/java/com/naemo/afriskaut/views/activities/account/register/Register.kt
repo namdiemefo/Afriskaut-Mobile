@@ -2,6 +2,7 @@ package com.naemo.afriskaut.views.activities.account.register
 
 import android.app.Application
 import android.text.TextUtils
+import android.util.Log
 import androidx.databinding.ObservableField
 import com.naemo.afriskaut.R
 import com.naemo.afriskaut.api.models.register.RegisterRequest
@@ -74,6 +75,7 @@ class RegisterViewModel(application: Application) : BaseViewModel<RegisterNaviga
                              getNavigator()?.hideSpin()
                              val resCode = registerResponse?.statuscode
                              val msg = registerResponse?.message
+                             Log.d("msg", msg.toString())
                              if (resCode == 200) {
                                  msg?.let { getNavigator()?.showSnackBar(it) }
                                  clearFields()

@@ -67,7 +67,8 @@ class ScoutActivity : BaseActivity<ActivityScoutBinding, ScoutViewModel>(), Scou
         return mLayoutId
     }
 
-    fun Player.player() = com.naemo.afriskaut.db.local.room.search.Player(
+    fun Player.player() = following?.let {
+        com.naemo.afriskaut.db.local.room.search.Player(
         age = age,
         birthcountry = birthcountry,
         birthdate = birthdate,
@@ -75,7 +76,7 @@ class ScoutActivity : BaseActivity<ActivityScoutBinding, ScoutViewModel>(), Scou
         countryId = countryId,
         displayName = displayName,
         dob = dob,
-        following = following,
+        following = it,
         fullname = fullname,
         height = height,
         id = id,
@@ -86,4 +87,5 @@ class ScoutActivity : BaseActivity<ActivityScoutBinding, ScoutViewModel>(), Scou
         stats = stats,
         weight = weight
     )
+    }
 }

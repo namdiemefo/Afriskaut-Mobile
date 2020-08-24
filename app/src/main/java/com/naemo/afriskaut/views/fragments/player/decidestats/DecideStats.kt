@@ -3,6 +3,7 @@ package com.naemo.afriskaut.views.fragments.player.decidestats
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.navArgs
@@ -56,6 +57,8 @@ NationAdapter.ItemClickListener {
         val args by navArgs<DecideStatsArgs>()
         val player = args.player
         val stats = player.stats
+        Log.d("radar", player.toString())
+        Log.d("radar2", stats.toString())
         retrieveDecisionName(stats)
     }
 

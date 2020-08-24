@@ -68,6 +68,9 @@ class ViewMatchReportsActivity : BaseActivity<ActivityViewMatchReportsBinding, V
     }
 
     override fun displayReports(reports: List<ReportData>?) {
+        if (reports.isNullOrEmpty()) {
+            showSnackBarMessage("Create a report from radar page")
+        }
         val adapter = reports?.let { ReportAdapter(this, it, this) }
         report_recycler.adapter = adapter
         report_recycler.layoutManager = LinearLayoutManager(this)

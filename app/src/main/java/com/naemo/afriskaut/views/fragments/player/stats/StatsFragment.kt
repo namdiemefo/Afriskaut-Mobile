@@ -10,6 +10,7 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.fragment.navArgs
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
@@ -79,30 +80,30 @@ class StatsFragment : BaseFragment<FragmentStatsBinding, StatsViewModel>(), Stat
                 val tr = TableRow(requireContext())
                 tr.layoutParams = getLayoutParams()
 
-                tr.addView(getRowsTextView(0, stats.seasonName, requireContext().getColor(R.color.colorCreateAccBtn), Typeface.BOLD, R.drawable.cell_shape))
-                tr.addView(getRowsTextView(0, stats.leagueName, requireContext().getColor(R.color.colorCreateAccBtn), Typeface.BOLD, R.drawable.cell_shape))
-                tr.addView(getRowsTextView(0, stats.goals.toString(), requireContext().getColor(R.color.colorCreateAccBtn), Typeface.BOLD, R.drawable.cell_shape))
-                tr.addView(getRowsTextView(0, stats.assists.toString(), requireContext().getColor(R.color.colorCreateAccBtn), Typeface.BOLD, R.drawable.cell_shape))
-                tr.addView(getRowsTextView(0, stats.appearences.toString(), requireContext().getColor(R.color.colorCreateAccBtn), Typeface.BOLD, R.drawable.cell_shape))
-                tr.addView(getRowsTextView(0, stats.passesAccurate.toString(), requireContext().getColor(R.color.colorCreateAccBtn), Typeface.BOLD, R.drawable.cell_shape))
-                tr.addView(getRowsTextView(0, stats.dribbles?.success.toString(), requireContext().getColor(R.color.colorCreateAccBtn), Typeface.BOLD, R.drawable.cell_shape))
-                tr.addView(getRowsTextView(0, stats.blocks.toString(), requireContext().getColor(R.color.colorCreateAccBtn), Typeface.BOLD, R.drawable.cell_shape))
-                tr.addView(getRowsTextView(0, stats.tackles.toString(), requireContext().getColor(R.color.colorCreateAccBtn), Typeface.BOLD, R.drawable.cell_shape))
-                tr.addView(getRowsTextView(0, stats.duels?.won.toString(), requireContext().getColor(R.color.colorCreateAccBtn), Typeface.BOLD, R.drawable.cell_shape))
+                tr.addView(getRowsTextView(0, stats.seasonName, requireContext().getColor(R.color.colorCreateAccBtn), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+                tr.addView(getRowsTextView(0, stats.leagueName, requireContext().getColor(R.color.colorCreateAccBtn), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+                tr.addView(getRowsTextView(0, stats.goals.toString(), requireContext().getColor(R.color.colorCreateAccBtn), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+                tr.addView(getRowsTextView(0, stats.assists.toString(), requireContext().getColor(R.color.colorCreateAccBtn), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+                tr.addView(getRowsTextView(0, stats.appearences.toString(), requireContext().getColor(R.color.colorCreateAccBtn), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+                tr.addView(getRowsTextView(0, stats.passesAccurate.toString(), requireContext().getColor(R.color.colorCreateAccBtn), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+                tr.addView(getRowsTextView(0, stats.dribbles?.success.toString(), requireContext().getColor(R.color.colorCreateAccBtn), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+                tr.addView(getRowsTextView(0, stats.blocks.toString(), requireContext().getColor(R.color.colorCreateAccBtn), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+                tr.addView(getRowsTextView(0, stats.tackles.toString(), requireContext().getColor(R.color.colorCreateAccBtn), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+                tr.addView(getRowsTextView(0, stats.duels?.won.toString(), requireContext().getColor(R.color.colorCreateAccBtn), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
                 stats_table.addView(tr, getTblLayoutParams())
             }
         }
 
     }
 
-    private fun getRowsTextView(i: Int, s: String?, color: Int, bold: Int, cellShape: Int): View? {
+    private fun getRowsTextView(i: Int, s: String?, color: Int, bold: Typeface?, cellShape: Int): View? {
         val tv = TextView(requireContext())
         tv.id = i
         tv.text = s.toString()
         tv.setTextColor(color)
         tv.setPadding(10,10,10,10)
-        tv.setTypeface(Typeface.DEFAULT, bold)
-        tv.textSize = 7f
+        tv.setTypeface(bold, Typeface.ITALIC)
+        tv.textSize = 5f
         tv.layoutParams = getLayoutParams()
         tv.setBackgroundResource(cellShape)
         return tv
@@ -112,27 +113,27 @@ class StatsFragment : BaseFragment<FragmentStatsBinding, StatsViewModel>(), Stat
     @RequiresApi(Build.VERSION_CODES.M)
     private fun addHeaders() {
         val tr = TableRow(requireContext())
-        tr.addView(getTextView(0, "S", requireContext().getColor(R.color.colorPlayerBackground), Typeface.ITALIC, R.drawable.cell_shape))
-        tr.addView(getTextView(0, "Comp.", requireContext().getColor(R.color.colorPlayerBackground), Typeface.BOLD, R.drawable.cell_shape))
-        tr.addView(getTextView(0, "G", requireContext().getColor(R.color.colorPlayerBackground), Typeface.BOLD, R.drawable.cell_shape))
-        tr.addView(getTextView(0, "A", requireContext().getColor(R.color.colorPlayerBackground), Typeface.BOLD, R.drawable.cell_shape))
-        tr.addView(getTextView(0, "App", requireContext().getColor(R.color.colorPlayerBackground), Typeface.BOLD, R.drawable.cell_shape))
-        tr.addView(getTextView(0, "Pass%", requireContext().getColor(R.color.colorPlayerBackground), Typeface.BOLD, R.drawable.cell_shape))
-        tr.addView(getTextView(0, "Drb", requireContext().getColor(R.color.colorPlayerBackground), Typeface.BOLD, R.drawable.cell_shape))
-        tr.addView(getTextView(0, "Blocks", requireContext().getColor(R.color.colorPlayerBackground), Typeface.BOLD, R.drawable.cell_shape))
-        tr.addView(getTextView(0, "Tackles", requireContext().getColor(R.color.colorPlayerBackground), Typeface.BOLD, R.drawable.cell_shape))
-        tr.addView(getTextView(0, "Duels", requireContext().getColor(R.color.colorPlayerBackground), Typeface.BOLD, R.drawable.cell_shape))
+        tr.addView(getTextView(0, "S", requireContext().getColor(R.color.colorPlayerBackground), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+        tr.addView(getTextView(0, "Comp.", requireContext().getColor(R.color.colorPlayerBackground), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+        tr.addView(getTextView(0, "G", requireContext().getColor(R.color.colorPlayerBackground), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+        tr.addView(getTextView(0, "A", requireContext().getColor(R.color.colorPlayerBackground), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+        tr.addView(getTextView(0, "App", requireContext().getColor(R.color.colorPlayerBackground), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+        tr.addView(getTextView(0, "Pass%", requireContext().getColor(R.color.colorPlayerBackground), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+        tr.addView(getTextView(0, "Drb", requireContext().getColor(R.color.colorPlayerBackground), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+        tr.addView(getTextView(0, "Blocks", requireContext().getColor(R.color.colorPlayerBackground), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+        tr.addView(getTextView(0, "Tackles", requireContext().getColor(R.color.colorPlayerBackground), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
+        tr.addView(getTextView(0, "Duels", requireContext().getColor(R.color.colorPlayerBackground), ResourcesCompat.getFont(requireContext(), R.font.montserrat), R.drawable.cell_shape))
         stats_table.addView(tr)
     }
 
-    private fun getTextView(i: Int, s: String, color: Int, bold: Int, cellShape: Int): View? {
+    private fun getTextView(i: Int, s: String, color: Int, bold: Typeface?, cellShape: Int): View? {
         val tv = TextView(requireContext())
         tv.id = i
         tv.text = s
         tv.setTextColor(color)
         tv.setPadding(10,10,10,10)
-        tv.setTypeface(Typeface.DEFAULT, bold)
-        tv.textSize = 7f
+        tv.setTypeface(bold, Typeface.ITALIC)
+        tv.textSize = 5f
         tv.layoutParams = getLayoutParams()
         tv.setBackgroundResource(cellShape)
         return tv
@@ -178,6 +179,7 @@ class StatsFragment : BaseFragment<FragmentStatsBinding, StatsViewModel>(), Stat
         barChart.xAxis.setDrawGridLines(false)
         barChart.axisLeft.textColor = requireContext().getColor(R.color.colorWhite)
         barChart.xAxis.textColor = requireContext().getColor(R.color.colorWhite)
+        barChart.xAxis.isEnabled = false
 
         val legend = barChart.legend
         legend.isWordWrapEnabled = true
@@ -243,8 +245,8 @@ class StatsFragment : BaseFragment<FragmentStatsBinding, StatsViewModel>(), Stat
 
     private fun setBarWidth(data: BarData, size: Int) {
         if (dataSets.size > 1) {
-            val groupSpace = 3f
-            val barSpace = 0.4f
+            val groupSpace = 5f
+            val barSpace = 2f
             Log.d("bar2", dataSets.size.toString())
             barWidth = (-(1 - groupSpace) / dataSets.size - barSpace)
             Log.d("bar", barWidth.toString())

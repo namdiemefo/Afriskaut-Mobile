@@ -1,6 +1,7 @@
 package com.naemo.afriskaut.views.activities.pages.radar
 
 import android.app.Application
+import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import com.naemo.afriskaut.R
@@ -60,8 +61,10 @@ class RadarViewModel(application: Application): BaseViewModel<RadarNavigator>(ap
                         for (i in it) {
                             repository.save(i)
                         }
+                        Log.d("followingdata", data.toString())
+                        getNavigator()?.load(it)
                     }
-                    data?.let { getNavigator()?.load(it) }
+
                 } else {
                     getNavigator()?.loadFromDb()
                 }

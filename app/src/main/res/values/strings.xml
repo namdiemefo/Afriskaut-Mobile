@@ -118,6 +118,8 @@
     <string name="view_all_match_reports">Match Reports</string>
     <string name="pressing">Pressing</string>
     <string name="long_npass">Long \nPass</string>
+    <string name="im_following">Following</string>
+    <string name="im_not_following">Follow</string>
 
 
 </resources>

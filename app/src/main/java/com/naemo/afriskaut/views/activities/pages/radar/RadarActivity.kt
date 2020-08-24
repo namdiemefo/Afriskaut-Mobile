@@ -89,6 +89,9 @@ RadarAdapter.ItemClickListener{
     }
 
     override fun load(data: List<FollowingData>) {
+        if (data.isEmpty()) {
+            showSnackBarMessage("You need to follow a player")
+        }
         val adapter = RadarAdapter(this, data, this)
         radar_recycler.adapter = adapter
         radar_recycler.layoutManager = LinearLayoutManager(this)
@@ -101,10 +104,10 @@ RadarAdapter.ItemClickListener{
     }
 
     override fun onItemClicked(player: FollowingData) {
-        val intent = Intent(this, FragmentContainer::class.java)
-        val newPlayer = player.player()
-        intent.putExtra("player", newPlayer)
-        startActivity(intent)
+//        val intent = Intent(this, FragmentContainer::class.java)
+//        val newPlayer = player.player()
+//        intent.putExtra("player", newPlayer)
+//        startActivity(intent)
     }
 
     override fun goToCreateReportPage(name: String?, id: String?) {
@@ -122,7 +125,8 @@ RadarAdapter.ItemClickListener{
         startActivity(intent)
     }
 
-    fun FollowingData.player() = Player(
+    fun FollowingData.player() = following?.let {
+        Player(
         age = age,
         birthcountry = birthcountry,
         birthdate = birthdate,
@@ -130,7 +134,7 @@ RadarAdapter.ItemClickListener{
         countryId = countryId,
         displayName = displayName,
         dob = dob,
-        following = following,
+        following = it,
         fullname = fullname,
         height = height,
         id = id,
@@ -141,6 +145,7 @@ RadarAdapter.ItemClickListener{
         stats = stats,
         weight = weight
     )
+    }
 
 
 }

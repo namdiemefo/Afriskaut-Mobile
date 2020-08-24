@@ -212,7 +212,12 @@ class ProfileFragment : BaseFragment<ProfileFragmentBinding, ProfileViewModel>()
 
     private fun setUpImage(it: ProfilePic?) {
         val url = it?.filename
-        Glide.with(requireContext()).load(url).into(profile_image)
+        Glide.with(requireContext())
+            .load(url)
+            .fallback(R.drawable.user_icon_profile)
+            .placeholder(R.drawable.user_icon_profile)
+            .error(R.drawable.user_icon_profile)
+            .into(profile_image)
     }
 
     override fun showSpin() {

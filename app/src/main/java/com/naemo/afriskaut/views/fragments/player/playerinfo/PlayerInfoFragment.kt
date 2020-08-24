@@ -3,6 +3,7 @@ package com.naemo.afriskaut.views.fragments.player.playerinfo
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.navigation.fragment.navArgs
@@ -51,6 +52,8 @@ class PlayerInfoFragment : BaseFragment<FragmentPlayerInfoBinding, PlayerInfoVie
         val args by navArgs<PlayerInfoFragmentArgs>()
         val player = args.player
         fillPlayerInfo(player)
+        Log.d("followPlayer", player.toString())
+        checkFollow(player.following)
 
         val backButton: TextView = mBinder?.backButton!!
         backButton.setOnClickListener {
@@ -58,8 +61,17 @@ class PlayerInfoFragment : BaseFragment<FragmentPlayerInfoBinding, PlayerInfoVie
         }
     }
 
+    private fun checkFollow(following: Boolean) {
+        Log.d("follow", following.toString())
+        if (following) {
+            mBinder?.followButton?.text = "Following"
+        } else {
+            mBinder?.followButton?.text = "Follow"
+        }
+    }
+
     private fun fillPlayerInfo(player: Player) {
-        getViewModel()?.fillFilelds(player)
+        getViewModel()?.fillFields(player)
     }
 
     override fun getBindingVariable(): Int {
@@ -82,6 +94,10 @@ class PlayerInfoFragment : BaseFragment<FragmentPlayerInfoBinding, PlayerInfoVie
         appUtils.cancelDialog()
     }
 
+    override fun setFollowing(string: String) {
+        mBinder?.followButton?.text = string
+    }
+
     override fun moveToDecideStats() {
         val args by navArgs<PlayerInfoFragmentArgs>()
         val player = args.player
@@ -92,7 +108,7 @@ class PlayerInfoFragment : BaseFragment<FragmentPlayerInfoBinding, PlayerInfoVie
         val args by navArgs<PlayerInfoFragmentArgs>()
         val player = args.player
         val dBid = player.id
-        val buttonText = follow_button.text.toString()
+        val buttonText = mBinder?.followButton?.text.toString()
         if (buttonText == "Follow") {
             dBid.let { it.let { it1 -> getViewModel()?.follow(it1) } }
         } else {

@@ -1,6 +1,7 @@
 package com.naemo.afriskaut.views.fragments.notifications
 
 import android.app.Application
+import android.util.Log
 import com.naemo.afriskaut.api.models.suggestion.SuggestionRequest
 import com.naemo.afriskaut.api.models.suggestion.SuggestionResponse
 import com.naemo.afriskaut.db.local.preferences.AppPreferences
@@ -32,15 +33,19 @@ class NotificationViewModel(application: Application) : BaseViewModel<Notificati
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
+        Log.d("suggestResponseUnder", under)
         val request = SuggestionRequest(under)
 
         val suggestCall: Call<SuggestionResponse> = client.getApi().suggestion(token, request)
         suggestCall.enqueue(object : Callback<SuggestionResponse> {
             override fun onResponse(call: Call<SuggestionResponse>, response: Response<SuggestionResponse>) {
+                Log.d("suggestResponse2", response.toString())
                 getNavigator()?.hideSpin()
                 val suggestResponse = response.body()
+                Log.d("suggestResponse", suggestResponse.toString())
                 val statusCode = suggestResponse?.statuscode
                 val data = suggestResponse?.data
+                Log.d("playersdata", data.toString())
                 if (statusCode == 200) {
                     getNavigator()?.sendSuggestions(data)
                 } else {

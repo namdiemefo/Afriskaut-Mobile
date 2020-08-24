@@ -27,7 +27,7 @@ data class Player(
     @SerializedName("dob")
     val dob: String?,
     @SerializedName("following")
-    val following: Boolean?,
+    val following: Boolean,
     @SerializedName("fullname")
     val fullname: String?,
     @SerializedName("height")
@@ -58,7 +58,7 @@ data class Player(
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readString(),
         parcel.readString(),
-        parcel.readValue(Boolean::class.java.classLoader) as? Boolean,
+        parcel.readValue(Boolean::class.java.classLoader) as Boolean,
         parcel.readString(),
         parcel.readString(),
         parcel.readString().toString(),
