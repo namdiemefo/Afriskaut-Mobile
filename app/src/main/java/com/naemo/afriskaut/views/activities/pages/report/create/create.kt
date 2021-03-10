@@ -20,19 +20,6 @@ import javax.inject.Inject
 
 class CreateReportViewModel(application: Application): BaseViewModel<CreateReportNavigator>(application) {
 
-//    val name = ObservableField("")
-//    val passScore = ObservableField("")
-//    val composureScore = ObservableField("")
-//    val headingScore = ObservableField("")
-//    val firstTouchScore = ObservableField("")
-//    val techniqueScore = ObservableField("")
-//    val finishingScore = ObservableField("")
-//    val ballControlScore = ObservableField("")
-//    val decisionMakingScore = ObservableField("")
-//    val shotStoppingScore = ObservableField("")
-//    val longPassScore = ObservableField("")
-//    val positioningScore = ObservableField("")
-
 
     var appUtils: AppUtils? = null
         @Inject set
@@ -43,21 +30,6 @@ class CreateReportViewModel(application: Application): BaseViewModel<CreateRepor
     var client = Client()
         @Inject set
 
-
-  //  fun displayReport(report: ReportData?) {
-//        passScore.set(report?.shortpass.toString())
-//        composureScore.set(report?.composure.toString())
-//        headingScore.set(report?.heading.toString())
-//        firstTouchScore.set(report?.firsttouch.toString())
-//        techniqueScore.set(report?.technique.toString())
-//        finishingScore.set(report?.finishing.toString())
-//        ballControlScore.set(report?.ballcontrol.toString())
-//        decisionMakingScore.set(report?.decisionmaking.toString())
-//        shotStoppingScore.set(report?.shotstopping.toString())
-//        longPassScore.set(report?.longpass.toString())
-//        positioningScore.set(report?.positioning.toString())
-//        name.set(report?.matchname)
-  //  }
 
     fun deleteReport(id: String) {
         getNavigator()?.showSpin()
@@ -113,18 +85,6 @@ class CreateReportViewModel(application: Application): BaseViewModel<CreateRepor
         val user = appPreferences.getUser()
         val userToken = user.jwt_token
         val token = "Bearer $userToken"
-
-//        val shortPass = passScore.get()?.toInt()
-//        val composure = composureScore.get()?.toInt()
-//        val heading = headingScore.get()?.toInt()
-//        val firstTouch = firstTouchScore.get()?.toInt()
-//        val technique = techniqueScore.get()?.toInt()
-//        val finishing = finishingScore.get()?.toInt()
-//        val ballControl = ballControlScore.get()?.toInt()
-//        val decisionMaking = decisionMakingScore.get()?.toInt()
-//        val shotStopping = shotStoppingScore.get()?.toInt()
-//        val longPass = longPassScore.get()?.toInt()
-//        val positioning = positioningScore.get()?.toInt()
         val request = CreateReportRequest(ballControl, composure, decisionMaking, finishing, firstTouch, heading, longPass, matchName, id, positioning, report, shortPass, shotStopping, technique, pressing)
 
         val reportCall: Call<CreateReportResponse> = client.getApi().createReport(token, request)

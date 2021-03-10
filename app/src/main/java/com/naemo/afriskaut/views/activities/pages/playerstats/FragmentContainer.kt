@@ -43,7 +43,6 @@ class FragmentContainer : BaseActivity<ActivityFragmentContainerBinding, Fragmen
     private fun initViews() {
         val intent = intent
         val player = intent.getParcelableExtra<Player>("player")
-        Log.d("radar0.1", player.toString())
         val bundle = Bundle()
         bundle.putParcelable("player", player)
 

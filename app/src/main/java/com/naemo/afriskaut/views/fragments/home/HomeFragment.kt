@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -15,6 +16,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.naemo.afriskaut.BR
 import com.naemo.afriskaut.R
 import com.naemo.afriskaut.databinding.HomeFragmentBinding
+import com.naemo.afriskaut.utils.AfricanCountry
 import com.naemo.afriskaut.utils.AppUtils
 import com.naemo.afriskaut.views.activities.pages.scout.ScoutActivity
 import com.naemo.afriskaut.views.base.BaseFragment
@@ -34,8 +36,14 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>(), HomeNav
     private var mLayoutId = R.layout.home_fragment
 
     internal var position = arrayOf("--Select Position--", "Goal Keeper", "Defender", "Midfielder", "Attacker")
-    internal var countries = arrayOf("--Select Nation--","Algeria",
-        "Algeria",
+    internal var africanCountry: Array<AfricanCountry> = arrayOf(
+        AfricanCountry("Algeria", "\uD83C\uDDE9\uD83C\uDDFF"),
+        AfricanCountry("Angola", "\uD83C\uDDE6\uD83C\uDDF4"),
+        AfricanCountry("Benin", "\uD83C\uDDE7\uD83C\uDDEF"),
+        AfricanCountry("Botswana", "\uD83C\uDDE7\uD83C\uDDFC")
+    )
+    internal var countries = arrayOf("--Select Nation--",
+        "Algeria \uD83C\uDDE9\uD83C\uDDFF",
         "Angola",
         "Benin",
         "Botswana",
@@ -164,7 +172,12 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>(), HomeNav
             }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                nationSelected = countries.let { it[p2] }
+                nationSelected = if (p2 == 0) {
+                    " "
+                } else {
+                    countries.let { it[p2] }
+                }
+
             }
 
         }
@@ -181,7 +194,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>(), HomeNav
             @TargetApi(Build.VERSION_CODES.M)
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent)
-                val typeface = ResourcesCompat.getFont(requireActivity(), R.font.montserrat)
+                val typeface = ResourcesCompat.getFont(requireContext(), R.font.montserrat)
                 val tv = view as TextView
                 if (position == 0) {
                     tv.setTextColor(requireContext().getColor(R.color.colorHomeText))

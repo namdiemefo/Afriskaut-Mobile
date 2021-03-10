@@ -90,7 +90,7 @@
                             android:layout_margin="15dp"
                             android:background="@drawable/rounded_field">
 
-                                <Spinner
+                                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                                     android:padding="10dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
